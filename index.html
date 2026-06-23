@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мебель и Стиль — Калькулятор сметы</title>
+    <meta name="description" content="Калькулятор сметы на меблировку квартиры. Рассчитайте стоимость обустройства под ключ в компании Мебель и Стиль.">
+    <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA20lEQVR4nO2WwQ2DMAxFvy7QMbpBVugIHYEJOgIjMEFH6Ait1AMSKGn4UaoqUg8cQOL7O/6OnQNAa62UUoMQ/5xzP2YW9xERnXPvUkr03gOAiAjAzJRSb4wR3xGRUkoUAEQAM3N3d5FSohjAXAghWmuICEKIOGcQwhhzSmYBIqK19q21CCGEiMhbSum9T6XUGGPpAsw5E0JYSpkKAPCN+ccYA2bOFAAAEJkBMPeqB04pgCgihPj3V5AkeZFSVqAAJMnOGLbW3k1TSsk5XxhjzLm1dgE8k6QtM4eI74ssX/gBkjxJ+gcMUFEAAAAASUVORK5CYII=">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #1a3b2e;
+            --primary-light: #2a5a45;
+            --accent: #d4b68a;
+            --light: #f5f7f6;
+            --dark: #121212;
+            --gray: #6c757d;
+            --light-gray: #e0e5e2;
+            --transition: all 0.25s ease-out;
+            --radius: 4px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            font-weight: 400; color: var(--dark); background: #fff;
+            line-height: 1.6; letter-spacing: -0.01em;
+            -webkit-font-smoothing: antialiased; min-height: 100vh;
+            display: flex; flex-direction: column;
+        }
+
+        h1, h2, h3, .section-header .title, .btn, .calc-header .logo {
+            font-family: 'Raleway', sans-serif; font-weight: 600; letter-spacing: -0.02em;
+        }
+
+        .container { max-width: 760px; margin: 0 auto; padding: 0 20px; width: 100%; }
+
+        .calc-header {
+            background: var(--primary); text-align: center;
+            padding: 20px 16px 18px; color: #fff; flex-shrink: 0;
+        }
+        .calc-header .logo { font-size: 22px; font-weight: 800; letter-spacing: -0.3px; }
+        .calc-header .logo span { color: var(--accent); }
+        .calc-header .divider { width: 40px; height: 2px; background: var(--accent); margin: 8px auto 10px; }
+        .calc-header .subtitle { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.8; font-weight: 500; }
+        .calc-header .phone-link {
+            display: inline-block; margin-top: 10px; color: #fff; text-decoration: none;
+            font-weight: 600; font-size: 13px; padding: 6px 16px;
+            border: 2px solid rgba(255,255,255,0.25); border-radius: var(--radius); transition: var(--transition);
+        }
+        .calc-header .phone-link:hover { border-color: var(--accent); color: var(--accent); }
+
+        main { flex: 1; padding: 16px 0 90px; }
+        .intro { text-align: center; padding: 10px 0 20px; }
+        .intro h2 { font-size: 1.4rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .intro p { font-size: 0.9rem; color: var(--gray); max-width: 500px; margin: 0 auto; }
+
+        .section { background: #fff; margin-bottom: 6px; border-bottom: 1px solid var(--light-gray); }
+        .section-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px 0; cursor: pointer; user-select: none; gap: 12px; transition: color var(--transition);
+        }
+        .section-header:hover { color: var(--primary-light); }
+        .section-header .left { display: flex; align-items: center; gap: 10px; min-width: 0; }
+        .section-header .icon { font-size: 16px; color: var(--accent); flex-shrink: 0; width: 22px; text-align: center; }
+        .section-header .title { font-size: 15px; font-weight: 600; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px; }
+        .section-header .badge {
+            font-size: 10px; font-weight: 700; background: var(--primary); color: #fff;
+            padding: 2px 8px; border-radius: 2px; letter-spacing: 0.3px; text-transform: uppercase;
+            opacity: 0; transition: opacity var(--transition); flex-shrink: 0;
+        }
+        .section-header .badge.visible { opacity: 1; }
+        .section-header .badge.always { opacity: 1; background: var(--accent); color: var(--primary); }
+        .section-header .arrow { font-size: 11px; color: var(--gray); transition: transform var(--transition); flex-shrink: 0; }
+        .section.open .section-header .arrow { transform: rotate(180deg); }
+        .section-body { display: none; padding: 0 0 18px; border-top: 1px solid var(--light-gray); padding-top: 14px; }
+        .section.open .section-body { display: block; }
+
+        .option-group { margin-bottom: 16px; }
+        .option-group:last-child { margin-bottom: 0; }
+        .option-group-label {
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1px; color: var(--gray); margin-bottom: 8px; display: block;
+        }
+        label.option {
+            display: flex; align-items: center; gap: 10px; padding: 8px 10px;
+            cursor: pointer; font-size: 13.5px; color: var(--dark);
+            transition: background var(--transition); border-left: 2px solid transparent; margin-bottom: 1px;
+        }
+        label.option:hover { background: var(--light); border-left-color: var(--light-gray); }
+        input[type="checkbox"], input[type="radio"] {
+            appearance: none; -webkit-appearance: none; width: 17px; height: 17px;
+            border: 2px solid #ccc; flex-shrink: 0; cursor: pointer; position: relative;
+            transition: var(--transition); background: #fff;
+        }
+        input[type="radio"] { border-radius: 50%; }
+        input[type="checkbox"] { border-radius: 2px; }
+        input[type="checkbox"]:checked, input[type="radio"]:checked { border-color: var(--primary); background: var(--primary); }
+        input[type="checkbox"]:checked::after {
+            content: ''; position: absolute; left: 4px; top: 1px;
+            width: 5px; height: 9px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg);
+        }
+        input[type="radio"]:checked::after {
+            content: ''; position: absolute; left: 4px; top: 4px;
+            width: 5px; height: 5px; background: #fff; border-radius: 50%;
+        }
+
+        .number-row { display: flex; align-items: center; gap: 10px; padding: 6px 10px; }
+        .number-row button {
+            width: 32px; height: 32px; border: 2px solid var(--light-gray); background: #fff;
+            font-size: 16px; cursor: pointer; font-weight: 600; color: var(--primary);
+            transition: var(--transition); font-family: 'Inter', sans-serif; border-radius: 2px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .number-row button:hover { border-color: var(--primary); background: var(--light); }
+        .number-row span { font-size: 16px; font-weight: 700; min-width: 22px; text-align: center; color: var(--primary); }
+        .number-row .hint { font-size: 12px; color: var(--gray); }
+
+        .services-fixed {
+            background: #f4f6f5; border-left: 3px solid var(--accent);
+            padding: 10px 14px; display: flex; align-items: flex-start; gap: 10px;
+            font-size: 13px; color: var(--dark); line-height: 1.5;
+        }
+        .services-fixed .lock { color: var(--accent); flex-shrink: 0; margin-top: 2px; font-size: 14px; }
+        .services-fixed strong { font-weight: 600; color: var(--primary); }
+
+        .bottom-bar {
+            position: fixed; bottom: 0; left: 0; right: 0; background: #fff;
+            border-top: 1px solid var(--light-gray); padding: 12px 20px;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 14px; flex-wrap: wrap; z-index: 100; box-shadow: 0 -2px 8px rgba(0,0,0,0.03);
+        }
+        .bottom-bar .hint-text { font-size: 12px; color: var(--gray); }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+            padding: 11px 24px; font-size: 12.5px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1px; cursor: pointer; text-decoration: none;
+            border: 2px solid var(--primary); background: transparent; color: var(--primary);
+            transition: var(--transition); font-family: 'Raleway', sans-serif;
+            border-radius: var(--radius); position: relative; overflow: hidden; z-index: 1; white-space: nowrap;
+        }
+        .btn::before {
+            content: ''; position: absolute; top: 0; left: -100%;
+            width: 100%; height: 100%; background: var(--primary);
+            transition: left 0.3s ease; z-index: -1;
+        }
+        .btn:hover::before { left: 0; }
+        .btn:hover { color: #fff; }
+        .btn-outline { border-color: var(--light-gray); color: var(--gray); }
+        .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+        .btn-outline::before { display: none; }
+        .btn-block { width: 100%; justify-content: center; }
+        .btn:disabled { opacity: 0.6; pointer-events: none; }
+
+        .result-card {
+            display: none; background: #fff; border: 1px solid var(--light-gray);
+            padding: 28px 22px 24px; text-align: center; margin: 16px 0;
+            border-radius: var(--radius); border-left: 4px solid var(--accent);
+        }
+        .result-card.show { display: block; animation: fadeUp 0.35s ease; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .result-badge {
+            display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1px; color: var(--primary-light); margin-bottom: 10px;
+            border-bottom: 2px solid var(--accent); padding-bottom: 4px;
+        }
+        .result-price {
+            font-size: 38px; font-weight: 800; color: var(--primary);
+            letter-spacing: -1px; margin: 8px 0 16px; font-family: 'Raleway', sans-serif; word-break: break-all;
+        }
+        .result-summary {
+            text-align: left; font-size: 12.5px; color: var(--dark); line-height: 1.8;
+            margin: 0 auto 16px; padding: 12px 14px; background: var(--light);
+            border-radius: var(--radius); max-width: 420px;
+        }
+        .result-summary strong { color: var(--primary); font-weight: 600; }
+        .result-phone {
+            font-size: 13px; color: var(--gray); margin-bottom: 14px;
+            padding: 10px 12px; background: #f9faf9; border-radius: var(--radius); line-height: 1.6;
+        }
+        .result-phone a { color: var(--primary); font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--accent); transition: var(--transition); }
+        .result-phone a:hover { color: var(--accent); border-bottom-color: var(--primary); }
+
+        .lead-form { display: flex; flex-direction: column; gap: 9px; max-width: 360px; margin: 0 auto 14px; }
+        .lead-form input {
+            padding: 10px 12px; border: 2px solid var(--light-gray); font-size: 13.5px;
+            font-family: 'Inter', sans-serif; background: var(--light);
+            transition: var(--transition); color: var(--dark); border-radius: var(--radius);
+        }
+        .lead-form input:focus { outline: none; border-color: var(--accent); background: #fff; }
+        .lead-form input::placeholder { color: #aaa; }
+        .error-msg { color: #c0392b; font-size: 11.5px; text-align: left; display: none; font-weight: 500; }
+        .error-msg.show { display: block; }
+        .success-msg {
+            display: none; text-align: center; padding: 16px 0 8px;
+            color: var(--primary-light); font-weight: 600; font-size: 14px;
+        }
+        .success-msg.show { display: block; }
+        .success-msg i { color: var(--accent); font-size: 28px; display: block; margin-bottom: 8px; }
+
+        .disabled-area { pointer-events: none; opacity: 0.55; filter: grayscale(15%); }
+
+        .calc-footer { background: #f5f7f6; text-align: center; padding: 14px 16px; font-size: 11px; color: var(--gray); border-top: 1px solid var(--light-gray); flex-shrink: 0; display: none; }
+        .calc-footer.show { display: block; }
+
+        @media (max-width: 480px) {
+            .calc-header { padding: 16px 12px 14px; }
+            .calc-header .logo { font-size: 19px; }
+            .bottom-bar { flex-direction: column; align-items: stretch; gap: 8px; padding: 10px 16px; }
+            .btn { width: 100%; justify-content: center; }
+            .result-price { font-size: 30px; }
+            label.option { font-size: 13px; padding: 7px 8px; }
+            .section-header .title { font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="calc-header">
+        <div class="logo">Мебель и <span>Стиль</span></div>
+        <div class="divider"></div>
+        <div class="subtitle">Калькулятор сметы</div>
+        <a href="tel:+78129258856" class="phone-link"><i class="fas fa-phone" style="margin-right:5px;"></i>+7 (812) 925 88-56</a>
+    </header>
+
+    <main>
+        <div class="container" id="app">
+
+            <div class="intro">
+                <h2>Рассчитайте стоимость меблировки</h2>
+                <p>Отметьте нужные позиции в разделах ниже — получите итоговую сумму. Услуги сборки и монтажа уже включены.</p>
+            </div>
+
+            <!-- Кухня -->
+            <div class="section open" id="sec-kitchen">
+                <div class="section-header" onclick="toggleSection('sec-kitchen')">
+                    <div class="left"><span class="icon"><i class="fas fa-utensils"></i></span><span class="title">Кухня / Кухня-гостиная</span><span class="badge" id="badge-kitchen">выбрано</span></div>
+                    <span class="arrow">▾</span>
+                </div>
+                <div class="section-body">
+                    <div class="option-group">
+                        <span class="option-group-label">Тип гарнитура</span>
+                        <label class="option"><input type="radio" name="kitchen-unit" value="straight" data-price="80000"> Прямой гарнитур</label>
+                        <label class="option"><input type="radio" name="kitchen-unit" value="angular" data-price="150000"> Угловой гарнитур</label>
+                        <label class="option"><input type="radio" name="kitchen-unit" value="none" data-price="0" checked> Мне не нужен гарнитур</label>
+                    </div>
+                    <div class="option-group">
+                        <span class="option-group-label">Дополнительные позиции</span>
+                        <label class="option"><input type="checkbox" data-price="30000"> Антресоли на кухне (в потолок)</label>
+                        <label class="option"><input type="checkbox" data-price="15000"> Стол обеденный</label>
+                        <label class="option"><input type="checkbox" data-price="7000"> Стул мягкий 2 шт</label>
+                        <label class="option"><input type="checkbox" data-price="14000"> Стул мягкий 4 шт</label>
+                        <label class="option"><input type="checkbox" data-price="25000"> Диван</label>
+                        <label class="option"><input type="checkbox" data-price="35000"> Диван-кровать</label>
+                        <label class="option"><input type="checkbox" data-price="8500"> Карниз / тюль / шторы</label>
+                        <label class="option"><input type="checkbox" data-price="3000"> Торшер</label>
+                        <label class="option"><input type="checkbox" data-price="4000"> Журнальный стол</label>
+                        <label class="option"><input type="checkbox" data-price="15000"> Тумба / комод под телевизор</label>
+                        <label class="option"><input type="checkbox" data-price="5000"> Ковёр</label>
+                        <label class="option"><input type="checkbox" data-price="5000"> Декор (картины / часы / панно)</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Спальни -->
+            <div class="section" id="sec-bedrooms">
+                <div class="section-header" onclick="toggleSection('sec-bedrooms')">
+                    <div class="left"><span class="icon"><i class="fas fa-bed"></i></span><span class="title">Спальни</span><span class="badge" id="badge-bedrooms">выбрано</span></div>
+                    <span class="arrow">▾</span>
+                </div>
+                <div class="section-body">
+                    <div class="option-group">
+                        <span class="option-group-label">Сколько спален обустраиваем?</span>
+                        <label class="option"><input type="radio" name="bedroom-count" value="0" checked onchange="updateBedroomBlocks()"> Ни одной</label>
+                        <label class="option"><input type="radio" name="bedroom-count" value="1" onchange="updateBedroomBlocks()"> Одна спальня</label>
+                        <label class="option"><input type="radio" name="bedroom-count" value="2" onchange="updateBedroomBlocks()"> Две спальни</label>
+                    </div>
+                    <div class="option-group bedroom-block" id="bedroom-block-1" style="display:none;">
+                        <span class="option-group-label">Спальня 1 — наполнение</span>
+                        <label class="option"><input type="checkbox" data-price="35000"> Кровать + матрас</label>
+                        <label class="option"><input type="checkbox" data-price="35000"> Диван-кровать</label>
+                        <label class="option"><input type="checkbox" data-price="25000"> Шкаф</label>
+                        <label class="option"><input type="checkbox" data-price="15000"> Комод / тумба</label>
+                        <label class="option"><input type="checkbox" data-price="4000"> Тумба прикроватная</label>
+                        <label class="option"><input type="checkbox" data-price="14000"> Стол туалетный</label>
+                        <label class="option"><input type="checkbox" data-price="4000"> Стол журнальный</label>
+                        <label class="option"><input type="checkbox" data-price="10000"> Стол письменный</label>
+                        <label class="option"><input type="checkbox" data-price="7000"> Кресло / стул / пуф</label>
+                        <label class="option"><input type="checkbox" data-price="8500"> Карниз / тюль / шторы</label>
+                        <label class="option"><input type="checkbox" data-price="4000"> Торшер</label>
+                        <label class="option"><input type="checkbox" data-price="5000"> Ковёр</label>
+                        <label class="option"><input type="checkbox" data-price="5000"> Декор (картины / часы / панно)</label>
+                    </div>
+                    <div class="option-group bedroom-block" id="bedroom-block-2" style="display:none;">
+                        <span class="option-group-label">Спальня 2 — наполнение</span>
+                        <label class="option"><input type="checkbox" data-price="35000"> Кровать + матрас</label>
+                        <label class="option"><input type="checkbox" data-price="35000"> Диван-кровать</label>
+                        <label class="option"><input type="checkbox" data-price="25000"> Шкаф</label>
+                        <label class="option"><input type="checkbox" data-price="15000"> Комод / тумба</label>
+                        <label class="option"><input type="checkbox" data-price="4000"> Тумба прикроватная</label>
+                        <label class="option"><input type="checkbox" data-price="14000"> Стол туалетный</label>
+                        <label class="option"><input type="checkbox" data-price="4000"> Стол журнальный</label>
+                        <label class="option"><input type="checkbox" data-price="10000"> Стол письменный</label>
+                        <label class="option"><input type="checkbox" data-price="7000"> Кресло / стул / пуф</label>
+                        <label class="option"><input type="checkbox" data-price="8500"> Карниз / тюль / шторы</label>
+                        <label class="option"><input type="checkbox" data-price="4000"> Торшер</label>
+                        <label class="option"><input type="checkbox" data-price="5000"> Ковёр</label>
+                        <label class="option"><input type="checkbox" data-price="5000"> Декор (картины / часы / панно)</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Техника -->
+            <div class="section" id="sec-appliances">
+                <div class="section-header" onclick="toggleSection('sec-appliances')">
+                    <div class="left"><span class="icon"><i class="fas fa-tv"></i></span><span class="title">Техника</span><span class="badge" id="badge-appliances">выбрано</span></div>
+                    <span class="arrow">▾</span>
+                </div>
+                <div class="section-body">
+                    <label class="option"><input type="checkbox" data-price="35000"> Холодильник</label>
+                    <label class="option"><input type="checkbox" data-price="15000"> Духовой шкаф</label>
+                    <label class="option"><input type="checkbox" data-price="10000"> Варочная поверхность</label>
+                    <label class="option"><input type="checkbox" data-price="8000"> Вытяжка</label>
+                    <label class="option"><input type="checkbox" data-price="12000"> Микроволновка</label>
+                    <label class="option"><input type="checkbox" data-price="30000"> Посудомойка</label>
+                    <label class="option"><input type="checkbox" data-price="30000"> Стиральная машина</label>
+                    <label class="option"><input type="checkbox" data-price="30000"> Сушильная машина</label>
+                </div>
+            </div>
+
+            <!-- Прихожая + Свет -->
+            <div class="section" id="sec-hallway">
+                <div class="section-header" onclick="toggleSection('sec-hallway')">
+                    <div class="left"><span class="icon"><i class="fas fa-door-open"></i></span><span class="title">Прихожая и свет</span><span class="badge" id="badge-hallway">выбрано</span></div>
+                    <span class="arrow">▾</span>
+                </div>
+                <div class="section-body">
+                    <label class="option"><input type="checkbox" data-price="20000" id="chk-hallway"> Прихожая (готовый комплект)</label>
+                    <div class="number-row">
+                        <button onclick="changeLight(-1)" aria-label="Уменьшить">−</button>
+                        <span id="light-count">0</span>
+                        <button onclick="changeLight(1)" aria-label="Увеличить">+</button>
+                        <span class="hint">светильников / точек (× 2 000 ₽)</span>
+                    </div>
+                    <input type="hidden" id="light-value" value="0">
+                </div>
+            </div>
+
+            <!-- Услуги -->
+            <div class="section" id="sec-services">
+                <div class="section-header" onclick="toggleSection('sec-services')">
+                    <div class="left"><span class="icon"><i class="fas fa-tools"></i></span><span class="title">Услуги</span><span class="badge always">включены</span></div>
+                    <span class="arrow">▾</span>
+                </div>
+                <div class="section-body">
+                    <div class="services-fixed">
+                        <span class="lock"><i class="fas fa-lock"></i></span>
+                        <span>Полный комплекс услуг (сборка, установка, монтаж «под ключ») — <strong>всегда включены в смету</strong>.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Результат -->
+            <div class="result-card" id="result-card">
+                <div class="result-badge">Смета рассчитана</div>
+                <div class="result-price" id="result-price">0 ₽</div>
+                <div class="result-summary" id="result-summary"></div>
+                <div class="result-phone">
+                    По вопросам звоните: <a href="tel:+78129258856">+7 (812) 925 88-56</a><br>
+                    <span style="font-size:11px;">Компания «Мебель и Стиль»</span>
+                </div>
+                <div class="lead-form" id="lead-form">
+                    <input type="text" id="input-name" placeholder="Ваше имя *" required autocomplete="name">
+                    <input type="tel" id="input-phone" placeholder="Телефон *" required autocomplete="tel">
+                    <input type="email" id="input-email" placeholder="Email (необязательно)" autocomplete="email">
+                    <span class="error-msg" id="error-msg">Пожалуйста, заполните обязательные поля</span>
+                    <button class="btn btn-block" id="btn-submit" onclick="calculateAndSend()">Рассчитать и отправить заявку</button>
+                </div>
+                <div class="success-msg" id="success-msg">
+                    <i class="fas fa-check-circle"></i>
+                    Заявка отправлена! Мы свяжемся с вами в ближайшее время.
+                </div>
+                <button class="btn btn-outline btn-block" onclick="resetAll()">Пересчитать заново</button>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="calc-footer" id="calc-footer">
+        © 2026 Мебель и Стиль. Все права защищены.
+    </footer>
+
+    <div class="bottom-bar" id="bottom-bar">
+        <span class="hint-text">Заполните разделы выше</span>
+        <button class="btn" onclick="scrollToResult()">К расчёту <i class="fas fa-chevron-down"></i></button>
+    </div>
+
+    <script>
+        // ═══════════════ НАСТРОЙКИ ═══════════════
+        const SERVICES_PRICE = 200000;
+
+        // ⚠️ ЗАМЕНИ НА СВОЙ URL ОТ GOOGLE APPS SCRIPT ⚠️
+        // Инструкция по получению — ниже
+        const SCRIPT_URL = 'https://script.google.com/macros/s/ТВОЙ_ID_ЗДЕСЬ/exec';
+        // ══════════════════════════════════════════
+
+        function toggleSection(id) { document.getElementById(id).classList.toggle('open'); }
+
+        function updateBedroomBlocks() {
+            const count = document.querySelector('input[name="bedroom-count"]:checked')?.value || '0';
+            const b1 = document.getElementById('bedroom-block-1');
+            const b2 = document.getElementById('bedroom-block-2');
+            if (count === '0') { b1.style.display = 'none';
+                b2.style.display = 'none';
+                clearCheckboxes(b1);
+                clearCheckboxes(b2); } else if (count === '1') { b1.style.display = 'block';
+                b2.style.display = 'none';
+                clearCheckboxes(b2); } else { b1.style.display = 'block';
+                b2.style.display = 'block'; }
+            updateAllBadges();
+        }
+
+        function clearCheckboxes(block) { block?.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false); }
+
+        function changeLight(delta) {
+            const input = document.getElementById('light-value');
+            const span = document.getElementById('light-count');
+            let v = Math.max(0, (parseInt(input.value) || 0) + delta);
+            input.value = v;
+            span.textContent = v;
+            updateAllBadges();
+        }
+
+        function updateAllBadges() {
+            updateBadge('badge-kitchen', () => { const u = document.querySelector('input[name="kitchen-unit"]:checked'); return (
+                    u && u.value !== 'none') || !!document.querySelector('#sec-kitchen input[type="checkbox"]:checked'); });
+            updateBadge('badge-bedrooms', () => { let n = 0;
+                document.querySelectorAll('.bedroom-block').forEach(b => b.querySelectorAll('input:checked').forEach(() =>
+                    n++)); return n > 0; });
+            updateBadge('badge-appliances', () => !!document.querySelector('#sec-appliances input:checked'));
+            updateBadge('badge-hallway', () => document.getElementById('chk-hallway').checked || (parseInt(document
+                .getElementById('light-value').value) || 0) > 0);
+        }
+
+        function updateBadge(id, fn) { const el = document.getElementById(id); if (el) el.classList.toggle('visible', fn()); }
+        document.addEventListener('change', e => { if (e.target.matches('input')) { updateAllBadges(); if (e.target.name ===
+                    'bedroom-count') updateBedroomBlocks(); } });
+
+        function calculateTotal() {
+            let t = SERVICES_PRICE;
+            const u = document.querySelector('input[name="kitchen-unit"]:checked');
+            if (u && u.value !== 'none') t += parseInt(u.dataset.price) || 0;
+            document.querySelectorAll('#sec-kitchen input[type="checkbox"]:checked').forEach(c => t += parseInt(c.dataset
+                .price) || 0);
+            document.querySelectorAll('.bedroom-block').forEach(b => { if (b.style.display !== 'none') b.querySelectorAll(
+                    'input:checked').forEach(c => t += parseInt(c.dataset.price) || 0); });
+            document.querySelectorAll('#sec-appliances input:checked').forEach(c => t += parseInt(c.dataset.price) || 0);
+            if (document.getElementById('chk-hallway').checked) t += parseInt(document.getElementById('chk-hallway').dataset
+                .price) || 0;
+            t += (parseInt(document.getElementById('light-value').value) || 0) * 2000;
+            return t;
+        }
+
+        function buildSummary() {
+            const lines = [];
+            const u = document.querySelector('input[name="kitchen-unit"]:checked');
+            let kc = (u && u.value !== 'none') ? 1 : 0;
+            document.querySelectorAll('#sec-kitchen input[type="checkbox"]:checked').forEach(() => kc++);
+            if (kc > 0) lines.push('<strong>Кухня:</strong> ' + kc + ' позиц.');
+            document.querySelectorAll('.bedroom-block').forEach((b, i) => { if (b.style.display !== 'none') { const n = b
+                        .querySelectorAll('input:checked').length; if (n > 0) lines.push('<strong>Спальня ' + (i + 1) +
+                        ':</strong> ' + n + ' позиц.'); } });
+            let tc = document.querySelectorAll('#sec-appliances input:checked').length;
+            if (tc > 0) lines.push('<strong>Техника:</strong> ' + tc + ' позиц.');
+            if (document.getElementById('chk-hallway').checked) lines.push('<strong>Прихожая:</strong> комплект');
+            const lq = parseInt(document.getElementById('light-value').value) || 0;
+            if (lq > 0) lines.push('<strong>Свет:</strong> ' + lq + ' точ.');
+            lines.push('<strong>Услуги под ключ:</strong> включены');
+            return lines.join('<br>');
+        }
+
+        function buildSelectedItems() {
+            const items = { kitchen: [], bedroom1: [], bedroom2: [], appliances: [], hallway: false, light: 0, services: true };
+            const u = document.querySelector('input[name="kitchen-unit"]:checked');
+            if (u && u.value !== 'none') items.kitchen.push(u.value === 'straight' ? 'Прямой гарнитур' : 'Угловой гарнитур');
+            document.querySelectorAll('#sec-kitchen input[type="checkbox"]:checked').forEach(cb => items.kitchen.push(cb
+                .parentElement.textContent.trim()));
+            const b1 = document.getElementById('bedroom-block-1');
+            if (b1.style.display !== 'none') b1.querySelectorAll('input:checked').forEach(cb => items.bedroom1.push(cb
+                .parentElement.textContent.trim()));
+            const b2 = document.getElementById('bedroom-block-2');
+            if (b2.style.display !== 'none') b2.querySelectorAll('input:checked').forEach(cb => items.bedroom2.push(cb
+                .parentElement.textContent.trim()));
+            document.querySelectorAll('#sec-appliances input:checked').forEach(cb => items.appliances.push(cb.parentElement
+                .textContent.trim()));
+            items.hallway = document.getElementById('chk-hallway').checked;
+            items.light = parseInt(document.getElementById('light-value').value) || 0;
+            return items;
+        }
+
+        async function calculateAndSend() {
+            const name = document.getElementById('input-name').value.trim();
+            const phone = document.getElementById('input-phone').value.trim();
+            const email = document.getElementById('input-email').value.trim();
+            const err = document.getElementById('error-msg');
+            const btn = document.getElementById('btn-submit');
+
+            if (!name || !phone) { err.classList.add('show'); return; }
+            err.classList.remove('show');
+
+            const total = calculateTotal();
+            const summary = buildSummary();
+            const summaryText = summary.replace(/<[^>]*>/g, ', ').replace(/, +/g, ', ').replace(/^, /, '');
+
+            // Показываем результат сразу
+            document.getElementById('result-price').textContent = total.toLocaleString('ru-RU') + ' ₽';
+            document.getElementById('result-summary').innerHTML = summary;
+            document.getElementById('result-card').classList.add('show');
+            document.getElementById('calc-footer').classList.add('show');
+            document.querySelectorAll('.section-body input, .section-body button').forEach(el => el.disabled = true);
+            document.querySelectorAll('.section').forEach(el => el.classList.add('disabled-area'));
+            document.getElementById('lead-form').style.display = 'none';
+            document.getElementById('bottom-bar').style.display = 'none';
+            document.getElementById('result-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Отправляем в Google Sheets
+            btn.textContent = 'Отправка...';
+            btn.disabled = true;
+
+            const payload = new URLSearchParams();
+            payload.append('name', name);
+            payload.append('phone', phone);
+            payload.append('email', email);
+            payload.append('total', total);
+            payload.append('summary', summaryText);
+            payload.append('date', new Date().toLocaleString('ru-RU'));
+
+            try {
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: payload,
+                    mode: 'no-cors'
+                });
+                // no-cors не возвращает читаемый ответ, поэтому считаем что успех
+                document.getElementById('success-msg').classList.add('show');
+            } catch (error) {
+                console.error('Ошибка:', error);
+                document.getElementById('success-msg').innerHTML =
+                    '<i class="fas fa-check-circle"></i>Смета готова!<br><small>Позвоните нам: +7 (812) 925 88-56</small>';
+                document.getElementById('success-msg').classList.add('show');
+            }
+
+            btn.textContent = 'Рассчитать и отправить заявку';
+            btn.disabled = false;
+        }
+
+        function scrollToResult() { document.getElementById('result-card').scrollIntoView({ behavior: 'smooth',
+            block: 'center' }); }
+
+        function resetAll() {
+            document.querySelectorAll('.section-body input, .section-body button').forEach(el => el.disabled = false);
+            document.querySelectorAll('.section').forEach(el => el.classList.remove('disabled-area'));
+            document.querySelectorAll('input[type="checkbox"]').forEach(el => el.checked = false);
+            document.querySelector('input[name="kitchen-unit"][value="none"]').checked = true;
+            document.querySelector('input[name="bedroom-count"][value="0"]').checked = true;
+            document.getElementById('light-value').value = '0';
+            document.getElementById('light-count').textContent = '0';
+            ['input-name', 'input-phone', 'input-email'].forEach(id => document.getElementById(id).value = '');
+            document.getElementById('error-msg').classList.remove('show');
+            document.getElementById('success-msg').classList.remove('show');
+            document.getElementById('success-msg').innerHTML =
+                '<i class="fas fa-check-circle"></i>Заявка отправлена! Мы свяжемся с вами в ближайшее время.';
+            document.getElementById('result-card').classList.remove('show');
+            document.getElementById('calc-footer').classList.remove('show');
+            document.getElementById('lead-form').style.display = '';
+            document.getElementById('bottom-bar').style.display = '';
+            document.getElementById('btn-submit').textContent = 'Рассчитать и отправить заявку';
+            document.getElementById('btn-submit').disabled = false;
+            updateBedroomBlocks();
+            updateAllBadges();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        updateBedroomBlocks();
+        updateAllBadges();
+    </script>
+</body>
+</html>
