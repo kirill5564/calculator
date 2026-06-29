@@ -3,592 +3,805 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мебель и Стиль — Калькулятор сметы</title>
-    <meta name="description" content="Калькулятор сметы на меблировку квартиры. Рассчитайте стоимость обустройства под ключ в компании Мебель и Стиль.">
-    <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA20lEQVR4nO2WwQ2DMAxFvy7QMbpBVugIHYEJOgIjMEFH6Ait1AMSKGn4UaoqUg8cQOL7O/6OnQNAa62UUoMQ/5xzP2YW9xERnXPvUkr03gOAiAjAzJRSb4wR3xGRUkoUAEQAM3N3d5FSohjAXAghWmuICEKIOGcQwhhzSmYBIqK19q21CCGEiMhbSum9T6XUGGPpAsw5E0JYSpkKAPCN+ccYA2bOFAAAEJkBMPeqB04pgCgihPj3V5AkeZFSVqAAJMnOGLbW3k1TSsk5XxhjzLm1dgE8k6QtM4eI74ssX/gBkjxJ+gcMUFEAAAAASUVORK5CYII=">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Кухни ШОК | Кухни созданные для жизни в СПб</title>
+    <meta name="description" content="Кухни ШОК — создаём кухни премиум-класса в Санкт-Петербурге. Индивидуальный дизайн, натуральные материалы, бесплатный замер и 3D-проект. Гарантия 5 лет.">
+    <meta name="keywords" content="кухни на заказ спб, дизайнерские кухни, кухни премиум, кухни с островом, кухни под ключ спб">
+    <meta property="og:title" content="Кухни ШОК | Кухни созданные для жизни в СПб">
+    <meta property="og:description" content="Кухни премиум-класса в СПб. Индивидуальный дизайн, гарантия 5 лет.">
+    <meta property="og:type" content="website">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232C2621'/><text y='.75em' x='50' font-size='55' text-anchor='middle' fill='%23FFFF99' font-family='serif' font-weight='700'>K</text></svg>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary: #1a3b2e;
-            --primary-light: #2a5a45;
-            --accent: #d4b68a;
-            --light: #f5f7f6;
-            --dark: #121212;
-            --gray: #6c757d;
-            --light-gray: #e0e5e2;
-            --transition: all 0.25s ease-out;
-            --radius: 4px;
+            --bg: #F5F0EA;
+            --bg-dark: #1C1C1C;
+            --surface: rgba(255,255,255,0.7);
+            --surface-dark: rgba(35,35,35,0.8);
+            --text: #2C2621;
+            --text-dark: #E0E0E0;
+            --text-muted: #7A7268;
+            --text-muted-dark: #999;
+            --yellow: #FFFF99;
+            --yellow-light: #FFFFCC;
+            --yellow-dark: #E6E680;
+            --yellow-darker: #CCCC66;
+            --yellow-glow: rgba(255,255,153,0.4);
+            --yellow-gradient: linear-gradient(135deg, #FFFF99 0%, #FFFFBB 50%, #E6E680 100%);
+            --glass: rgba(255,255,255,0.6);
+            --glass-dark: rgba(40,40,40,0.7);
+            --border-light: rgba(0,0,0,0.08);
+            --border-dark: rgba(255,255,255,0.05);
+            --card-bg-dark: #282828;
+            --card-border-dark: rgba(255,255,255,0.04);
+            --btn-dark: #3A3A3A;
+            --btn-dark-hover: #4A4A4A;
+            --transition: 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+            --bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--yellow-darker); border-radius: 10px; }
+        body.dark ::-webkit-scrollbar-thumb { background: #444; }
 
         body {
-            font-family: 'Inter', 'Segoe UI', sans-serif;
-            font-weight: 400; color: var(--dark); background: #fff;
-            line-height: 1.6; letter-spacing: -0.01em;
-            -webkit-font-smoothing: antialiased; min-height: 100vh;
-            display: flex; flex-direction: column;
+            font-family: 'Manrope', 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-weight: 400;
+            font-size: 15px;
+            transition: background 0.5s, color 0.5s;
+            overflow-x: hidden;
+            position: relative;
+        }
+        body.dark { background: var(--bg-dark); color: var(--text-dark); }
+        body.modal-open { overflow: hidden; }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255,255,153,0.06) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(230,230,128,0.04) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        body.dark::before {
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255,255,153,0.02) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255,255,153,0.015) 0%, transparent 50%);
         }
 
-        h1, h2, h3, .section-header .title, .btn, .calc-header .logo {
-            font-family: 'Raleway', sans-serif; font-weight: 600; letter-spacing: -0.02em;
+        .container { max-width: 1320px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 1; }
+
+        h1, h2, h3, h4, .nav a, .btn, .logo, .scroll-inner, .price-value, .step-num {
+            font-family: 'Unbounded', 'Segoe UI', sans-serif;
+            font-weight: 500;
+        }
+        h1 { font-size: clamp(3.2rem, 6.5vw, 6rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; }
+        h2 { font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 600; letter-spacing: -0.01em; }
+        h3 { font-size: 1.4rem; font-weight: 500; }
+
+        .section-sub { color: var(--text-muted); font-size: 1rem; max-width: 480px; margin: 0 auto 40px; text-align: center; font-weight: 400; }
+        body.dark .section-sub { color: var(--text-muted-dark); }
+
+        .top-accent { height: 4px; background: var(--yellow); }
+
+        /* HEADER */
+        header {
+            padding: 16px 0;
+            background: rgba(245, 240, 234, 0.85);
+            backdrop-filter: blur(30px) saturate(120%);
+            -webkit-backdrop-filter: blur(30px) saturate(120%);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky; top: 0; z-index: 1000;
+            transition: all 0.4s;
+        }
+        body.dark header { background: rgba(28, 28, 28, 0.9); border-bottom-color: var(--border-dark); }
+        header.scrolled { padding: 10px 0; box-shadow: 0 10px 50px rgba(0,0,0,0.06); }
+        body.dark header.scrolled { box-shadow: 0 10px 50px rgba(0,0,0,0.4); }
+
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo {
+            font-size: 1.5rem; color: var(--text); text-decoration: none;
+            letter-spacing: 0.04em; font-weight: 600;
+        }
+        body.dark .logo { color: var(--text-dark); }
+        .logo .shok { color: var(--text); font-weight: 800; letter-spacing: 0.12em; }
+        body.dark .logo .shok { color: #FFF; }
+        .logo .dot {
+            color: var(--yellow); font-size: 2rem; font-weight: 800;
+            display: inline-block;
+            text-shadow: -1px -1px 0 var(--text), 1px -1px 0 var(--text), -1px 1px 0 var(--text), 1px 1px 0 var(--text), 0 0 15px var(--yellow-glow);
+            animation: dotGlow 2s ease-in-out infinite;
+        }
+        body.dark .logo .dot {
+            text-shadow: -1px -1px 0 #555, 1px -1px 0 #555, -1px 1px 0 #555, 1px 1px 0 #555, 0 0 20px var(--yellow-glow);
+        }
+        @keyframes dotGlow {
+            0%, 100% { text-shadow: -1px -1px 0 var(--text), 1px -1px 0 var(--text), -1px 1px 0 var(--text), 1px 1px 0 var(--text), 0 0 15px var(--yellow-glow); }
+            50% { text-shadow: -1px -1px 0 var(--text), 1px -1px 0 var(--text), -1px 1px 0 var(--text), 1px 1px 0 var(--text), 0 0 30px var(--yellow-glow), 0 0 60px rgba(255,255,153,0.5); }
         }
 
-        .container { max-width: 760px; margin: 0 auto; padding: 0 20px; width: 100%; }
+        .nav { display: flex; gap: 30px; list-style: none; }
+        .nav a {
+            text-decoration: none; color: var(--text-muted);
+            font-size: 0.7rem; font-weight: 400;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            transition: color 0.3s; padding: 6px 0;
+        }
+        body.dark .nav a { color: #888; }
+        .nav a:hover { color: var(--yellow-darker); }
+        body.dark .nav a:hover { color: var(--yellow); }
 
-        .calc-header {
-            background: var(--primary); text-align: center;
-            padding: 20px 16px 18px; color: #fff; flex-shrink: 0;
-        }
-        .calc-header .logo { font-size: 22px; font-weight: 800; letter-spacing: -0.3px; }
-        .calc-header .logo span { color: var(--accent); }
-        .calc-header .divider { width: 40px; height: 2px; background: var(--accent); margin: 8px auto 10px; }
-        .calc-header .subtitle { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.8; font-weight: 500; }
-        .calc-header .phone-link {
-            display: inline-block; margin-top: 10px; color: #fff; text-decoration: none;
-            font-weight: 600; font-size: 13px; padding: 6px 16px;
-            border: 2px solid rgba(255,255,255,0.25); border-radius: var(--radius); transition: var(--transition);
-        }
-        .calc-header .phone-link:hover { border-color: var(--accent); color: var(--accent); }
+        .header-right { display: flex; align-items: center; gap: 18px; }
+        .header-phone { color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+        body.dark .header-phone { color: var(--text-dark); }
 
-        main { flex: 1; padding: 16px 0 90px; }
-        .intro { text-align: center; padding: 10px 0 20px; }
-        .intro h2 { font-size: 1.4rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
-        .intro p { font-size: 0.9rem; color: var(--gray); max-width: 500px; margin: 0 auto; }
+        .theme-dot {
+            width: 32px; height: 32px; border-radius: 50%;
+            background: var(--text); cursor: pointer;
+            transition: var(--bounce); border: 2px solid transparent; position: relative;
+        }
+        body.dark .theme-dot { background: #555; border-color: #666; }
+        .theme-dot::after {
+            content: ''; position: absolute; top: 5px; left: 5px;
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--bg); transition: var(--transition);
+        }
+        body.dark .theme-dot::after { left: auto; right: 5px; background: #2A2A2A; }
+        .theme-dot:hover { transform: scale(1.2) rotate(45deg); }
 
-        .section { background: #fff; margin-bottom: 6px; border-bottom: 1px solid var(--light-gray); }
-        .section-header {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 16px 0; cursor: pointer; user-select: none; gap: 12px; transition: color var(--transition);
+        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; width: 32px; height: 24px; }
+        .mobile-menu-btn span { display: block; width: 100%; height: 2px; background: var(--text); margin: 5px 0; transition: var(--transition); }
+        body.dark .mobile-menu-btn span { background: var(--text-dark); }
+        .mobile-nav {
+            display: none; position: fixed; inset: 0;
+            background: rgba(245,240,234,0.98); backdrop-filter: blur(20px);
+            z-index: 999; flex-direction: column; align-items: center; justify-content: center;
+            gap: 35px; list-style: none;
         }
-        .section-header:hover { color: var(--primary-light); }
-        .section-header .left { display: flex; align-items: center; gap: 10px; min-width: 0; }
-        .section-header .icon { font-size: 16px; color: var(--accent); flex-shrink: 0; width: 22px; text-align: center; }
-        .section-header .title { font-size: 15px; font-weight: 600; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px; }
-        .section-header .badge {
-            font-size: 10px; font-weight: 700; background: var(--primary); color: #fff;
-            padding: 2px 8px; border-radius: 2px; letter-spacing: 0.3px; text-transform: uppercase;
-            opacity: 0; transition: opacity var(--transition); flex-shrink: 0;
-        }
-        .section-header .badge.visible { opacity: 1; }
-        .section-header .badge.always { opacity: 1; background: var(--accent); color: var(--primary); }
-        .section-header .arrow { font-size: 11px; color: var(--gray); transition: transform var(--transition); flex-shrink: 0; }
-        .section.open .section-header .arrow { transform: rotate(180deg); }
-        .section-body { display: none; padding: 0 0 18px; border-top: 1px solid var(--light-gray); padding-top: 14px; }
-        .section.open .section-body { display: block; }
+        body.dark .mobile-nav { background: rgba(28,28,28,0.98); }
+        .mobile-nav.active { display: flex; }
+        .mobile-nav a { font-family: 'Unbounded', sans-serif; font-size: 1.6rem; color: var(--text); text-decoration: none; }
+        body.dark .mobile-nav a { color: var(--text-dark); }
 
-        .option-group { margin-bottom: 16px; }
-        .option-group:last-child { margin-bottom: 0; }
-        .option-group-label {
-            font-size: 11px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1px; color: var(--gray); margin-bottom: 8px; display: block;
+        /* HERO */
+        .hero { padding: 100px 0 80px; position: relative; overflow: hidden; min-height: 80vh; display: flex; align-items: center; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 0.7fr; gap: 60px; align-items: center; width: 100%; }
+        .hero-text { position: relative; z-index: 2; }
+        .hero-text h1 { margin-bottom: 28px; }
+        .hero-text p {
+            font-size: 1.15rem; color: var(--text-muted); margin-bottom: 36px;
+            max-width: 440px; font-weight: 400; line-height: 1.7;
+            padding: 20px 24px; border-left: 3px solid var(--yellow);
+            background: var(--glass); backdrop-filter: blur(10px);
+            border-radius: 0 12px 12px 0;
         }
-        label.option {
-            display: flex; align-items: center; gap: 10px; padding: 8px 10px;
-            cursor: pointer; font-size: 13.5px; color: var(--dark);
-            transition: background var(--transition); border-left: 2px solid transparent; margin-bottom: 1px;
-        }
-        label.option:hover { background: var(--light); border-left-color: var(--light-gray); }
-        input[type="checkbox"], input[type="radio"] {
-            appearance: none; -webkit-appearance: none; width: 17px; height: 17px;
-            border: 2px solid #ccc; flex-shrink: 0; cursor: pointer; position: relative;
-            transition: var(--transition); background: #fff;
-        }
-        input[type="radio"] { border-radius: 50%; }
-        input[type="checkbox"] { border-radius: 2px; }
-        input[type="checkbox"]:checked, input[type="radio"]:checked { border-color: var(--primary); background: var(--primary); }
-        input[type="checkbox"]:checked::after {
-            content: ''; position: absolute; left: 4px; top: 1px;
-            width: 5px; height: 9px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg);
-        }
-        input[type="radio"]:checked::after {
-            content: ''; position: absolute; left: 4px; top: 4px;
-            width: 5px; height: 5px; background: #fff; border-radius: 50%;
-        }
+        body.dark .hero-text p { color: #AAA; background: rgba(40,40,40,0.7); border-left-color: var(--yellow); }
+        .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
 
-        .number-row { display: flex; align-items: center; gap: 10px; padding: 6px 10px; }
-        .number-row button {
-            width: 32px; height: 32px; border: 2px solid var(--light-gray); background: #fff;
-            font-size: 16px; cursor: pointer; font-weight: 600; color: var(--primary);
-            transition: var(--transition); font-family: 'Inter', sans-serif; border-radius: 2px;
+        .hero-visual { position: relative; height: 500px; perspective: 1200px; }
+        .hero-block { position: absolute; border-radius: 16px; overflow: hidden; transition: transform 0.5s ease; }
+        .hero-block.large {
+            width: 78%; height: 68%; top: 0; right: 0;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.12); z-index: 2;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .hero-block.large:hover { transform: translateY(-6px) rotate(-0.5deg) scale(1.01); }
+        body.dark .hero-block.large { box-shadow: 0 30px 80px rgba(0,0,0,0.6); border-color: rgba(255,255,255,0.06); }
+        .hero-block.medium {
+            width: 52%; height: 42%; bottom: 0; left: 0;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1); border: 6px solid rgba(255,255,255,0.8);
+            z-index: 1; border-radius: 20px;
+        }
+        .hero-block.medium:hover { transform: translateY(-4px) rotate(1deg); }
+        body.dark .hero-block.medium { border-color: rgba(255,255,255,0.08); }
+        .hero-block.shok-box {
+            width: 36%; height: 30%; top: 12%; left: 7%;
+            background: var(--yellow-gradient);
+            box-shadow: 0 15px 45px var(--yellow-glow), 0 0 0 4px rgba(0,0,0,0.1);
+            border: 3px solid var(--text);
             display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 12px; z-index: 3;
+            border-radius: 12px;
+            animation: floatBox 5s ease-in-out infinite;
         }
-        .number-row button:hover { border-color: var(--primary); background: var(--light); }
-        .number-row span { font-size: 16px; font-weight: 700; min-width: 22px; text-align: center; color: var(--primary); }
-        .number-row .hint { font-size: 12px; color: var(--gray); }
-
-        .services-fixed {
-            background: #f4f6f5; border-left: 3px solid var(--accent);
-            padding: 10px 14px; display: flex; align-items: flex-start; gap: 10px;
-            font-size: 13px; color: var(--dark); line-height: 1.5;
+        @keyframes floatBox {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
         }
-        .services-fixed .lock { color: var(--accent); flex-shrink: 0; margin-top: 2px; font-size: 14px; }
-        .services-fixed strong { font-weight: 600; color: var(--primary); }
-
-        .bottom-bar {
-            position: fixed; bottom: 0; left: 0; right: 0; background: #fff;
-            border-top: 1px solid var(--light-gray); padding: 12px 20px;
-            display: flex; align-items: center; justify-content: space-between;
-            gap: 14px; flex-wrap: wrap; z-index: 100; box-shadow: 0 -2px 8px rgba(0,0,0,0.03);
+        body.dark .hero-block.shok-box {
+            box-shadow: 0 0 40px var(--yellow-glow), 0 20px 50px rgba(0,0,0,0.5);
+            border-color: #555;
         }
-        .bottom-bar .hint-text { font-size: 12px; color: var(--gray); }
+        .shok-box-content {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 0.62rem; font-weight: 700;
+            color: var(--text); line-height: 1.5; letter-spacing: 0.1em;
+        }
+        body.dark .shok-box-content { color: #2A2A2A; }
+        .hero-block img { width: 100%; height: 100%; object-fit: cover; }
 
         .btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-            padding: 11px 24px; font-size: 12.5px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1px; cursor: pointer; text-decoration: none;
-            border: 2px solid var(--primary); background: transparent; color: var(--primary);
-            transition: var(--transition); font-family: 'Raleway', sans-serif;
-            border-radius: var(--radius); position: relative; overflow: hidden; z-index: 1; white-space: nowrap;
+            display: inline-block; padding: 17px 42px;
+            background: var(--text); color: var(--bg);
+            text-decoration: none; font-family: 'Unbounded', sans-serif;
+            font-weight: 500; font-size: 0.72rem;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            border: none; cursor: pointer;
+            transition: var(--bounce); border-radius: 50px; text-align: center;
+            position: relative; overflow: hidden; z-index: 1;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
-        .btn::before {
-            content: ''; position: absolute; top: 0; left: -100%;
-            width: 100%; height: 100%; background: var(--primary);
-            transition: left 0.3s ease; z-index: -1;
+        .btn:hover { transform: translateY(-4px); box-shadow: 0 15px 45px rgba(0,0,0,0.2); }
+        body.dark .btn { background: var(--btn-dark); color: #DDD; }
+        body.dark .btn:hover { background: var(--btn-dark-hover); }
+        .btn-yellow {
+            background: var(--yellow-gradient);
+            color: var(--text);
+            border: 2px solid var(--text);
+            box-shadow: 0 8px 30px var(--yellow-glow);
         }
-        .btn:hover::before { left: 0; }
-        .btn:hover { color: #fff; }
-        .btn-outline { border-color: var(--light-gray); color: var(--gray); }
-        .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
-        .btn-outline::before { display: none; }
-        .btn-block { width: 100%; justify-content: center; }
-        .btn:disabled { opacity: 0.6; pointer-events: none; }
+        .btn-yellow:hover { color: var(--text); background: var(--yellow-light); }
+        body.dark .btn-yellow {
+            background: var(--yellow-gradient);
+            border-color: #555;
+            color: #2A2A2A;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        body.dark .btn-yellow:hover { color: #1A1A1A; background: var(--yellow-light); }
+        .btn-ghost {
+            background: transparent; border: 2px solid var(--text);
+            color: var(--text); box-shadow: none;
+        }
+        .btn-ghost:hover { background: var(--text); color: var(--bg); }
+        body.dark .btn-ghost { border-color: #777; color: #CCC; }
+        body.dark .btn-ghost:hover { background: #444; color: #FFF; border-color: #444; }
 
-        .result-card {
-            display: none; background: #fff; border: 1px solid var(--light-gray);
-            padding: 28px 22px 24px; text-align: center; margin: 16px 0;
-            border-radius: var(--radius); border-left: 4px solid var(--accent);
+        .btn-pulse { animation: btnGlow 2s ease-in-out infinite; }
+        body.dark .btn-pulse { animation: none; }
+        @keyframes btnGlow {
+            0%, 100% { box-shadow: 0 8px 30px var(--yellow-glow); }
+            50% { box-shadow: 0 8px 50px var(--yellow-glow), 0 0 80px rgba(255,255,153,0.3); }
         }
-        .result-card.show { display: block; animation: fadeUp 0.35s ease; }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .result-badge {
-            display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1px; color: var(--primary-light); margin-bottom: 10px;
-            border-bottom: 2px solid var(--accent); padding-bottom: 4px;
-        }
-        .result-price {
-            font-size: 38px; font-weight: 800; color: var(--primary);
-            letter-spacing: -1px; margin: 8px 0 16px; font-family: 'Raleway', sans-serif; word-break: break-all;
-        }
-        .result-summary {
-            text-align: left; font-size: 12.5px; color: var(--dark); line-height: 1.8;
-            margin: 0 auto 16px; padding: 12px 14px; background: var(--light);
-            border-radius: var(--radius); max-width: 420px;
-        }
-        .result-summary strong { color: var(--primary); font-weight: 600; }
-        .result-phone {
-            font-size: 13px; color: var(--gray); margin-bottom: 14px;
-            padding: 10px 12px; background: #f9faf9; border-radius: var(--radius); line-height: 1.6;
-        }
-        .result-phone a { color: var(--primary); font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--accent); transition: var(--transition); }
-        .result-phone a:hover { color: var(--accent); border-bottom-color: var(--primary); }
 
-        .lead-form { display: flex; flex-direction: column; gap: 9px; max-width: 360px; margin: 0 auto 14px; }
-        .lead-form input {
-            padding: 10px 12px; border: 2px solid var(--light-gray); font-size: 13.5px;
-            font-family: 'Inter', sans-serif; background: var(--light);
-            transition: var(--transition); color: var(--dark); border-radius: var(--radius);
+        /* SCROLL TEXT */
+        .scroll-text {
+            padding: 52px 0; overflow: hidden; white-space: nowrap;
+            border-top: 2px solid rgba(0,0,0,0.05); border-bottom: 2px solid rgba(0,0,0,0.05);
+            background: linear-gradient(90deg, rgba(255,255,153,0.5) 0%, rgba(255,255,200,0.6) 50%, rgba(255,255,153,0.5) 100%);
+            position: relative; backdrop-filter: blur(10px);
         }
-        .lead-form input:focus { outline: none; border-color: var(--accent); background: #fff; }
-        .lead-form input::placeholder { color: #aaa; }
-        .error-msg { color: #c0392b; font-size: 11.5px; text-align: left; display: none; font-weight: 500; }
-        .error-msg.show { display: block; }
-        .success-msg {
-            display: none; text-align: center; padding: 16px 0 8px;
-            color: var(--primary-light); font-weight: 600; font-size: 14px;
+        body.dark .scroll-text {
+            background: linear-gradient(90deg, rgba(255,255,153,0.06) 0%, rgba(255,255,153,0.1) 50%, rgba(255,255,153,0.06) 100%);
+            border-color: rgba(255,255,255,0.03);
         }
-        .success-msg.show { display: block; }
-        .success-msg i { color: var(--accent); font-size: 28px; display: block; margin-bottom: 8px; }
+        .scroll-inner {
+            display: inline-block; animation: scroll 26s linear infinite;
+            font-size: 1.15rem; font-weight: 500; letter-spacing: 0.06em; color: var(--text);
+        }
+        body.dark .scroll-inner { color: var(--yellow); }
+        .scroll-inner span { margin: 0 28px; }
+        .scroll-inner .dot-sep { color: var(--yellow-darker); font-size: 1.5rem; font-weight: 700; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        .disabled-area { pointer-events: none; opacity: 0.55; filter: grayscale(15%); }
+        /* HOW WE WORK */
+        .how-we-work { padding: 110px 0; text-align: center; position: relative; }
+        .how-we-work .section-header { margin-bottom: 50px; }
+        .timeline { max-width: 800px; margin: 0 auto; position: relative; }
+        .timeline::before {
+            content: ''; position: absolute; left: 50%; top: 0; bottom: 0;
+            width: 3px; background: linear-gradient(180deg, var(--yellow), var(--yellow-darker), var(--yellow));
+            transform: translateX(-50%); border-radius: 3px; box-shadow: 0 0 20px var(--yellow-glow);
+        }
+        body.dark .timeline::before { background: linear-gradient(180deg, #3A3A3A, #4A4A4A, #3A3A3A); box-shadow: none; }
+        .timeline-item { display: flex; align-items: flex-start; margin-bottom: 50px; position: relative; text-align: left; }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+        .timeline-content {
+            width: 45%; background: var(--glass); backdrop-filter: blur(15px);
+            padding: 30px 35px; border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+            position: relative; transition: var(--bounce);
+            border: 1px solid rgba(255,255,255,0.5); border-left: 5px solid var(--yellow);
+        }
+        body.dark .timeline-content {
+            background: var(--card-bg-dark); border-color: var(--card-border-dark);
+            border-left-color: var(--yellow); box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+        .timeline-content:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        body.dark .timeline-content:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.5); background: #2E2E2E; }
+        .step-num {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            left: calc(50% - 22px); width: 44px; height: 44px;
+            background: var(--yellow); color: var(--text);
+            border: 3px solid var(--text); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.9rem; z-index: 2;
+            transition: var(--bounce);
+            box-shadow: 0 0 0 8px rgba(245,240,234,0.8), 0 0 25px var(--yellow-glow);
+        }
+        body.dark .step-num { border-color: #555; color: #2A2A2A; box-shadow: 0 0 0 8px rgba(28,28,28,0.9), 0 0 20px var(--yellow-glow); }
+        .timeline-item:hover .step-num { transform: translateY(-50%) scale(1.2); box-shadow: 0 0 0 8px rgba(245,240,234,0.8), 0 0 40px var(--yellow-glow); }
+        body.dark .timeline-item:hover .step-num { box-shadow: 0 0 0 8px rgba(28,28,28,0.9), 0 0 30px var(--yellow-glow); }
+        .timeline-content h3 { margin-bottom: 8px; font-size: 1.1rem; }
+        body.dark .timeline-content h3 { color: #FFF; }
+        .timeline-content p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+        body.dark .timeline-content p { color: #AAA; }
 
-        .calc-footer { background: #f5f7f6; text-align: center; padding: 14px 16px; font-size: 11px; color: var(--gray); border-top: 1px solid var(--light-gray); flex-shrink: 0; display: none; }
-        .calc-footer.show { display: block; }
+        /* PROJECTS */
+        .projects-section { padding: 120px 0; text-align: center; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; margin-top: 40px; }
+        .project-card {
+            background: var(--glass); backdrop-filter: blur(15px);
+            padding: 16px 16px 28px; border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+            transition: var(--bounce); cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.5);
+            position: relative; overflow: hidden;
+        }
+        body.dark .project-card { background: var(--card-bg-dark); border-color: var(--card-border-dark); box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
+        .project-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 4px; background: var(--yellow-gradient);
+            transform: scaleX(0); transition: transform 0.5s;
+        }
+        .project-card:hover { transform: translateY(-10px); box-shadow: 0 25px 60px rgba(0,0,0,0.12); }
+        body.dark .project-card:hover { box-shadow: 0 25px 60px rgba(0,0,0,0.6); }
+        .project-card:hover::before { transform: scaleX(1); }
+        .project-card img { width: 100%; height: 270px; object-fit: cover; border-radius: 10px; margin-bottom: 16px; transition: transform 0.6s; }
+        .project-card:hover img { transform: scale(1.03); }
+        .project-card h3 { font-size: 1.15rem; margin-bottom: 5px; text-align: left; }
+        body.dark .project-card h3 { color: #FFF; }
 
-        @media (max-width: 480px) {
-            .calc-header { padding: 16px 12px 14px; }
-            .calc-header .logo { font-size: 19px; }
-            .bottom-bar { flex-direction: column; align-items: stretch; gap: 8px; padding: 10px 16px; }
-            .btn { width: 100%; justify-content: center; }
-            .result-price { font-size: 30px; }
-            label.option { font-size: 13px; padding: 7px 8px; }
-            .section-header .title { font-size: 13px; }
+        /* LIGHTBOX */
+        .lightbox {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 2000;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s; cursor: pointer;
+        }
+        .lightbox.active { opacity: 1; visibility: visible; }
+        .lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+        .lightbox-close { position: absolute; top: 20px; right: 30px; color: #FFF; font-size: 2.5rem; cursor: pointer; transition: color 0.3s; z-index: 2001; }
+        .lightbox-close:hover { color: var(--yellow); }
+        .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: #FFF; font-size: 2.5rem; cursor: pointer; transition: color 0.3s; z-index: 2001; padding: 20px; user-select: none; }
+        .lightbox-nav:hover { color: var(--yellow); }
+        .lightbox-prev { left: 10px; }
+        .lightbox-next { right: 10px; }
+        .lightbox-counter { position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.7); font-size: 0.9rem; font-family: 'Unbounded', sans-serif; }
+
+        /* CALCULATOR */
+        .calculator-section { padding: 110px 0; }
+        .calculator-section .section-header { text-align: center; margin-bottom: 50px; }
+        .calc-box {
+            max-width: 640px; margin: 0 auto;
+            background: var(--glass); backdrop-filter: blur(20px);
+            padding: 50px 50px; border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.06);
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.5);
+            border-top: 6px solid var(--yellow);
+            transition: var(--transition);
+        }
+        body.dark .calc-box { background: var(--card-bg-dark); border-color: var(--card-border-dark); border-top-color: var(--yellow); box-shadow: 0 15px 50px rgba(0,0,0,0.4); }
+        .calc-box:hover { box-shadow: 0 25px 70px rgba(0,0,0,0.1); transform: translateY(-3px); }
+        body.dark .calc-box:hover { box-shadow: 0 25px 70px rgba(0,0,0,0.5); }
+        .calc-slider { width: 100%; margin: 20px 0 30px; accent-color: var(--yellow-darker); height: 8px; border-radius: 4px; }
+        body.dark .calc-slider { accent-color: var(--yellow); }
+        .price-value { font-size: 3rem; font-weight: 700; color: var(--yellow-darker); display: inline-block; text-shadow: 0 0 20px var(--yellow-glow); }
+        body.dark .price-value { color: var(--yellow); }
+
+        /* TESTIMONIALS */
+        .testimonials-section {
+            padding: 110px 0;
+            background: linear-gradient(135deg, #2E2E2E 0%, #252525 50%, #1C1C1C 100%);
+            color: #FFF; overflow: hidden; position: relative;
+        }
+        body.dark .testimonials-section { background: linear-gradient(135deg, #222 0%, #1A1A1A 50%, #141414 100%); }
+        .testimonials-track { display: flex; gap: 30px; margin-top: 50px; animation: scrollTest 40s linear infinite; width: max-content; }
+        .testimonial-slide {
+            flex: 0 0 420px; background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(10px); padding: 38px 35px;
+            border-radius: 16px; border: 1px solid rgba(255,255,255,0.05);
+            border-left: 5px solid var(--yellow); transition: var(--transition);
+        }
+        .testimonial-slide:hover { background: rgba(255,255,255,0.05); transform: translateY(-4px); }
+        .testimonial-stars { color: var(--yellow); margin-bottom: 14px; letter-spacing: 3px; font-size: 0.95rem; }
+        @keyframes scrollTest { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .testimonials-track:hover { animation-play-state: paused; }
+
+        /* CONTACT */
+        .contact-section { padding: 110px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+        .contact-map { height: 440px; border-radius: 20px; overflow: hidden; background: var(--glass); backdrop-filter: blur(10px); border: 3px solid var(--yellow); box-shadow: 0 15px 50px rgba(0,0,0,0.06); }
+        body.dark .contact-map { background: var(--card-bg-dark); border-color: #444; }
+        .contact-row {
+            display: flex; align-items: flex-start; gap: 16px;
+            margin-bottom: 20px; padding: 20px 22px;
+            background: var(--glass); backdrop-filter: blur(10px);
+            border-radius: 14px; border: 1px solid rgba(255,255,255,0.4);
+            border-left: 5px solid var(--yellow);
+            transition: var(--bounce); box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+        body.dark .contact-row { background: var(--card-bg-dark); border-color: var(--card-border-dark); border-left-color: var(--yellow); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .contact-row:hover { transform: translateX(8px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        body.dark .contact-row:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .contact-row i { color: var(--yellow-darker); font-size: 1.4rem; margin-top: 3px; transition: var(--bounce); }
+        body.dark .contact-row i { color: var(--yellow); }
+        .contact-row:hover i { color: var(--yellow); transform: scale(1.3) rotate(-5deg); }
+
+        /* FOOTER */
+        footer {
+            padding: 35px 0; border-top: 3px solid var(--yellow);
+            font-size: 0.8rem; color: var(--text-muted);
+            background: var(--glass); backdrop-filter: blur(10px);
+        }
+        body.dark footer { background: #222; border-top-color: #3A3A3A; color: #888; }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        footer a { color: inherit; text-decoration: none; margin-left: 18px; transition: color 0.3s; }
+        footer a:hover { color: var(--yellow-darker); }
+        body.dark footer a:hover { color: var(--yellow); }
+
+        /* BACK TO TOP */
+        .back-to-top {
+            position: fixed; bottom: 25px; right: 25px;
+            width: 50px; height: 50px; background: var(--yellow);
+            color: var(--text); border: 3px solid var(--text);
+            border-radius: 50%; cursor: pointer; font-size: 1.2rem;
+            z-index: 99; opacity: 0; visibility: hidden;
+            transition: var(--bounce); box-shadow: 0 8px 30px var(--yellow-glow);
+            display: flex; align-items: center; justify-content: center;
+        }
+        body.dark .back-to-top { border-color: #555; color: #2A2A2A; }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { transform: translateY(-6px) scale(1.1); box-shadow: 0 15px 40px var(--yellow-glow); }
+
+        .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.9s ease, transform 0.9s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 1100px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+            .hero-visual { height: 370px; }
+        }
+        @media (max-width: 900px) {
+            .container { padding: 0 24px; }
+            .nav { display: none; }
+            .mobile-menu-btn { display: block; }
+            .timeline::before { left: 22px; }
+            .timeline-item, .timeline-item:nth-child(even) { flex-direction: column; padding-left: 45px; }
+            .timeline-content { width: 100%; }
+            .step-num { left: 0; transform: translateY(0); top: 0; }
+            .timeline-item:hover .step-num { transform: scale(1.2); }
+            .contact-section { grid-template-columns: 1fr; gap: 35px; }
+            .contact-map { height: 300px; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .calc-box { padding: 35px 30px; }
         }
     </style>
 </head>
 <body>
 
-    <header class="calc-header">
-        <div class="logo">Мебель и <span>Стиль</span></div>
-        <div class="divider"></div>
-        <div class="subtitle">Калькулятор сметы</div>
-        <a href="tel:+78129258856" class="phone-link"><i class="fas fa-phone" style="margin-right:5px;"></i>+7 (812) 925 88-56</a>
+    <div class="top-accent"></div>
+
+    <header id="header">
+        <div class="container header-inner">
+            <a href="#" class="logo">Кухни <span class="shok">ШОК</span><span class="dot">.</span></a>
+            <ul class="nav">
+                <li><a href="#process">Как работаем</a></li>
+                <li><a href="#projects">Проекты</a></li>
+                <li><a href="#calculator">Расчёт</a></li>
+                <li><a href="#testimonials">Отзывы</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+            <div class="header-right">
+                <a href="tel:+78129258856" class="header-phone">+7 (812) 925 88-56</a>
+                <button class="theme-dot" id="themeToggle" aria-label="Тема"></button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn"><span></span><span></span><span></span></button>
+            </div>
+        </div>
     </header>
 
-    <main>
-        <div class="container" id="app">
+    <ul class="mobile-nav" id="mobileNav">
+        <li><a href="#process" data-close>Как работаем</a></li>
+        <li><a href="#projects" data-close>Проекты</a></li>
+        <li><a href="#calculator" data-close>Расчёт</a></li>
+        <li><a href="#testimonials" data-close>Отзывы</a></li>
+        <li><a href="#contact" data-close>Контакты</a></li>
+    </ul>
 
-            <div class="intro">
-                <h2>Рассчитайте стоимость меблировки</h2>
-                <p>Отметьте нужные позиции в разделах ниже — получите итоговую сумму. Услуги сборки и монтажа уже включены.</p>
-            </div>
-
-            <!-- Кухня -->
-            <div class="section open" id="sec-kitchen">
-                <div class="section-header" onclick="toggleSection('sec-kitchen')">
-                    <div class="left"><span class="icon"><i class="fas fa-utensils"></i></span><span class="title">Кухня / Кухня-гостиная</span><span class="badge" id="badge-kitchen">выбрано</span></div>
-                    <span class="arrow">▾</span>
-                </div>
-                <div class="section-body">
-                    <div class="option-group">
-                        <span class="option-group-label">Тип гарнитура</span>
-                        <label class="option"><input type="radio" name="kitchen-unit" value="straight" data-price="80000"> Прямой гарнитур</label>
-                        <label class="option"><input type="radio" name="kitchen-unit" value="angular" data-price="150000"> Угловой гарнитур</label>
-                        <label class="option"><input type="radio" name="kitchen-unit" value="none" data-price="0" checked> Мне не нужен гарнитур</label>
-                    </div>
-                    <div class="option-group">
-                        <span class="option-group-label">Дополнительные позиции</span>
-                        <label class="option"><input type="checkbox" data-price="30000"> Антресоли на кухне (в потолок)</label>
-                        <label class="option"><input type="checkbox" data-price="15000"> Стол обеденный</label>
-                        <label class="option"><input type="checkbox" data-price="7000"> Стул мягкий 2 шт</label>
-                        <label class="option"><input type="checkbox" data-price="14000"> Стул мягкий 4 шт</label>
-                        <label class="option"><input type="checkbox" data-price="25000"> Диван</label>
-                        <label class="option"><input type="checkbox" data-price="35000"> Диван-кровать</label>
-                        <label class="option"><input type="checkbox" data-price="8500"> Карниз / тюль / шторы</label>
-                        <label class="option"><input type="checkbox" data-price="3000"> Торшер</label>
-                        <label class="option"><input type="checkbox" data-price="4000"> Журнальный стол</label>
-                        <label class="option"><input type="checkbox" data-price="15000"> Тумба / комод под телевизор</label>
-                        <label class="option"><input type="checkbox" data-price="5000"> Ковёр</label>
-                        <label class="option"><input type="checkbox" data-price="5000"> Декор (картины / часы / панно)</label>
-                    </div>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text fade-in">
+                <h1>Кухни созданные для жизни</h1>
+                <p>Мы создаём интерьеры в которых хочется оставаться.</p>
+                <div class="hero-btns">
+                    <a href="#calculator" class="btn btn-yellow">Рассчитать стоимость</a>
+                    <a href="#projects" class="btn btn-ghost">Смотреть работы</a>
                 </div>
             </div>
-
-            <!-- Спальни -->
-            <div class="section" id="sec-bedrooms">
-                <div class="section-header" onclick="toggleSection('sec-bedrooms')">
-                    <div class="left"><span class="icon"><i class="fas fa-bed"></i></span><span class="title">Спальни</span><span class="badge" id="badge-bedrooms">выбрано</span></div>
-                    <span class="arrow">▾</span>
+            <div class="hero-visual fade-in">
+                <div class="hero-block large">
+                    <img src="images/Обложка/Большой.jpg" alt="Кухня" onerror="this.style.background='#D0C8BE'">
                 </div>
-                <div class="section-body">
-                    <div class="option-group">
-                        <span class="option-group-label">Сколько спален обустраиваем?</span>
-                        <label class="option"><input type="radio" name="bedroom-count" value="0" checked onchange="updateBedroomBlocks()"> Ни одной</label>
-                        <label class="option"><input type="radio" name="bedroom-count" value="1" onchange="updateBedroomBlocks()"> Одна спальня</label>
-                        <label class="option"><input type="radio" name="bedroom-count" value="2" onchange="updateBedroomBlocks()"> Две спальни</label>
-                    </div>
-                    <div class="option-group bedroom-block" id="bedroom-block-1" style="display:none;">
-                        <span class="option-group-label">Спальня 1 — наполнение</span>
-                        <label class="option"><input type="checkbox" data-price="35000"> Кровать + матрас</label>
-                        <label class="option"><input type="checkbox" data-price="35000"> Диван-кровать</label>
-                        <label class="option"><input type="checkbox" data-price="25000"> Шкаф</label>
-                        <label class="option"><input type="checkbox" data-price="15000"> Комод / тумба</label>
-                        <label class="option"><input type="checkbox" data-price="4000"> Тумба прикроватная</label>
-                        <label class="option"><input type="checkbox" data-price="14000"> Стол туалетный</label>
-                        <label class="option"><input type="checkbox" data-price="4000"> Стол журнальный</label>
-                        <label class="option"><input type="checkbox" data-price="10000"> Стол письменный</label>
-                        <label class="option"><input type="checkbox" data-price="7000"> Кресло / стул / пуф</label>
-                        <label class="option"><input type="checkbox" data-price="8500"> Карниз / тюль / шторы</label>
-                        <label class="option"><input type="checkbox" data-price="4000"> Торшер</label>
-                        <label class="option"><input type="checkbox" data-price="5000"> Ковёр</label>
-                        <label class="option"><input type="checkbox" data-price="5000"> Декор (картины / часы / панно)</label>
-                    </div>
-                    <div class="option-group bedroom-block" id="bedroom-block-2" style="display:none;">
-                        <span class="option-group-label">Спальня 2 — наполнение</span>
-                        <label class="option"><input type="checkbox" data-price="35000"> Кровать + матрас</label>
-                        <label class="option"><input type="checkbox" data-price="35000"> Диван-кровать</label>
-                        <label class="option"><input type="checkbox" data-price="25000"> Шкаф</label>
-                        <label class="option"><input type="checkbox" data-price="15000"> Комод / тумба</label>
-                        <label class="option"><input type="checkbox" data-price="4000"> Тумба прикроватная</label>
-                        <label class="option"><input type="checkbox" data-price="14000"> Стол туалетный</label>
-                        <label class="option"><input type="checkbox" data-price="4000"> Стол журнальный</label>
-                        <label class="option"><input type="checkbox" data-price="10000"> Стол письменный</label>
-                        <label class="option"><input type="checkbox" data-price="7000"> Кресло / стул / пуф</label>
-                        <label class="option"><input type="checkbox" data-price="8500"> Карниз / тюль / шторы</label>
-                        <label class="option"><input type="checkbox" data-price="4000"> Торшер</label>
-                        <label class="option"><input type="checkbox" data-price="5000"> Ковёр</label>
-                        <label class="option"><input type="checkbox" data-price="5000"> Декор (картины / часы / панно)</label>
-                    </div>
+                <div class="hero-block medium">
+                    <img src="images/Обложка/Маленький.jpg" alt="Деталь кухни" onerror="this.style.background='#C8C0B6'">
+                </div>
+                <div class="hero-block shok-box">
+                    <div class="shok-box-content">Шик<br>Отблеск<br>Красота</div>
                 </div>
             </div>
-
-            <!-- Техника -->
-            <div class="section" id="sec-appliances">
-                <div class="section-header" onclick="toggleSection('sec-appliances')">
-                    <div class="left"><span class="icon"><i class="fas fa-tv"></i></span><span class="title">Техника</span><span class="badge" id="badge-appliances">выбрано</span></div>
-                    <span class="arrow">▾</span>
-                </div>
-                <div class="section-body">
-                    <label class="option"><input type="checkbox" data-price="35000"> Холодильник</label>
-                    <label class="option"><input type="checkbox" data-price="15000"> Духовой шкаф</label>
-                    <label class="option"><input type="checkbox" data-price="10000"> Варочная поверхность</label>
-                    <label class="option"><input type="checkbox" data-price="8000"> Вытяжка</label>
-                    <label class="option"><input type="checkbox" data-price="12000"> Микроволновка</label>
-                    <label class="option"><input type="checkbox" data-price="30000"> Посудомойка</label>
-                    <label class="option"><input type="checkbox" data-price="30000"> Стиральная машина</label>
-                    <label class="option"><input type="checkbox" data-price="30000"> Сушильная машина</label>
-                </div>
-            </div>
-
-            <!-- Прихожая + Свет -->
-            <div class="section" id="sec-hallway">
-                <div class="section-header" onclick="toggleSection('sec-hallway')">
-                    <div class="left"><span class="icon"><i class="fas fa-door-open"></i></span><span class="title">Прихожая и свет</span><span class="badge" id="badge-hallway">выбрано</span></div>
-                    <span class="arrow">▾</span>
-                </div>
-                <div class="section-body">
-                    <label class="option"><input type="checkbox" data-price="20000" id="chk-hallway"> Прихожая (готовый комплект)</label>
-                    <div class="number-row">
-                        <button onclick="changeLight(-1)" aria-label="Уменьшить">−</button>
-                        <span id="light-count">0</span>
-                        <button onclick="changeLight(1)" aria-label="Увеличить">+</button>
-                        <span class="hint">светильников / точек (× 2 000 ₽)</span>
-                    </div>
-                    <input type="hidden" id="light-value" value="0">
-                </div>
-            </div>
-
-            <!-- Услуги -->
-            <div class="section" id="sec-services">
-                <div class="section-header" onclick="toggleSection('sec-services')">
-                    <div class="left"><span class="icon"><i class="fas fa-tools"></i></span><span class="title">Услуги</span><span class="badge always">включены</span></div>
-                    <span class="arrow">▾</span>
-                </div>
-                <div class="section-body">
-                    <div class="services-fixed">
-                        <span class="lock"><i class="fas fa-lock"></i></span>
-                        <span>Полный комплекс услуг (сборка, установка, монтаж «под ключ») — <strong>всегда включены в смету</strong>.</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Результат -->
-            <div class="result-card" id="result-card">
-                <div class="result-badge">Смета рассчитана</div>
-                <div class="result-price" id="result-price">0 ₽</div>
-                <div class="result-summary" id="result-summary"></div>
-                <div class="result-phone">
-                    По вопросам звоните: <a href="tel:+78129258856">+7 (812) 925 88-56</a><br>
-                    <span style="font-size:11px;">Компания «Мебель и Стиль»</span>
-                </div>
-                <div class="lead-form" id="lead-form">
-                    <input type="text" id="input-name" placeholder="Ваше имя *" required autocomplete="name">
-                    <input type="tel" id="input-phone" placeholder="Телефон *" required autocomplete="tel">
-                    <input type="email" id="input-email" placeholder="Email (необязательно)" autocomplete="email">
-                    <span class="error-msg" id="error-msg">Пожалуйста, заполните обязательные поля</span>
-                    <button class="btn btn-block" id="btn-submit" onclick="calculateAndSend()">Рассчитать и отправить заявку</button>
-                </div>
-                <div class="success-msg" id="success-msg">
-                    <i class="fas fa-check-circle"></i>
-                    Заявка отправлена! Мы свяжемся с вами в ближайшее время.
-                </div>
-                <button class="btn btn-outline btn-block" onclick="resetAll()">Пересчитать заново</button>
-            </div>
-
         </div>
-    </main>
+    </section>
 
-    <footer class="calc-footer" id="calc-footer">
-        © 2026 Мебель и Стиль. Все права защищены.
-    </footer>
+    <!-- SCROLL TEXT -->
+    <section class="scroll-text">
+        <div class="scroll-inner">
+            <span>Проект с нуля</span><span class="dot-sep">·</span>
+            <span>Индивидуальный дизайн</span><span class="dot-sep">·</span>
+            <span>Бесплатный замер</span><span class="dot-sep">·</span>
+            <span>3D-проект в подарок</span><span class="dot-sep">·</span>
+            <span>Доставка и сборка</span><span class="dot-sep">·</span>
+            <span>Гарантия 5 лет</span><span class="dot-sep">·</span>
+            <span>Проект с нуля</span><span class="dot-sep">·</span>
+            <span>Индивидуальный дизайн</span><span class="dot-sep">·</span>
+            <span>Бесплатный замер</span><span class="dot-sep">·</span>
+            <span>3D-проект в подарок</span><span class="dot-sep">·</span>
+            <span>Доставка и сборка</span><span class="dot-sep">·</span>
+            <span>Гарантия 5 лет</span><span class="dot-sep">·</span>
+        </div>
+    </section>
 
-    <div class="bottom-bar" id="bottom-bar">
-        <span class="hint-text">Заполните разделы выше</span>
-        <button class="btn" onclick="scrollToResult()">К расчёту <i class="fas fa-chevron-down"></i></button>
+    <!-- HOW WE WORK -->
+    <section class="how-we-work" id="process">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Как мы работаем</h2>
+                <p class="section-sub">Прозрачный процесс из пяти шагов.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <div class="step-num">1</div>
+                    <div class="timeline-content"><h3>Знакомство</h3><p>Вы рассказываете о своих пожеланиях, мы выезжаем на замер, делаем точные обмеры помещения и обсуждаем все детали будущей кухни.</p></div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="step-num">2</div>
+                    <div class="timeline-content"><h3>3D-проект и смета</h3><p>Создаём детальную визуализацию и точную смету. Вы видите будущую кухню до начала производства.</p></div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="step-num">3</div>
+                    <div class="timeline-content"><h3>Договор и предоплата</h3><p>Заключаем договор с фиксированной ценой и сроками. Вносится предоплата 50%.</p></div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="step-num">4</div>
+                    <div class="timeline-content"><h3>Производство</h3><p>Изготавливаем кухню на фабрике-партнёре. Срок — от 30 дней. Контроль качества на каждом этапе.</p></div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="step-num">5</div>
+                    <div class="timeline-content"><h3>Доставка и монтаж</h3><p>Бережная доставка, профессиональная сборка, подключение техники. Вы принимаете готовую кухню.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="projects-section" id="projects">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Наши работы</h2>
+                <p class="section-sub">Каждая кухня — это индивидуальная история.</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card fade-in" data-project="uyut">
+                    <img src="images/Наши работы/Уют в кудрово/600.jpg" alt="Уют в Кудрово" loading="lazy" onerror="this.style.background='#D4C4B0'">
+                    <h3>Уют в Кудрово</h3>
+                </div>
+                <div class="project-card fade-in" data-project="style">
+                    <img src="images/Наши работы/Стиль и уют/300.jpg" alt="Стиль и уют" loading="lazy" onerror="this.style.background='#C8D5C0'">
+                    <h3>Стиль и уют</h3>
+                </div>
+                <div class="project-card fade-in" data-project="zagorod">
+                    <img src="images/Наши работы/Загородный дом/100.jpg" alt="Загородный дом" loading="lazy" onerror="this.style.background='#B8A99A'">
+                    <h3>Загородный дом</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALCULATOR -->
+    <section class="calculator-section" id="calculator">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Калькулятор</h2>
+                <p class="section-sub">Примерный расчёт для прямой кухни.</p>
+            </div>
+            <div class="calc-box fade-in">
+                <h3>Рассчитайте примерную стоимость</h3>
+                <p style="color:var(--text-muted);">Выберите длину кухни в погонных метрах</p>
+                <label style="font-weight:600; display:block; margin-bottom:10px; font-family:'Unbounded',sans-serif; font-size:0.9rem;">Длина кухни: <span id="meterValue">3</span> м</label>
+                <input type="range" min="2" max="8" value="3" step="0.5" class="calc-slider" id="meterSlider">
+                <div style="display:flex; justify-content:space-between; font-size:0.7rem; color:var(--text-muted); margin-top:-8px; margin-bottom:18px;"><span>2 м</span><span>8 м</span></div>
+                <div style="font-size:1rem;">Примерная стоимость:</div>
+                <span class="price-value" id="priceResult">105 000 ₽</span>
+                <p style="font-size:0.78rem; color:var(--text-muted); margin:10px 0 22px;">*Для базового пакета (35 000 ₽/м.п.). Не оферта.</p>
+                <a href="#contact" class="btn btn-yellow btn-pulse">Получить точный расчёт</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="container">
+            <div class="section-header fade-in"><h2 style="color:#FFF;">Что говорят клиенты</h2></div>
+        </div>
+        <div class="testimonials-track">
+            <div class="testimonial-slide"><div class="testimonial-stars">★★★★★</div><p>«Искали не просто кухню, а пространство с характером. В Кухни ШОК поняли нас с полуслова.»</p><div class="author">— Семья Голиковых</div></div>
+            <div class="testimonial-slide"><div class="testimonial-stars">★★★★★</div><p>«Системный подход: анкета, эскизы, 3D. Всё прозрачно. Монтаж за два дня.»</p><div class="author">— Ольга В., Кудрово</div></div>
+            <div class="testimonial-slide"><div class="testimonial-stars">★★★★★</div><p>«Вторая кухня от этих ребят. Обе как произведения искусства.»</p><div class="author">— Дмитрий К., Сестрорецк</div></div>
+            <div class="testimonial-slide"><div class="testimonial-stars">★★★★★</div><p>«Кухня в старом фонде. Вписали идеально. Мастера — золотые руки.»</p><div class="author">— Марина С.</div></div>
+            <div class="testimonial-slide"><div class="testimonial-stars">★★★★★</div><p>«Искали не просто кухню, а пространство с характером. В Кухни ШОК поняли нас с полуслова.»</p><div class="author">— Семья Голиковых</div></div>
+            <div class="testimonial-slide"><div class="testimonial-stars">★★★★★</div><p>«Системный подход: анкета, эскизы, 3D. Всё прозрачно. Монтаж за два дня.»</p><div class="author">— Ольга В., Кудрово</div></div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section container" id="contact">
+        <div class="contact-map fade-in">Яндекс.Карта — вставьте iframe</div>
+        <div class="contact-info fade-in">
+            <h2>Давайте обсудим</h2>
+            <p style="color:var(--text-muted); margin-bottom:28px;">Приезжайте в шоурум — покажем материалы и сделаем первый эскиз.</p>
+            <div class="contact-row"><i class="fas fa-map-marker-alt"></i><div><strong>Адрес</strong><br><span style="color:var(--text-muted);">Кудрово, Промышленная 3к3</span></div></div>
+            <div class="contact-row"><i class="fas fa-phone"></i><div><strong>Телефон</strong><br><span style="color:var(--text-muted);">+7 (812) 925 88-56</span></div></div>
+            <div class="contact-row"><i class="fas fa-clock"></i><div><strong>Режим</strong><br><span style="color:var(--text-muted);">Пн–Пт 9:00–20:00, Сб 10:00–18:00</span></div></div>
+            <a href="#" class="btn btn-yellow" style="width:100%; text-align:center; margin-top:10px;">Записаться</a>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <span class="lightbox-nav lightbox-prev" id="lightboxPrev">‹</span>
+        <img src="" alt="" id="lightboxImg">
+        <span class="lightbox-nav lightbox-next" id="lightboxNext">›</span>
+        <span class="lightbox-counter" id="lightboxCounter"></span>
     </div>
 
+    <footer>
+        <div class="container footer-inner">
+            <span style="font-family:'Unbounded',sans-serif; font-weight:600;">Кухни <span style="font-weight:800;">ШОК</span><span style="color:var(--yellow);">.</span></span>
+            <span><a href="#process">Как работаем</a><a href="#projects">Проекты</a><a href="#calculator">Расчёт</a></span>
+            <span style="opacity:0.6;">© 2026</span>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Наверх"><i class="fas fa-arrow-up"></i></button>
+
     <script>
-        // ═══════════════ НАСТРОЙКИ ═══════════════
-        const SERVICES_PRICE = 200000;
+        const galleries = {
+            uyut: Array.from({length: 13}, (_, i) => `images/Наши работы/Уют в кудрово/${600 + i}.jpg`),
+            style: Array.from({length: 9}, (_, i) => `images/Наши работы/Стиль и уют/${300 + i}.jpg`),
+            zagorod: Array.from({length: 7}, (_, i) => `images/Наши работы/Загородный дом/${100 + i}.jpg`)
+        };
 
-        // ⚠️ ЗАМЕНИ НА СВОЙ URL ОТ GOOGLE APPS SCRIPT ⚠️
-        // Инструкция по получению — ниже
-        const SCRIPT_URL = 'https://script.google.com/macros/s/ТВОЙ_ID_ЗДЕСЬ/exec';
-        // ══════════════════════════════════════════
+        let currentGallery = null;
+        let currentIndex = 0;
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        const lightboxCounter = document.getElementById('lightboxCounter');
 
-        function toggleSection(id) { document.getElementById(id).classList.toggle('open'); }
-
-        function updateBedroomBlocks() {
-            const count = document.querySelector('input[name="bedroom-count"]:checked')?.value || '0';
-            const b1 = document.getElementById('bedroom-block-1');
-            const b2 = document.getElementById('bedroom-block-2');
-            if (count === '0') { b1.style.display = 'none';
-                b2.style.display = 'none';
-                clearCheckboxes(b1);
-                clearCheckboxes(b2); } else if (count === '1') { b1.style.display = 'block';
-                b2.style.display = 'none';
-                clearCheckboxes(b2); } else { b1.style.display = 'block';
-                b2.style.display = 'block'; }
-            updateAllBadges();
+        function openLightbox(galleryKey, index) {
+            currentGallery = galleries[galleryKey];
+            currentIndex = index;
+            updateLightbox();
+            lightbox.classList.add('active');
+            document.body.classList.add('modal-open');
         }
-
-        function clearCheckboxes(block) { block?.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false); }
-
-        function changeLight(delta) {
-            const input = document.getElementById('light-value');
-            const span = document.getElementById('light-count');
-            let v = Math.max(0, (parseInt(input.value) || 0) + delta);
-            input.value = v;
-            span.textContent = v;
-            updateAllBadges();
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.classList.remove('modal-open');
+            currentGallery = null;
         }
-
-        function updateAllBadges() {
-            updateBadge('badge-kitchen', () => { const u = document.querySelector('input[name="kitchen-unit"]:checked'); return (
-                    u && u.value !== 'none') || !!document.querySelector('#sec-kitchen input[type="checkbox"]:checked'); });
-            updateBadge('badge-bedrooms', () => { let n = 0;
-                document.querySelectorAll('.bedroom-block').forEach(b => b.querySelectorAll('input:checked').forEach(() =>
-                    n++)); return n > 0; });
-            updateBadge('badge-appliances', () => !!document.querySelector('#sec-appliances input:checked'));
-            updateBadge('badge-hallway', () => document.getElementById('chk-hallway').checked || (parseInt(document
-                .getElementById('light-value').value) || 0) > 0);
+        function updateLightbox() {
+            if (!currentGallery) return;
+            lightboxImg.src = currentGallery[currentIndex];
+            lightboxCounter.textContent = `${currentIndex + 1} / ${currentGallery.length}`;
         }
+        function nextImage() { if (!currentGallery) return; currentIndex = (currentIndex + 1) % currentGallery.length; updateLightbox(); }
+        function prevImage() { if (!currentGallery) return; currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length; updateLightbox(); }
 
-        function updateBadge(id, fn) { const el = document.getElementById(id); if (el) el.classList.toggle('visible', fn()); }
-        document.addEventListener('change', e => { if (e.target.matches('input')) { updateAllBadges(); if (e.target.name ===
-                    'bedroom-count') updateBedroomBlocks(); } });
+        document.querySelectorAll('.project-card[data-project]').forEach(card => {
+            card.addEventListener('click', () => {
+                const key = card.dataset.project;
+                if (galleries[key]) openLightbox(key, 0);
+            });
+        });
 
-        function calculateTotal() {
-            let t = SERVICES_PRICE;
-            const u = document.querySelector('input[name="kitchen-unit"]:checked');
-            if (u && u.value !== 'none') t += parseInt(u.dataset.price) || 0;
-            document.querySelectorAll('#sec-kitchen input[type="checkbox"]:checked').forEach(c => t += parseInt(c.dataset
-                .price) || 0);
-            document.querySelectorAll('.bedroom-block').forEach(b => { if (b.style.display !== 'none') b.querySelectorAll(
-                    'input:checked').forEach(c => t += parseInt(c.dataset.price) || 0); });
-            document.querySelectorAll('#sec-appliances input:checked').forEach(c => t += parseInt(c.dataset.price) || 0);
-            if (document.getElementById('chk-hallway').checked) t += parseInt(document.getElementById('chk-hallway').dataset
-                .price) || 0;
-            t += (parseInt(document.getElementById('light-value').value) || 0) * 2000;
-            return t;
-        }
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+        lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); nextImage(); });
+        lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); prevImage(); });
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        });
 
-        function buildSummary() {
-            const lines = [];
-            const u = document.querySelector('input[name="kitchen-unit"]:checked');
-            let kc = (u && u.value !== 'none') ? 1 : 0;
-            document.querySelectorAll('#sec-kitchen input[type="checkbox"]:checked').forEach(() => kc++);
-            if (kc > 0) lines.push('<strong>Кухня:</strong> ' + kc + ' позиц.');
-            document.querySelectorAll('.bedroom-block').forEach((b, i) => { if (b.style.display !== 'none') { const n = b
-                        .querySelectorAll('input:checked').length; if (n > 0) lines.push('<strong>Спальня ' + (i + 1) +
-                        ':</strong> ' + n + ' позиц.'); } });
-            let tc = document.querySelectorAll('#sec-appliances input:checked').length;
-            if (tc > 0) lines.push('<strong>Техника:</strong> ' + tc + ' позиц.');
-            if (document.getElementById('chk-hallway').checked) lines.push('<strong>Прихожая:</strong> комплект');
-            const lq = parseInt(document.getElementById('light-value').value) || 0;
-            if (lq > 0) lines.push('<strong>Свет:</strong> ' + lq + ' точ.');
-            lines.push('<strong>Услуги под ключ:</strong> включены');
-            return lines.join('<br>');
-        }
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        if (localStorage.getItem('theme') === 'dark') body.classList.add('dark');
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+        });
 
-        function buildSelectedItems() {
-            const items = { kitchen: [], bedroom1: [], bedroom2: [], appliances: [], hallway: false, light: 0, services: true };
-            const u = document.querySelector('input[name="kitchen-unit"]:checked');
-            if (u && u.value !== 'none') items.kitchen.push(u.value === 'straight' ? 'Прямой гарнитур' : 'Угловой гарнитур');
-            document.querySelectorAll('#sec-kitchen input[type="checkbox"]:checked').forEach(cb => items.kitchen.push(cb
-                .parentElement.textContent.trim()));
-            const b1 = document.getElementById('bedroom-block-1');
-            if (b1.style.display !== 'none') b1.querySelectorAll('input:checked').forEach(cb => items.bedroom1.push(cb
-                .parentElement.textContent.trim()));
-            const b2 = document.getElementById('bedroom-block-2');
-            if (b2.style.display !== 'none') b2.querySelectorAll('input:checked').forEach(cb => items.bedroom2.push(cb
-                .parentElement.textContent.trim()));
-            document.querySelectorAll('#sec-appliances input:checked').forEach(cb => items.appliances.push(cb.parentElement
-                .textContent.trim()));
-            items.hallway = document.getElementById('chk-hallway').checked;
-            items.light = parseInt(document.getElementById('light-value').value) || 0;
-            return items;
-        }
+        const header = document.getElementById('header');
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+            backToTop.classList.toggle('visible', window.scrollY > 500);
+        });
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-        async function calculateAndSend() {
-            const name = document.getElementById('input-name').value.trim();
-            const phone = document.getElementById('input-phone').value.trim();
-            const email = document.getElementById('input-email').value.trim();
-            const err = document.getElementById('error-msg');
-            const btn = document.getElementById('btn-submit');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            body.classList.toggle('modal-open');
+        });
+        document.querySelectorAll('[data-close]').forEach(link => link.addEventListener('click', () => {
+            mobileMenuBtn.classList.remove('active');
+            mobileNav.classList.remove('active');
+            body.classList.remove('modal-open');
+        }));
 
-            if (!name || !phone) { err.classList.add('show'); return; }
-            err.classList.remove('show');
+        const fadeEls = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+        fadeEls.forEach(el => observer.observe(el));
 
-            const total = calculateTotal();
-            const summary = buildSummary();
-            const summaryText = summary.replace(/<[^>]*>/g, ', ').replace(/, +/g, ', ').replace(/^, /, '');
+        const slider = document.getElementById('meterSlider');
+        const meterValue = document.getElementById('meterValue');
+        const priceResult = document.getElementById('priceResult');
+        slider.addEventListener('input', () => {
+            const meters = parseFloat(slider.value);
+            meterValue.textContent = meters;
+            priceResult.textContent = Math.round(meters * 35000).toLocaleString('ru-RU') + ' ₽';
+        });
 
-            // Показываем результат сразу
-            document.getElementById('result-price').textContent = total.toLocaleString('ru-RU') + ' ₽';
-            document.getElementById('result-summary').innerHTML = summary;
-            document.getElementById('result-card').classList.add('show');
-            document.getElementById('calc-footer').classList.add('show');
-            document.querySelectorAll('.section-body input, .section-body button').forEach(el => el.disabled = true);
-            document.querySelectorAll('.section').forEach(el => el.classList.add('disabled-area'));
-            document.getElementById('lead-form').style.display = 'none';
-            document.getElementById('bottom-bar').style.display = 'none';
-            document.getElementById('result-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        document.addEventListener('mousemove', (e) => {
+            const heroVisual = document.querySelector('.hero-visual');
+            if (!heroVisual || window.innerWidth < 900) return;
+            const rect = heroVisual.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            const blocks = heroVisual.querySelectorAll('.hero-block');
+            if (blocks[0]) blocks[0].style.transform = `translate(${x * -10}px, ${y * -10}px)`;
+            if (blocks[1]) blocks[1].style.transform = `translate(${x * 6}px, ${y * 6}px)`;
+            if (blocks[2]) blocks[2].style.transform = `translate(${x * 3}px, ${y * 3}px)`;
+        });
 
-            // Отправляем в Google Sheets
-            btn.textContent = 'Отправка...';
-            btn.disabled = true;
-
-            const payload = new URLSearchParams();
-            payload.append('name', name);
-            payload.append('phone', phone);
-            payload.append('email', email);
-            payload.append('total', total);
-            payload.append('summary', summaryText);
-            payload.append('date', new Date().toLocaleString('ru-RU'));
-
-            try {
-                await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    body: payload,
-                    mode: 'no-cors'
-                });
-                // no-cors не возвращает читаемый ответ, поэтому считаем что успех
-                document.getElementById('success-msg').classList.add('show');
-            } catch (error) {
-                console.error('Ошибка:', error);
-                document.getElementById('success-msg').innerHTML =
-                    '<i class="fas fa-check-circle"></i>Смета готова!<br><small>Позвоните нам: +7 (812) 925 88-56</small>';
-                document.getElementById('success-msg').classList.add('show');
-            }
-
-            btn.textContent = 'Рассчитать и отправить заявку';
-            btn.disabled = false;
-        }
-
-        function scrollToResult() { document.getElementById('result-card').scrollIntoView({ behavior: 'smooth',
-            block: 'center' }); }
-
-        function resetAll() {
-            document.querySelectorAll('.section-body input, .section-body button').forEach(el => el.disabled = false);
-            document.querySelectorAll('.section').forEach(el => el.classList.remove('disabled-area'));
-            document.querySelectorAll('input[type="checkbox"]').forEach(el => el.checked = false);
-            document.querySelector('input[name="kitchen-unit"][value="none"]').checked = true;
-            document.querySelector('input[name="bedroom-count"][value="0"]').checked = true;
-            document.getElementById('light-value').value = '0';
-            document.getElementById('light-count').textContent = '0';
-            ['input-name', 'input-phone', 'input-email'].forEach(id => document.getElementById(id).value = '');
-            document.getElementById('error-msg').classList.remove('show');
-            document.getElementById('success-msg').classList.remove('show');
-            document.getElementById('success-msg').innerHTML =
-                '<i class="fas fa-check-circle"></i>Заявка отправлена! Мы свяжемся с вами в ближайшее время.';
-            document.getElementById('result-card').classList.remove('show');
-            document.getElementById('calc-footer').classList.remove('show');
-            document.getElementById('lead-form').style.display = '';
-            document.getElementById('bottom-bar').style.display = '';
-            document.getElementById('btn-submit').textContent = 'Рассчитать и отправить заявку';
-            document.getElementById('btn-submit').disabled = false;
-            updateBedroomBlocks();
-            updateAllBadges();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        updateBedroomBlocks();
-        updateAllBadges();
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('error', function() {
+                if (!this.src.includes('data:image')) {
+                    this.style.background = '#D0C8BE';
+                    this.style.minHeight = '200px';
+                }
+            });
+        });
     </script>
 </body>
 </html>
