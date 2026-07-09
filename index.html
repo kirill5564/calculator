@@ -51,7 +51,7 @@
         body.dark ::-webkit-scrollbar-thumb { background: #444; }
 
         body {
-            font-family: 'Manrope', 'Segoe UI', sans-serif;
+            font-family: 'Manrope', sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
@@ -83,7 +83,7 @@
         .container { max-width: 1320px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 1; }
 
         h1, h2, h3, h4, .nav a, .btn, .logo, .scroll-inner, .price-value, .step-num {
-            font-family: 'Unbounded', 'Segoe UI', sans-serif;
+            font-family: 'Unbounded', sans-serif;
             font-weight: 500;
         }
         h1 { font-size: clamp(3.2rem, 6.5vw, 6rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; }
@@ -134,7 +134,7 @@
         .nav { display: flex; gap: 30px; list-style: none; }
         .nav a {
             text-decoration: none; color: var(--text-muted);
-            font-size: 0.7rem; font-weight: 400;
+            font-size: 0.72rem; font-weight: 400;
             letter-spacing: 0.12em; text-transform: uppercase;
             transition: color 0.3s; padding: 6px 0;
         }
@@ -181,7 +181,7 @@
         .hero-text h1 { margin-bottom: 28px; }
         .hero-text p {
             font-size: 1.15rem; color: var(--text-muted); margin-bottom: 36px;
-            max-width: 440px; font-weight: 400; line-height: 1.7;
+            max-width: 500px; font-weight: 400; line-height: 1.7;
             padding: 20px 24px; border-left: 3px solid var(--yellow);
             background: var(--glass); backdrop-filter: blur(10px);
             border-radius: 0 12px 12px 0;
@@ -219,10 +219,7 @@
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-10px) rotate(1deg); }
         }
-        body.dark .hero-block.shok-box {
-            box-shadow: 0 0 40px var(--yellow-glow), 0 20px 50px rgba(0,0,0,0.5);
-            border-color: #555;
-        }
+        body.dark .hero-block.shok-box { box-shadow: 0 0 40px var(--yellow-glow), 0 20px 50px rgba(0,0,0,0.5); border-color: #555; }
         .shok-box-content {
             font-family: 'Unbounded', sans-serif;
             font-size: 0.62rem; font-weight: 700;
@@ -252,12 +249,7 @@
             box-shadow: 0 8px 30px var(--yellow-glow);
         }
         .btn-yellow:hover { color: var(--text); background: var(--yellow-light); }
-        body.dark .btn-yellow {
-            background: var(--yellow-gradient);
-            border-color: #555;
-            color: #2A2A2A;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        }
+        body.dark .btn-yellow { background: var(--yellow-gradient); border-color: #555; color: #2A2A2A; box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
         body.dark .btn-yellow:hover { color: #1A1A1A; background: var(--yellow-light); }
         .btn-ghost {
             background: transparent; border: 2px solid var(--text);
@@ -363,22 +355,6 @@
         .project-card h3 { font-size: 1.15rem; margin-bottom: 5px; text-align: left; }
         body.dark .project-card h3 { color: #FFF; }
 
-        /* LIGHTBOX */
-        .lightbox {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 2000;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; visibility: hidden; transition: opacity 0.3s; cursor: pointer;
-        }
-        .lightbox.active { opacity: 1; visibility: visible; }
-        .lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
-        .lightbox-close { position: absolute; top: 20px; right: 30px; color: #FFF; font-size: 2.5rem; cursor: pointer; transition: color 0.3s; z-index: 2001; }
-        .lightbox-close:hover { color: var(--yellow); }
-        .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: #FFF; font-size: 2.5rem; cursor: pointer; transition: color 0.3s; z-index: 2001; padding: 20px; user-select: none; }
-        .lightbox-nav:hover { color: var(--yellow); }
-        .lightbox-prev { left: 10px; }
-        .lightbox-next { right: 10px; }
-        .lightbox-counter { position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.7); font-size: 0.9rem; font-family: 'Unbounded', sans-serif; }
-
         /* CALCULATOR */
         .calculator-section { padding: 110px 0; }
         .calculator-section .section-header { text-align: center; margin-bottom: 50px; }
@@ -423,6 +399,7 @@
         .contact-section { padding: 110px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
         .contact-map { height: 440px; border-radius: 20px; overflow: hidden; background: var(--glass); backdrop-filter: blur(10px); border: 3px solid var(--yellow); box-shadow: 0 15px 50px rgba(0,0,0,0.06); }
         body.dark .contact-map { background: var(--card-bg-dark); border-color: #444; }
+        .contact-map iframe { width: 100%; height: 100%; border: none; border-radius: 17px; }
         .contact-row {
             display: flex; align-items: flex-start; gap: 16px;
             margin-bottom: 20px; padding: 20px 22px;
@@ -522,9 +499,9 @@
         <div class="container hero-grid">
             <div class="hero-text fade-in">
                 <h1>Кухни созданные для жизни</h1>
-                <p>Мы создаём интерьеры в которых хочется оставаться.</p>
+                <p>Мы создаём интерьеры в которых хочется оставаться. Всё очень просто. Присылайте фото желаемой кухни, размеры Вашего помещения и наши дизайнеры с удовольствием создадут уникальный проект по Вашим пожеланиям.</p>
                 <div class="hero-btns">
-                    <a href="#calculator" class="btn btn-yellow">Рассчитать стоимость</a>
+                    <a href="#contact" class="btn btn-yellow">Написать нам</a>
                     <a href="#projects" class="btn btn-ghost">Смотреть работы</a>
                 </div>
             </div>
@@ -565,28 +542,48 @@
         <div class="container">
             <div class="section-header fade-in">
                 <h2>Как мы работаем</h2>
-                <p class="section-sub">Прозрачный процесс из пяти шагов.</p>
+                <p class="section-sub">Прозрачный процесс из пяти шагов — вы всегда знаете, на каком этапе проект.</p>
             </div>
             <div class="timeline">
+                <!-- Шаг 1: Знакомство -->
                 <div class="timeline-item fade-in">
                     <div class="step-num">1</div>
-                    <div class="timeline-content"><h3>Знакомство</h3><p>Вы рассказываете о своих пожеланиях, мы выезжаем на замер, делаем точные обмеры помещения и обсуждаем все детали будущей кухни.</p></div>
+                    <div class="timeline-content">
+                        <h3>Знакомство</h3>
+                        <p>Вы рассказываете о своих пожеланиях, мы можем сделать предварительный дизайн и расчёт удалённо. Если всё устраивает — выезжаем на замер, делаем точные обмеры помещения и обсуждаем все детали будущей кухни.</p>
+                    </div>
                 </div>
+                <!-- Шаг 2: 3D-проект -->
                 <div class="timeline-item fade-in">
                     <div class="step-num">2</div>
-                    <div class="timeline-content"><h3>3D-проект и смета</h3><p>Создаём детальную визуализацию и точную смету. Вы видите будущую кухню до начала производства.</p></div>
+                    <div class="timeline-content">
+                        <h3>3D-проект и смета</h3>
+                        <p>Создаём детальную визуализацию и точную смету. Вы видите будущую кухню до начала производства и можете вносить правки на любом этапе.</p>
+                    </div>
                 </div>
+                <!-- Шаг 3: Договор -->
                 <div class="timeline-item fade-in">
                     <div class="step-num">3</div>
-                    <div class="timeline-content"><h3>Договор и предоплата</h3><p>Заключаем договор с фиксированной ценой и сроками. Вносится предоплата 50%.</p></div>
+                    <div class="timeline-content">
+                        <h3>Договор и предоплата</h3>
+                        <p>Заключаем договор с фиксированной ценой и сроками. Вносится предоплата 50%. Остальное оплачиваете после получения мебели. Работаем открыто: можно оплатить наличными, по терминалу, по QR-коду, по безналу от юридического лица.</p>
+                    </div>
                 </div>
+                <!-- Шаг 4: Производство -->
                 <div class="timeline-item fade-in">
                     <div class="step-num">4</div>
-                    <div class="timeline-content"><h3>Производство</h3><p>Изготавливаем кухню на фабрике-партнёре. Срок — от 30 дней. Контроль качества на каждом этапе.</p></div>
+                    <div class="timeline-content">
+                        <h3>Производство</h3>
+                        <p>Изготавливаем кухню на фабрике-партнёре. Срок — от 30 дней. Контроль качества на каждом этапе. Если нужно срочно — можем предложить варианты готовых модульных кухонь из наличия на складе.</p>
+                    </div>
                 </div>
+                <!-- Шаг 5: Доставка -->
                 <div class="timeline-item fade-in">
                     <div class="step-num">5</div>
-                    <div class="timeline-content"><h3>Доставка и монтаж</h3><p>Бережная доставка, профессиональная сборка, подключение техники. Вы принимаете готовую кухню.</p></div>
+                    <div class="timeline-content">
+                        <h3>Доставка и монтаж</h3>
+                        <p>Бережная доставка, профессиональная сборка, подключение техники. Вы принимаете готовую кухню и получаете гарантийный паспорт на 5 лет.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -597,18 +594,18 @@
         <div class="container">
             <div class="section-header fade-in">
                 <h2>Наши работы</h2>
-                <p class="section-sub">Каждая кухня — это индивидуальная история.</p>
+                <p class="section-sub">Каждая кухня — это индивидуальная история, созданная с вниманием к деталям.</p>
             </div>
             <div class="projects-grid">
-                <div class="project-card fade-in" data-project="uyut">
+                <div class="project-card fade-in">
                     <img src="images/Наши работы/Уют в кудрово/600.jpg" alt="Уют в Кудрово" loading="lazy" onerror="this.style.background='#D4C4B0'">
                     <h3>Уют в Кудрово</h3>
                 </div>
-                <div class="project-card fade-in" data-project="style">
+                <div class="project-card fade-in">
                     <img src="images/Наши работы/Стиль и уют/300.jpg" alt="Стиль и уют" loading="lazy" onerror="this.style.background='#C8D5C0'">
                     <h3>Стиль и уют</h3>
                 </div>
-                <div class="project-card fade-in" data-project="zagorod">
+                <div class="project-card fade-in">
                     <img src="images/Наши работы/Загородный дом/100.jpg" alt="Загородный дом" loading="lazy" onerror="this.style.background='#B8A99A'">
                     <h3>Загородный дом</h3>
                 </div>
@@ -621,7 +618,7 @@
         <div class="container">
             <div class="section-header fade-in">
                 <h2>Калькулятор</h2>
-                <p class="section-sub">Примерный расчёт для прямой кухни.</p>
+                <p class="section-sub">Примерный расчёт для прямой кухни. Точную смету составим после бесплатного замера.</p>
             </div>
             <div class="calc-box fade-in">
                 <h3>Рассчитайте примерную стоимость</h3>
@@ -631,8 +628,8 @@
                 <div style="display:flex; justify-content:space-between; font-size:0.7rem; color:var(--text-muted); margin-top:-8px; margin-bottom:18px;"><span>2 м</span><span>8 м</span></div>
                 <div style="font-size:1rem;">Примерная стоимость:</div>
                 <span class="price-value" id="priceResult">105 000 ₽</span>
-                <p style="font-size:0.78rem; color:var(--text-muted); margin:10px 0 22px;">*Для базового пакета (35 000 ₽/м.п.). Не оферта.</p>
-                <a href="#contact" class="btn btn-yellow btn-pulse">Получить точный расчёт</a>
+                <p style="font-size:0.78rem; color:var(--text-muted); margin:10px 0 22px;">*Для базового пакета (35 000 ₽/м.п.). Не является публичной офертой.</p>
+                <a href="#contact" class="btn btn-yellow">Написать нам</a>
             </div>
         </div>
     </section>
@@ -654,25 +651,18 @@
 
     <!-- CONTACT -->
     <section class="contact-section container" id="contact">
-        <div class="contact-map fade-in">Яндекс.Карта — вставьте iframe</div>
+        <div class="contact-map fade-in">
+            <iframe src="https://yandex.ru/map-widget/v1/?lang=ru_RU&scroll=true&source=constructor-api&um=constructor%3A1234567890&z=15&ll=30.500000%2C59.950000" allowfullscreen></iframe>
+        </div>
         <div class="contact-info fade-in">
             <h2>Давайте обсудим</h2>
             <p style="color:var(--text-muted); margin-bottom:28px;">Приезжайте в шоурум — покажем материалы и сделаем первый эскиз.</p>
             <div class="contact-row"><i class="fas fa-map-marker-alt"></i><div><strong>Адрес</strong><br><span style="color:var(--text-muted);">Кудрово, Промышленная 3к3</span></div></div>
             <div class="contact-row"><i class="fas fa-phone"></i><div><strong>Телефон</strong><br><span style="color:var(--text-muted);">+7 (812) 925 88-56</span></div></div>
             <div class="contact-row"><i class="fas fa-clock"></i><div><strong>Режим</strong><br><span style="color:var(--text-muted);">Пн–Пт 9:00–20:00, Сб 10:00–18:00</span></div></div>
-            <a href="#" class="btn btn-yellow" style="width:100%; text-align:center; margin-top:10px;">Записаться</a>
+            <a href="#" class="btn btn-yellow" style="width:100%; text-align:center; margin-top:10px;">Написать нам</a>
         </div>
     </section>
-
-    <!-- LIGHTBOX -->
-    <div class="lightbox" id="lightbox">
-        <span class="lightbox-close" id="lightboxClose">&times;</span>
-        <span class="lightbox-nav lightbox-prev" id="lightboxPrev">‹</span>
-        <img src="" alt="" id="lightboxImg">
-        <span class="lightbox-nav lightbox-next" id="lightboxNext">›</span>
-        <span class="lightbox-counter" id="lightboxCounter"></span>
-    </div>
 
     <footer>
         <div class="container footer-inner">
@@ -685,59 +675,6 @@
     <button class="back-to-top" id="backToTop" aria-label="Наверх"><i class="fas fa-arrow-up"></i></button>
 
     <script>
-        const galleries = {
-            uyut: Array.from({length: 13}, (_, i) => `images/Наши работы/Уют в кудрово/${600 + i}.jpg`),
-            style: Array.from({length: 9}, (_, i) => `images/Наши работы/Стиль и уют/${300 + i}.jpg`),
-            zagorod: Array.from({length: 7}, (_, i) => `images/Наши работы/Загородный дом/${100 + i}.jpg`)
-        };
-
-        let currentGallery = null;
-        let currentIndex = 0;
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightboxImg');
-        const lightboxClose = document.getElementById('lightboxClose');
-        const lightboxPrev = document.getElementById('lightboxPrev');
-        const lightboxNext = document.getElementById('lightboxNext');
-        const lightboxCounter = document.getElementById('lightboxCounter');
-
-        function openLightbox(galleryKey, index) {
-            currentGallery = galleries[galleryKey];
-            currentIndex = index;
-            updateLightbox();
-            lightbox.classList.add('active');
-            document.body.classList.add('modal-open');
-        }
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-            document.body.classList.remove('modal-open');
-            currentGallery = null;
-        }
-        function updateLightbox() {
-            if (!currentGallery) return;
-            lightboxImg.src = currentGallery[currentIndex];
-            lightboxCounter.textContent = `${currentIndex + 1} / ${currentGallery.length}`;
-        }
-        function nextImage() { if (!currentGallery) return; currentIndex = (currentIndex + 1) % currentGallery.length; updateLightbox(); }
-        function prevImage() { if (!currentGallery) return; currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length; updateLightbox(); }
-
-        document.querySelectorAll('.project-card[data-project]').forEach(card => {
-            card.addEventListener('click', () => {
-                const key = card.dataset.project;
-                if (galleries[key]) openLightbox(key, 0);
-            });
-        });
-
-        lightboxClose.addEventListener('click', closeLightbox);
-        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-        lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); nextImage(); });
-        lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); prevImage(); });
-        document.addEventListener('keydown', (e) => {
-            if (!lightbox.classList.contains('active')) return;
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowRight') nextImage();
-            if (e.key === 'ArrowLeft') prevImage();
-        });
-
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
         if (localStorage.getItem('theme') === 'dark') body.classList.add('dark');
@@ -792,15 +729,6 @@
             if (blocks[0]) blocks[0].style.transform = `translate(${x * -10}px, ${y * -10}px)`;
             if (blocks[1]) blocks[1].style.transform = `translate(${x * 6}px, ${y * 6}px)`;
             if (blocks[2]) blocks[2].style.transform = `translate(${x * 3}px, ${y * 3}px)`;
-        });
-
-        document.querySelectorAll('img').forEach(img => {
-            img.addEventListener('error', function() {
-                if (!this.src.includes('data:image')) {
-                    this.style.background = '#D0C8BE';
-                    this.style.minHeight = '200px';
-                }
-            });
         });
     </script>
 </body>
