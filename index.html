@@ -16,452 +16,179 @@
     
     <style>
         :root {
-            --bg: #F5F0EA;
-            --bg-dark: #1C1C1C;
-            --surface: rgba(255,255,255,0.7);
-            --surface-dark: rgba(35,35,35,0.8);
-            --text: #2C2621;
-            --text-dark: #E0E0E0;
-            --text-muted: #7A7268;
-            --text-muted-dark: #999;
-            --yellow: #FFFF99;
-            --yellow-light: #FFFFCC;
-            --yellow-dark: #E6E680;
-            --yellow-darker: #CCCC66;
-            --yellow-glow: rgba(255,255,153,0.4);
-            --yellow-gradient: linear-gradient(135deg, #FFFF99 0%, #FFFFBB 50%, #E6E680 100%);
-            --glass: rgba(255,255,255,0.6);
-            --glass-dark: rgba(40,40,40,0.7);
-            --border-light: rgba(0,0,0,0.08);
-            --border-dark: rgba(255,255,255,0.05);
-            --card-bg-dark: #282828;
-            --card-border-dark: rgba(255,255,255,0.04);
-            --btn-dark: #3A3A3A;
-            --btn-dark-hover: #4A4A4A;
+            --bg: #F5F0EA; --bg-dark: #1C1C1C; --text: #2C2621; --text-dark: #E0E0E0;
+            --text-muted: #7A7268; --yellow: #FFFF99; --yellow-darker: #CCCC66;
+            --yellow-glow: rgba(255,255,153,0.4); --yellow-gradient: linear-gradient(135deg, #FFFF99 0%, #FFFFBB 50%, #E6E680 100%);
+            --glass: rgba(255,255,255,0.6); --card-bg-dark: #282828;
             --transition: 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
             --bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--yellow-darker); border-radius: 10px; }
-        body.dark ::-webkit-scrollbar-thumb { background: #444; }
-
         body {
-            font-family: 'Manrope', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            font-weight: 400;
-            font-size: 15px;
-            transition: background 0.5s, color 0.5s;
-            overflow-x: hidden;
-            position: relative;
+            font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--text);
+            line-height: 1.6; font-size: 15px; transition: background 0.5s, color 0.5s; overflow-x: hidden;
         }
         body.dark { background: var(--bg-dark); color: var(--text-dark); }
-        body.modal-open { overflow: hidden; }
-
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(255,255,153,0.06) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(230,230,128,0.04) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 0;
-        }
-        body.dark::before {
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(255,255,153,0.02) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(255,255,153,0.015) 0%, transparent 50%);
-        }
-
+        body.popup-open { overflow: hidden; }
         .container { max-width: 1320px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 1; }
-
-        h1, h2, h3, h4, .nav a, .btn, .logo, .scroll-inner, .price-value, .step-num {
-            font-family: 'Unbounded', sans-serif;
-            font-weight: 500;
+        h1, h2, h3, .nav a, .btn, .logo, .scroll-inner, .price-value, .step-num {
+            font-family: 'Unbounded', sans-serif; font-weight: 500;
         }
-        h1 { font-size: clamp(3.2rem, 6.5vw, 6rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; }
-        h2 { font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 600; letter-spacing: -0.01em; }
-        h3 { font-size: 1.4rem; font-weight: 500; }
-
-        .section-sub { color: var(--text-muted); font-size: 1rem; max-width: 480px; margin: 0 auto 40px; text-align: center; font-weight: 400; }
-        body.dark .section-sub { color: var(--text-muted-dark); }
-
+        h1 { font-size: clamp(3.2rem, 6.5vw, 6rem); font-weight: 800; line-height: 1.05; }
+        h2 { font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 600; }
+        .section-sub { color: var(--text-muted); font-size: 1rem; max-width: 480px; margin: 0 auto 40px; text-align: center; }
         .top-accent { height: 4px; background: var(--yellow); }
 
         /* HEADER */
-        header {
-            padding: 16px 0;
-            background: rgba(245, 240, 234, 0.85);
-            backdrop-filter: blur(30px) saturate(120%);
-            -webkit-backdrop-filter: blur(30px) saturate(120%);
-            border-bottom: 1px solid var(--border-light);
-            position: sticky; top: 0; z-index: 1000;
-            transition: all 0.4s;
-        }
-        body.dark header { background: rgba(28, 28, 28, 0.9); border-bottom-color: var(--border-dark); }
-        header.scrolled { padding: 10px 0; box-shadow: 0 10px 50px rgba(0,0,0,0.06); }
-        body.dark header.scrolled { box-shadow: 0 10px 50px rgba(0,0,0,0.4); }
-
+        header { padding: 16px 0; background: rgba(245,240,234,0.85); backdrop-filter: blur(30px); border-bottom: 1px solid rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
         .header-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo {
-            font-size: 1.5rem; color: var(--text); text-decoration: none;
-            letter-spacing: 0.04em; font-weight: 600;
-        }
-        body.dark .logo { color: var(--text-dark); }
-        .logo .shok { color: var(--text); font-weight: 800; letter-spacing: 0.12em; }
-        body.dark .logo .shok { color: #FFF; }
-        .logo .dot {
-            color: var(--yellow); font-size: 2rem; font-weight: 800;
-            display: inline-block;
-            text-shadow: -1px -1px 0 var(--text), 1px -1px 0 var(--text), -1px 1px 0 var(--text), 1px 1px 0 var(--text), 0 0 15px var(--yellow-glow);
-            animation: dotGlow 2s ease-in-out infinite;
-        }
-        body.dark .logo .dot {
-            text-shadow: -1px -1px 0 #555, 1px -1px 0 #555, -1px 1px 0 #555, 1px 1px 0 #555, 0 0 20px var(--yellow-glow);
-        }
-        @keyframes dotGlow {
-            0%, 100% { text-shadow: -1px -1px 0 var(--text), 1px -1px 0 var(--text), -1px 1px 0 var(--text), 1px 1px 0 var(--text), 0 0 15px var(--yellow-glow); }
-            50% { text-shadow: -1px -1px 0 var(--text), 1px -1px 0 var(--text), -1px 1px 0 var(--text), 1px 1px 0 var(--text), 0 0 30px var(--yellow-glow), 0 0 60px rgba(255,255,153,0.5); }
-        }
-
+        .logo { font-size: 1.5rem; color: var(--text); text-decoration: none; font-weight: 600; }
+        .logo .shok { font-weight: 800; letter-spacing: 0.12em; }
+        .logo .dot { color: var(--yellow); font-size: 2rem; font-weight: 800; text-shadow: -1px -1px 0 var(--text), 1px -1px 0 var(--text), -1px 1px 0 var(--text), 1px 1px 0 var(--text), 0 0 15px var(--yellow-glow); animation: dotGlow 2s ease-in-out infinite; display: inline-block; }
+        @keyframes dotGlow { 0%,100%{text-shadow:-1px -1px 0 var(--text),1px -1px 0 var(--text),-1px 1px 0 var(--text),1px 1px 0 var(--text),0 0 15px var(--yellow-glow);} 50%{text-shadow:-1px -1px 0 var(--text),1px -1px 0 var(--text),-1px 1px 0 var(--text),1px 1px 0 var(--text),0 0 30px var(--yellow-glow);} }
         .nav { display: flex; gap: 30px; list-style: none; }
-        .nav a {
-            text-decoration: none; color: var(--text-muted);
-            font-size: 0.72rem; font-weight: 400;
-            letter-spacing: 0.12em; text-transform: uppercase;
-            transition: color 0.3s; padding: 6px 0;
-        }
-        body.dark .nav a { color: #888; }
+        .nav a { text-decoration: none; color: var(--text-muted); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; transition: color 0.3s; }
         .nav a:hover { color: var(--yellow-darker); }
-        body.dark .nav a:hover { color: var(--yellow); }
-
         .header-right { display: flex; align-items: center; gap: 18px; }
-        .header-phone { color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
-        body.dark .header-phone { color: var(--text-dark); }
-
-        .theme-dot {
-            width: 32px; height: 32px; border-radius: 50%;
-            background: var(--text); cursor: pointer;
-            transition: var(--bounce); border: 2px solid transparent; position: relative;
-        }
-        body.dark .theme-dot { background: #555; border-color: #666; }
-        .theme-dot::after {
-            content: ''; position: absolute; top: 5px; left: 5px;
-            width: 8px; height: 8px; border-radius: 50%;
-            background: var(--bg); transition: var(--transition);
-        }
-        body.dark .theme-dot::after { left: auto; right: 5px; background: #2A2A2A; }
+        .header-phone { color: var(--text); text-decoration: none; font-weight: 600; }
+        .theme-dot { width: 32px; height: 32px; border-radius: 50%; background: var(--text); cursor: pointer; border: none; transition: var(--bounce); }
         .theme-dot:hover { transform: scale(1.2) rotate(45deg); }
-
-        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; width: 32px; height: 24px; }
+        body.dark .theme-dot { background: #555; }
+        .mobile-menu-btn { display: none; background: none; border: none; width: 32px; height: 24px; cursor: pointer; }
         .mobile-menu-btn span { display: block; width: 100%; height: 2px; background: var(--text); margin: 5px 0; transition: var(--transition); }
-        body.dark .mobile-menu-btn span { background: var(--text-dark); }
-        .mobile-nav {
-            display: none; position: fixed; inset: 0;
-            background: rgba(245,240,234,0.98); backdrop-filter: blur(20px);
-            z-index: 999; flex-direction: column; align-items: center; justify-content: center;
-            gap: 35px; list-style: none;
-        }
-        body.dark .mobile-nav { background: rgba(28,28,28,0.98); }
+        .mobile-nav { display: none; position: fixed; inset: 0; background: rgba(245,240,234,0.98); backdrop-filter: blur(20px); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 35px; list-style: none; }
         .mobile-nav.active { display: flex; }
         .mobile-nav a { font-family: 'Unbounded', sans-serif; font-size: 1.6rem; color: var(--text); text-decoration: none; }
-        body.dark .mobile-nav a { color: var(--text-dark); }
 
         /* HERO */
         .hero { padding: 100px 0 80px; position: relative; overflow: hidden; min-height: 80vh; display: flex; align-items: center; }
-        .hero-grid { display: grid; grid-template-columns: 1fr 0.7fr; gap: 60px; align-items: center; width: 100%; }
-        .hero-text { position: relative; z-index: 2; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 0.7fr; gap: 60px; align-items: center; width: 100%; position: relative; z-index: 1; }
         .hero-text h1 { margin-bottom: 28px; }
-        .hero-text p {
-            font-size: 1.15rem; color: var(--text-muted); margin-bottom: 36px;
-            max-width: 500px; font-weight: 400; line-height: 1.7;
-            padding: 20px 24px; border-left: 3px solid var(--yellow);
-            background: var(--glass); backdrop-filter: blur(10px);
-            border-radius: 0 12px 12px 0;
-        }
-        body.dark .hero-text p { color: #AAA; background: rgba(40,40,40,0.7); border-left-color: var(--yellow); }
+        .hero-text p { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 36px; max-width: 500px; line-height: 1.7; padding: 20px 24px; border-left: 3px solid var(--yellow); background: var(--glass); backdrop-filter: blur(10px); border-radius: 0 12px 12px 0; }
         .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
-
-        .hero-visual { position: relative; height: 500px; perspective: 1200px; }
+        .hero-visual { position: relative; height: 450px; perspective: 1200px; }
         .hero-block { position: absolute; border-radius: 16px; overflow: hidden; transition: transform 0.5s ease; }
-        .hero-block.large {
-            width: 78%; height: 68%; top: 0; right: 0;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.12); z-index: 2;
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-        .hero-block.large:hover { transform: translateY(-6px) rotate(-0.5deg) scale(1.01); }
-        body.dark .hero-block.large { box-shadow: 0 30px 80px rgba(0,0,0,0.6); border-color: rgba(255,255,255,0.06); }
-        .hero-block.medium {
-            width: 52%; height: 42%; bottom: 0; left: 0;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1); border: 6px solid rgba(255,255,255,0.8);
-            z-index: 1; border-radius: 20px;
-        }
-        .hero-block.medium:hover { transform: translateY(-4px) rotate(1deg); }
-        body.dark .hero-block.medium { border-color: rgba(255,255,255,0.08); }
-        .hero-block.shok-box {
-            width: 36%; height: 30%; top: 12%; left: 7%;
-            background: var(--yellow-gradient);
-            box-shadow: 0 15px 45px var(--yellow-glow), 0 0 0 4px rgba(0,0,0,0.1);
-            border: 3px solid var(--text);
-            display: flex; align-items: center; justify-content: center;
-            text-align: center; padding: 12px; z-index: 3;
-            border-radius: 12px;
-            animation: floatBox 5s ease-in-out infinite;
-        }
-        @keyframes floatBox {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(1deg); }
-        }
-        body.dark .hero-block.shok-box { box-shadow: 0 0 40px var(--yellow-glow), 0 20px 50px rgba(0,0,0,0.5); border-color: #555; }
-        .shok-box-content {
-            font-family: 'Unbounded', sans-serif;
-            font-size: 0.62rem; font-weight: 700;
-            color: var(--text); line-height: 1.5; letter-spacing: 0.1em;
-        }
-        body.dark .shok-box-content { color: #2A2A2A; }
+        .hero-block.large { width: 78%; height: 60%; top: 0; right: 0; box-shadow: 0 30px 80px rgba(0,0,0,0.12); z-index: 2; border: 1px solid rgba(255,255,255,0.3); }
+        .hero-block.medium { width: 55%; height: 35%; bottom: 5%; left: 0; box-shadow: 0 20px 60px rgba(0,0,0,0.1); border: 5px solid rgba(255,255,255,0.8); z-index: 1; border-radius: 18px; }
+        .hero-block.small { width: 30%; height: 22%; top: 12%; left: 5%; box-shadow: 0 10px 35px rgba(0,0,0,0.1); border: 4px solid var(--yellow); z-index: 3; border-radius: 12px; animation: floatBox 5s ease-in-out infinite; }
+        @keyframes floatBox { 0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-8px) rotate(1deg);} }
         .hero-block img { width: 100%; height: 100%; object-fit: cover; }
 
-        .btn {
-            display: inline-block; padding: 17px 42px;
-            background: var(--text); color: var(--bg);
-            text-decoration: none; font-family: 'Unbounded', sans-serif;
-            font-weight: 500; font-size: 0.72rem;
-            text-transform: uppercase; letter-spacing: 0.12em;
-            border: none; cursor: pointer;
-            transition: var(--bounce); border-radius: 50px; text-align: center;
-            position: relative; overflow: hidden; z-index: 1;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-        .btn:hover { transform: translateY(-4px); box-shadow: 0 15px 45px rgba(0,0,0,0.2); }
-        body.dark .btn { background: var(--btn-dark); color: #DDD; }
-        body.dark .btn:hover { background: var(--btn-dark-hover); }
-        .btn-yellow {
-            background: var(--yellow-gradient);
-            color: var(--text);
-            border: 2px solid var(--text);
-            box-shadow: 0 8px 30px var(--yellow-glow);
-        }
-        .btn-yellow:hover { color: var(--text); background: var(--yellow-light); }
-        body.dark .btn-yellow { background: var(--yellow-gradient); border-color: #555; color: #2A2A2A; box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
-        body.dark .btn-yellow:hover { color: #1A1A1A; background: var(--yellow-light); }
-        .btn-ghost {
-            background: transparent; border: 2px solid var(--text);
-            color: var(--text); box-shadow: none;
-        }
-        .btn-ghost:hover { background: var(--text); color: var(--bg); }
-        body.dark .btn-ghost { border-color: #777; color: #CCC; }
-        body.dark .btn-ghost:hover { background: #444; color: #FFF; border-color: #444; }
-
-        .btn-pulse { animation: btnGlow 2s ease-in-out infinite; }
-        body.dark .btn-pulse { animation: none; }
-        @keyframes btnGlow {
-            0%, 100% { box-shadow: 0 8px 30px var(--yellow-glow); }
-            50% { box-shadow: 0 8px 50px var(--yellow-glow), 0 0 80px rgba(255,255,153,0.3); }
-        }
+        .btn { display: inline-block; padding: 17px 42px; background: var(--text); color: var(--bg); text-decoration: none; font-family: 'Unbounded', sans-serif; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; border-radius: 50px; transition: var(--bounce); cursor: pointer; border: none; }
+        .btn:hover { transform: translateY(-4px); }
+        body.dark .btn { background: #3A3A3A; color: #DDD; }
+        .btn-yellow { background: var(--yellow-gradient); color: var(--text); border: 2px solid var(--text); }
+        .btn-ghost { background: transparent; border: 2px solid var(--text); color: var(--text); }
 
         /* SCROLL TEXT */
-        .scroll-text {
-            padding: 52px 0; overflow: hidden; white-space: nowrap;
-            border-top: 2px solid rgba(0,0,0,0.05); border-bottom: 2px solid rgba(0,0,0,0.05);
-            background: linear-gradient(90deg, rgba(255,255,153,0.5) 0%, rgba(255,255,200,0.6) 50%, rgba(255,255,153,0.5) 100%);
-            position: relative; backdrop-filter: blur(10px);
-        }
-        body.dark .scroll-text {
-            background: linear-gradient(90deg, rgba(255,255,153,0.06) 0%, rgba(255,255,153,0.1) 50%, rgba(255,255,153,0.06) 100%);
-            border-color: rgba(255,255,255,0.03);
-        }
-        .scroll-inner {
-            display: inline-block; animation: scroll 26s linear infinite;
-            font-size: 1.15rem; font-weight: 500; letter-spacing: 0.06em; color: var(--text);
-        }
+        .scroll-text { padding: 52px 0; overflow: hidden; white-space: nowrap; background: linear-gradient(90deg, rgba(255,255,153,0.5), rgba(255,255,200,0.6), rgba(255,255,153,0.5)); }
+        .scroll-inner { display: inline-block; animation: scroll 26s linear infinite; font-size: 1.15rem; font-weight: 500; color: var(--text); }
         body.dark .scroll-inner { color: var(--yellow); }
         .scroll-inner span { margin: 0 28px; }
-        .scroll-inner .dot-sep { color: var(--yellow-darker); font-size: 1.5rem; font-weight: 700; }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .scroll-inner .dot-sep { color: var(--yellow-darker); font-size: 1.5rem; }
+        @keyframes scroll { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
 
         /* HOW WE WORK */
-        .how-we-work { padding: 110px 0; text-align: center; position: relative; }
-        .how-we-work .section-header { margin-bottom: 50px; }
-        .timeline { max-width: 800px; margin: 0 auto; position: relative; }
-        .timeline::before {
-            content: ''; position: absolute; left: 50%; top: 0; bottom: 0;
-            width: 3px; background: linear-gradient(180deg, var(--yellow), var(--yellow-darker), var(--yellow));
-            transform: translateX(-50%); border-radius: 3px; box-shadow: 0 0 20px var(--yellow-glow);
-        }
-        body.dark .timeline::before { background: linear-gradient(180deg, #3A3A3A, #4A4A4A, #3A3A3A); box-shadow: none; }
-        .timeline-item { display: flex; align-items: flex-start; margin-bottom: 50px; position: relative; text-align: left; }
-        .timeline-item:last-child { margin-bottom: 0; }
-        .timeline-item:nth-child(even) { flex-direction: row-reverse; }
-        .timeline-content {
-            width: 45%; background: var(--glass); backdrop-filter: blur(15px);
-            padding: 30px 35px; border-radius: 16px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.04);
-            position: relative; transition: var(--bounce);
-            border: 1px solid rgba(255,255,255,0.5); border-left: 5px solid var(--yellow);
-        }
-        body.dark .timeline-content {
-            background: var(--card-bg-dark); border-color: var(--card-border-dark);
-            border-left-color: var(--yellow); box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-        }
-        .timeline-content:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
-        body.dark .timeline-content:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.5); background: #2E2E2E; }
-        .step-num {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            left: calc(50% - 22px); width: 44px; height: 44px;
-            background: var(--yellow); color: var(--text);
-            border: 3px solid var(--text); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 700; font-size: 0.9rem; z-index: 2;
-            transition: var(--bounce);
-            box-shadow: 0 0 0 8px rgba(245,240,234,0.8), 0 0 25px var(--yellow-glow);
-        }
-        body.dark .step-num { border-color: #555; color: #2A2A2A; box-shadow: 0 0 0 8px rgba(28,28,28,0.9), 0 0 20px var(--yellow-glow); }
-        .timeline-item:hover .step-num { transform: translateY(-50%) scale(1.2); box-shadow: 0 0 0 8px rgba(245,240,234,0.8), 0 0 40px var(--yellow-glow); }
-        body.dark .timeline-item:hover .step-num { box-shadow: 0 0 0 8px rgba(28,28,28,0.9), 0 0 30px var(--yellow-glow); }
-        .timeline-content h3 { margin-bottom: 8px; font-size: 1.1rem; }
-        body.dark .timeline-content h3 { color: #FFF; }
-        .timeline-content p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
-        body.dark .timeline-content p { color: #AAA; }
+        .how-we-work { padding: 100px 0; text-align: center; }
+        .how-we-work .section-header { margin-bottom: 40px; }
+        .steps-wrapper { position: relative; max-width: 100%; padding: 0 60px; }
+        .steps-horizontal { display: flex; gap: 20px; overflow-x: auto; padding: 20px 0 30px; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
+        .steps-horizontal::-webkit-scrollbar { display: none; }
+        .step-card { flex: 0 0 300px; scroll-snap-align: start; background: var(--glass); backdrop-filter: blur(15px); padding: 35px 30px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.5); border-top: 5px solid var(--yellow); text-align: left; transition: var(--bounce); box-shadow: 0 8px 30px rgba(0,0,0,0.04); }
+        .step-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .step-card .step-num { width: 40px; height: 40px; background: var(--yellow); color: var(--text); border: 2px solid var(--text); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; margin-bottom: 18px; }
+        .step-card h3 { font-size: 1.05rem; margin-bottom: 10px; }
+        .step-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+        .scroll-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; background: var(--yellow); color: var(--text); border: 3px solid var(--text); border-radius: 50%; cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; z-index: 5; transition: var(--bounce); box-shadow: 0 5px 20px var(--yellow-glow); user-select: none; }
+        .scroll-arrow:hover { transform: translateY(-50%) scale(1.1); }
+        .scroll-arrow.left { left: 0; }
+        .scroll-arrow.right { right: 0; }
 
         /* PROJECTS */
-        .projects-section { padding: 120px 0; text-align: center; }
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; margin-top: 40px; }
-        .project-card {
-            background: var(--glass); backdrop-filter: blur(15px);
-            padding: 16px 16px 28px; border-radius: 16px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
-            transition: var(--bounce); cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.5);
-            position: relative; overflow: hidden;
-        }
-        body.dark .project-card { background: var(--card-bg-dark); border-color: var(--card-border-dark); box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
-        .project-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0;
-            height: 4px; background: var(--yellow-gradient);
-            transform: scaleX(0); transition: transform 0.5s;
-        }
-        .project-card:hover { transform: translateY(-10px); box-shadow: 0 25px 60px rgba(0,0,0,0.12); }
-        body.dark .project-card:hover { box-shadow: 0 25px 60px rgba(0,0,0,0.6); }
-        .project-card:hover::before { transform: scaleX(1); }
-        .project-card img { width: 100%; height: 270px; object-fit: cover; border-radius: 10px; margin-bottom: 16px; transition: transform 0.6s; }
-        .project-card:hover img { transform: scale(1.03); }
-        .project-card h3 { font-size: 1.15rem; margin-bottom: 5px; text-align: left; }
+        .projects-section { padding: 120px 0; text-align: center; position: relative; z-index: 1; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .project-card { background: #FFF; border-radius: 16px; padding: 14px 14px 24px; box-shadow: 0 8px 30px rgba(0,0,0,0.05); transition: var(--bounce); cursor: pointer; border: 1px solid rgba(0,0,0,0.06); text-align: left; }
+        body.dark .project-card { background: var(--card-bg-dark); border-color: rgba(255,255,255,0.04); }
+        .project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
+        .project-card img { width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 14px; background: #E8E1D8; display: block; }
+        .project-card h3 { font-size: 1.1rem; margin-bottom: 6px; color: var(--text); }
         body.dark .project-card h3 { color: #FFF; }
+        .project-card .project-desc { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 8px; }
+        .project-card .project-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+        .project-card .tag { padding: 4px 10px; background: var(--yellow); border: 1px solid var(--text); font-size: 0.58rem; font-family: 'Unbounded', sans-serif; font-weight: 500; border-radius: 12px; color: var(--text); }
+
+        /* GALLERY MODAL */
+        .gallery-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 2000; flex-direction: column; align-items: center; justify-content: center; }
+        .gallery-modal.active { display: flex; }
+        .gallery-modal-close { position: absolute; top: 20px; right: 25px; font-size: 2.5rem; color: #FFF; cursor: pointer; z-index: 2001; background: none; border: none; }
+        .gallery-modal-close:hover { color: var(--yellow); }
+        .gallery-modal-img { max-width: 90vw; max-height: 80vh; object-fit: contain; border-radius: 8px; background: #222; }
+        .gallery-modal-counter { color: rgba(255,255,255,0.7); font-family: 'Unbounded', sans-serif; font-size: 0.85rem; margin-top: 15px; }
+        .gallery-modal-nav { position: absolute; top: 50%; transform: translateY(-50%); color: #FFF; font-size: 3rem; cursor: pointer; z-index: 2001; padding: 20px; background: none; border: none; transition: color 0.3s; }
+        .gallery-modal-nav:hover { color: var(--yellow); }
+        .gallery-modal-prev { left: 10px; }
+        .gallery-modal-next { right: 10px; }
 
         /* CALCULATOR */
         .calculator-section { padding: 110px 0; }
-        .calculator-section .section-header { text-align: center; margin-bottom: 50px; }
-        .calc-box {
-            max-width: 640px; margin: 0 auto;
-            background: var(--glass); backdrop-filter: blur(20px);
-            padding: 50px 50px; border-radius: 20px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.06);
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.5);
-            border-top: 6px solid var(--yellow);
-            transition: var(--transition);
-        }
-        body.dark .calc-box { background: var(--card-bg-dark); border-color: var(--card-border-dark); border-top-color: var(--yellow); box-shadow: 0 15px 50px rgba(0,0,0,0.4); }
-        .calc-box:hover { box-shadow: 0 25px 70px rgba(0,0,0,0.1); transform: translateY(-3px); }
-        body.dark .calc-box:hover { box-shadow: 0 25px 70px rgba(0,0,0,0.5); }
-        .calc-slider { width: 100%; margin: 20px 0 30px; accent-color: var(--yellow-darker); height: 8px; border-radius: 4px; }
-        body.dark .calc-slider { accent-color: var(--yellow); }
-        .price-value { font-size: 3rem; font-weight: 700; color: var(--yellow-darker); display: inline-block; text-shadow: 0 0 20px var(--yellow-glow); }
-        body.dark .price-value { color: var(--yellow); }
+        .calc-box { max-width: 640px; margin: 0 auto; background: var(--glass); backdrop-filter: blur(20px); padding: 50px; border-radius: 20px; box-shadow: 0 15px 50px rgba(0,0,0,0.06); text-align: center; border: 1px solid rgba(255,255,255,0.5); border-top: 6px solid var(--yellow); }
+        .calc-slider { width: 100%; margin: 20px 0 30px; accent-color: var(--yellow-darker); height: 8px; }
+        .price-value { font-size: 3rem; font-weight: 700; color: var(--yellow-darker); }
 
         /* TESTIMONIALS */
-        .testimonials-section {
-            padding: 110px 0;
-            background: linear-gradient(135deg, #2E2E2E 0%, #252525 50%, #1C1C1C 100%);
-            color: #FFF; overflow: hidden; position: relative;
-        }
-        body.dark .testimonials-section { background: linear-gradient(135deg, #222 0%, #1A1A1A 50%, #141414 100%); }
+        .testimonials-section { padding: 110px 0; background: linear-gradient(135deg, #2E2E2E, #1C1C1C); color: #FFF; overflow: hidden; }
         .testimonials-track { display: flex; gap: 30px; margin-top: 50px; animation: scrollTest 40s linear infinite; width: max-content; }
-        .testimonial-slide {
-            flex: 0 0 420px; background: rgba(255,255,255,0.03);
-            backdrop-filter: blur(10px); padding: 38px 35px;
-            border-radius: 16px; border: 1px solid rgba(255,255,255,0.05);
-            border-left: 5px solid var(--yellow); transition: var(--transition);
-        }
-        .testimonial-slide:hover { background: rgba(255,255,255,0.05); transform: translateY(-4px); }
-        .testimonial-stars { color: var(--yellow); margin-bottom: 14px; letter-spacing: 3px; font-size: 0.95rem; }
-        @keyframes scrollTest { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .testimonial-slide { flex: 0 0 420px; background: rgba(255,255,255,0.03); padding: 38px 35px; border-radius: 16px; border-left: 5px solid var(--yellow); }
+        .testimonial-stars { color: var(--yellow); margin-bottom: 14px; letter-spacing: 3px; }
+        @keyframes scrollTest { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
         .testimonials-track:hover { animation-play-state: paused; }
 
         /* CONTACT */
         .contact-section { padding: 110px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
-        .contact-map { height: 440px; border-radius: 20px; overflow: hidden; background: var(--glass); backdrop-filter: blur(10px); border: 3px solid var(--yellow); box-shadow: 0 15px 50px rgba(0,0,0,0.06); }
-        body.dark .contact-map { background: var(--card-bg-dark); border-color: #444; }
-        .contact-map iframe { width: 100%; height: 100%; border: none; border-radius: 17px; }
-        .contact-row {
-            display: flex; align-items: flex-start; gap: 16px;
-            margin-bottom: 20px; padding: 20px 22px;
-            background: var(--glass); backdrop-filter: blur(10px);
-            border-radius: 14px; border: 1px solid rgba(255,255,255,0.4);
-            border-left: 5px solid var(--yellow);
-            transition: var(--bounce); box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-        }
-        body.dark .contact-row { background: var(--card-bg-dark); border-color: var(--card-border-dark); border-left-color: var(--yellow); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-        .contact-row:hover { transform: translateX(8px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
-        body.dark .contact-row:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .contact-row i { color: var(--yellow-darker); font-size: 1.4rem; margin-top: 3px; transition: var(--bounce); }
-        body.dark .contact-row i { color: var(--yellow); }
-        .contact-row:hover i { color: var(--yellow); transform: scale(1.3) rotate(-5deg); }
+        .contact-map { height: 440px; border-radius: 20px; overflow: hidden; border: 3px solid var(--yellow); }
+        .contact-map iframe { width: 100%; height: 100%; border: none; }
+        .contact-row { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; padding: 20px 22px; background: var(--glass); border-radius: 14px; border-left: 5px solid var(--yellow); transition: var(--bounce); }
+        .contact-row:hover { transform: translateX(8px); }
+        .contact-row i { color: var(--yellow-darker); font-size: 1.4rem; margin-top: 3px; }
 
         /* FOOTER */
-        footer {
-            padding: 35px 0; border-top: 3px solid var(--yellow);
-            font-size: 0.8rem; color: var(--text-muted);
-            background: var(--glass); backdrop-filter: blur(10px);
-        }
-        body.dark footer { background: #222; border-top-color: #3A3A3A; color: #888; }
+        footer { padding: 35px 0; border-top: 3px solid var(--yellow); font-size: 0.8rem; color: var(--text-muted); }
         .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
-        footer a { color: inherit; text-decoration: none; margin-left: 18px; transition: color 0.3s; }
+        footer a { color: inherit; text-decoration: none; margin-left: 18px; }
         footer a:hover { color: var(--yellow-darker); }
-        body.dark footer a:hover { color: var(--yellow); }
 
-        /* BACK TO TOP */
-        .back-to-top {
-            position: fixed; bottom: 25px; right: 25px;
-            width: 50px; height: 50px; background: var(--yellow);
-            color: var(--text); border: 3px solid var(--text);
-            border-radius: 50%; cursor: pointer; font-size: 1.2rem;
-            z-index: 99; opacity: 0; visibility: hidden;
-            transition: var(--bounce); box-shadow: 0 8px 30px var(--yellow-glow);
-            display: flex; align-items: center; justify-content: center;
-        }
-        body.dark .back-to-top { border-color: #555; color: #2A2A2A; }
+        /* POPUP */
+        .order-popup-overlay { display: none; position: fixed; inset: 0; background: rgba(28,28,28,0.85); z-index: 3000; justify-content: center; align-items: center; backdrop-filter: blur(4px); }
+        .order-popup-overlay.active { display: flex; }
+        .order-popup { background: #FFF; border-radius: 16px; padding: 45px 40px; max-width: 460px; width: 90%; animation: popupSlideIn 0.35s ease; }
+        @keyframes popupSlideIn { from{opacity:0;transform:translateY(-30px) scale(0.96);} to{opacity:1;transform:translateY(0) scale(1);} }
+        body.dark .order-popup { background: #282828; }
+        .order-popup-close { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; cursor: pointer; color: #8A8279; background: none; border: none; }
+        .order-popup-title { font-size: 1.5rem; font-weight: 600; color: #2C2621; margin-bottom: 8px; font-family: 'Unbounded', sans-serif; }
+        .order-form-group { margin-bottom: 18px; }
+        .order-form-group label { display: block; font-size: 0.75rem; font-weight: 600; color: #2C2621; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.08em; font-family: 'Unbounded', sans-serif; }
+        .order-form-group input { width: 100%; padding: 12px 14px; border: 2px solid #E8E1D8; border-radius: 8px; font-size: 0.95rem; font-family: 'Manrope', sans-serif; background: #FBF9F6; }
+        .order-form-group input:focus { border-color: #CCCC66; outline: none; }
+        .contact-methods { display: flex; gap: 8px; flex-wrap: wrap; }
+        .contact-method-option { flex: 1; min-width: 80px; }
+        .contact-method-option input { display: none; }
+        .contact-method-option label { display: block; padding: 10px 6px; text-align: center; border: 2px solid #E8E1D8; border-radius: 8px; cursor: pointer; font-size: 0.8rem; color: #8A8279; }
+        .contact-method-option input:checked + label { border-color: #CCCC66; background: rgba(255,255,153,0.1); color: #2C2621; font-weight: 600; }
+        .order-popup .btn { width: 100%; margin-top: 6px; background: #2C2621; color: #FFF; border: none; font-family: 'Unbounded', sans-serif; padding: 14px; border-radius: 50px; cursor: pointer; }
+        .order-popup .btn:hover { background: #CCCC66; color: #2C2621; }
+        .order-popup-success { display: none; text-align: center; padding: 30px 0 10px; }
+        .order-popup-success.active { display: block; }
+        .order-popup-success i { font-size: 3.5rem; color: #CCCC66; }
+
+        .back-to-top { position: fixed; bottom: 25px; right: 25px; width: 50px; height: 50px; background: var(--yellow); color: var(--text); border: 3px solid var(--text); border-radius: 50%; cursor: pointer; z-index: 99; opacity: 0; visibility: hidden; transition: var(--bounce); display: flex; align-items: center; justify-content: center; }
         .back-to-top.visible { opacity: 1; visibility: visible; }
-        .back-to-top:hover { transform: translateY(-6px) scale(1.1); box-shadow: 0 15px 40px var(--yellow-glow); }
-
         .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.9s ease, transform 0.9s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        @media (max-width: 1100px) {
-            .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-            .hero-visual { height: 370px; }
-        }
-        @media (max-width: 900px) {
-            .container { padding: 0 24px; }
-            .nav { display: none; }
-            .mobile-menu-btn { display: block; }
-            .timeline::before { left: 22px; }
-            .timeline-item, .timeline-item:nth-child(even) { flex-direction: column; padding-left: 45px; }
-            .timeline-content { width: 100%; }
-            .step-num { left: 0; transform: translateY(0); top: 0; }
-            .timeline-item:hover .step-num { transform: scale(1.2); }
-            .contact-section { grid-template-columns: 1fr; gap: 35px; }
-            .contact-map { height: 300px; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .calc-box { padding: 35px 30px; }
-        }
+        @media (max-width: 1100px) { .hero-grid { grid-template-columns: 1fr; } .hero-visual { height: 380px; } }
+        @media (max-width: 900px) { .container { padding: 0 24px; } .nav { display: none; } .mobile-menu-btn { display: block; } .hero-visual { height: 320px; } .hero-block.large { width: 75%; height: 58%; } .hero-block.medium { width: 52%; height: 33%; } .hero-block.small { width: 28%; height: 20%; top: 10%; left: 4%; } .contact-section { grid-template-columns: 1fr; gap: 35px; } .contact-map { height: 300px; } .projects-grid { grid-template-columns: 1fr 1fr; } .calc-box { padding: 35px 30px; } .steps-wrapper { padding: 0 40px; } .scroll-arrow { width: 38px; height: 38px; font-size: 1.2rem; } .step-card { flex: 0 0 260px; } }
+        @media (max-width: 550px) { .projects-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -472,10 +199,8 @@
         <div class="container header-inner">
             <a href="#" class="logo">Кухни <span class="shok">ШОК</span><span class="dot">.</span></a>
             <ul class="nav">
-                <li><a href="#process">Как работаем</a></li>
-                <li><a href="#projects">Проекты</a></li>
-                <li><a href="#calculator">Расчёт</a></li>
-                <li><a href="#testimonials">Отзывы</a></li>
+                <li><a href="#process">Как работаем</a></li><li><a href="#projects">Проекты</a></li>
+                <li><a href="#calculator">Расчёт</a></li><li><a href="#testimonials">Отзывы</a></li>
                 <li><a href="#contact">Контакты</a></li>
             </ul>
             <div class="header-right">
@@ -487,10 +212,8 @@
     </header>
 
     <ul class="mobile-nav" id="mobileNav">
-        <li><a href="#process" data-close>Как работаем</a></li>
-        <li><a href="#projects" data-close>Проекты</a></li>
-        <li><a href="#calculator" data-close>Расчёт</a></li>
-        <li><a href="#testimonials" data-close>Отзывы</a></li>
+        <li><a href="#process" data-close>Как работаем</a></li><li><a href="#projects" data-close>Проекты</a></li>
+        <li><a href="#calculator" data-close>Расчёт</a></li><li><a href="#testimonials" data-close>Отзывы</a></li>
         <li><a href="#contact" data-close>Контакты</a></li>
     </ul>
 
@@ -501,20 +224,14 @@
                 <h1>Кухни созданные для жизни</h1>
                 <p>Мы создаём интерьеры в которых хочется оставаться. Всё очень просто. Присылайте фото желаемой кухни, размеры Вашего помещения и наши дизайнеры с удовольствием создадут уникальный проект по Вашим пожеланиям.</p>
                 <div class="hero-btns">
-                    <a href="#contact" class="btn btn-yellow">Написать нам</a>
+                    <a href="javascript:void(0)" class="btn btn-yellow" onclick="openOrderPopup('Главная')">Написать нам</a>
                     <a href="#projects" class="btn btn-ghost">Смотреть работы</a>
                 </div>
             </div>
             <div class="hero-visual fade-in">
-                <div class="hero-block large">
-                    <img src="images/Обложка/Большой.jpg" alt="Кухня" onerror="this.style.background='#D0C8BE'">
-                </div>
-                <div class="hero-block medium">
-                    <img src="images/Обложка/Маленький.jpg" alt="Деталь кухни" onerror="this.style.background='#C8C0B6'">
-                </div>
-                <div class="hero-block shok-box">
-                    <div class="shok-box-content">Шик<br>Отблеск<br>Красота</div>
-                </div>
+                <div class="hero-block large"><img src="images/Обложка/Большой.jpg" alt="Кухня" onerror="this.style.background='#D0C8BE'"></div>
+                <div class="hero-block medium"><img src="images/Обложка/Маленький.jpg" alt="Кухня" onerror="this.style.background='#C8C0B6'"></div>
+                <div class="hero-block small"><img src="images/Наши работы/Стиль и уют/300.jpg" alt="Кухня" onerror="this.style.background='#E8E0D5'"></div>
             </div>
         </div>
     </section>
@@ -522,69 +239,24 @@
     <!-- SCROLL TEXT -->
     <section class="scroll-text">
         <div class="scroll-inner">
-            <span>Проект с нуля</span><span class="dot-sep">·</span>
-            <span>Индивидуальный дизайн</span><span class="dot-sep">·</span>
-            <span>Бесплатный замер</span><span class="dot-sep">·</span>
-            <span>3D-проект в подарок</span><span class="dot-sep">·</span>
-            <span>Доставка и сборка</span><span class="dot-sep">·</span>
-            <span>Гарантия 5 лет</span><span class="dot-sep">·</span>
-            <span>Проект с нуля</span><span class="dot-sep">·</span>
-            <span>Индивидуальный дизайн</span><span class="dot-sep">·</span>
-            <span>Бесплатный замер</span><span class="dot-sep">·</span>
-            <span>3D-проект в подарок</span><span class="dot-sep">·</span>
-            <span>Доставка и сборка</span><span class="dot-sep">·</span>
-            <span>Гарантия 5 лет</span><span class="dot-sep">·</span>
+            <span>Проект с нуля</span><span class="dot-sep">·</span><span>Индивидуальный дизайн</span><span class="dot-sep">·</span><span>Бесплатный замер</span><span class="dot-sep">·</span><span>3D-проект в подарок</span><span class="dot-sep">·</span><span>Доставка и сборка</span><span class="dot-sep">·</span><span>Гарантия 5 лет</span><span class="dot-sep">·</span><span>Проект с нуля</span><span class="dot-sep">·</span><span>Индивидуальный дизайн</span><span class="dot-sep">·</span><span>Бесплатный замер</span><span class="dot-sep">·</span><span>3D-проект в подарок</span><span class="dot-sep">·</span><span>Доставка и сборка</span><span class="dot-sep">·</span><span>Гарантия 5 лет</span>
         </div>
     </section>
 
     <!-- HOW WE WORK -->
     <section class="how-we-work" id="process">
         <div class="container">
-            <div class="section-header fade-in">
-                <h2>Как мы работаем</h2>
-                <p class="section-sub">Прозрачный процесс из пяти шагов — вы всегда знаете, на каком этапе проект.</p>
-            </div>
-            <div class="timeline">
-                <!-- Шаг 1: Знакомство -->
-                <div class="timeline-item fade-in">
-                    <div class="step-num">1</div>
-                    <div class="timeline-content">
-                        <h3>Знакомство</h3>
-                        <p>Вы рассказываете о своих пожеланиях, мы можем сделать предварительный дизайн и расчёт удалённо. Если всё устраивает — выезжаем на замер, делаем точные обмеры помещения и обсуждаем все детали будущей кухни.</p>
-                    </div>
+            <div class="section-header fade-in"><h2>Как мы работаем</h2><p class="section-sub">Пять шагов — листайте вправо или нажимайте на стрелки</p></div>
+            <div class="steps-wrapper">
+                <button class="scroll-arrow left" id="scrollLeft" aria-label="Листать влево">‹</button>
+                <div class="steps-horizontal" id="stepsScroll">
+                    <div class="step-card"><div class="step-num">1</div><h3>Знакомство</h3><p>Вы рассказываете о своих пожеланиях, мы можем сделать предварительный дизайн и расчёт удалённо. Если всё устраивает — выезжаем на замер, делаем точные обмеры.</p></div>
+                    <div class="step-card"><div class="step-num">2</div><h3>3D-проект и смета</h3><p>Создаём детальную визуализацию и точную смету. Вы видите будущую кухню до начала производства и можете вносить правки.</p></div>
+                    <div class="step-card"><div class="step-num">3</div><h3>Договор и предоплата</h3><p>Заключаем договор с фиксированной ценой и сроками. Предоплата 50%. Остальное — после получения. Оплата: наличные, терминал, QR-код, безнал.</p></div>
+                    <div class="step-card"><div class="step-num">4</div><h3>Производство</h3><p>Изготавливаем кухню на фабрике-партнёре. Срок — от 30 дней. Контроль качества. Срочно — предложим модульные кухни со склада.</p></div>
+                    <div class="step-card"><div class="step-num">5</div><h3>Доставка и монтаж</h3><p>Бережная доставка, профессиональная сборка, подключение техники. Вы принимаете готовую кухню и получаете гарантийный паспорт на 5 лет.</p></div>
                 </div>
-                <!-- Шаг 2: 3D-проект -->
-                <div class="timeline-item fade-in">
-                    <div class="step-num">2</div>
-                    <div class="timeline-content">
-                        <h3>3D-проект и смета</h3>
-                        <p>Создаём детальную визуализацию и точную смету. Вы видите будущую кухню до начала производства и можете вносить правки на любом этапе.</p>
-                    </div>
-                </div>
-                <!-- Шаг 3: Договор -->
-                <div class="timeline-item fade-in">
-                    <div class="step-num">3</div>
-                    <div class="timeline-content">
-                        <h3>Договор и предоплата</h3>
-                        <p>Заключаем договор с фиксированной ценой и сроками. Вносится предоплата 50%. Остальное оплачиваете после получения мебели. Работаем открыто: можно оплатить наличными, по терминалу, по QR-коду, по безналу от юридического лица.</p>
-                    </div>
-                </div>
-                <!-- Шаг 4: Производство -->
-                <div class="timeline-item fade-in">
-                    <div class="step-num">4</div>
-                    <div class="timeline-content">
-                        <h3>Производство</h3>
-                        <p>Изготавливаем кухню на фабрике-партнёре. Срок — от 30 дней. Контроль качества на каждом этапе. Если нужно срочно — можем предложить варианты готовых модульных кухонь из наличия на складе.</p>
-                    </div>
-                </div>
-                <!-- Шаг 5: Доставка -->
-                <div class="timeline-item fade-in">
-                    <div class="step-num">5</div>
-                    <div class="timeline-content">
-                        <h3>Доставка и монтаж</h3>
-                        <p>Бережная доставка, профессиональная сборка, подключение техники. Вы принимаете готовую кухню и получаете гарантийный паспорт на 5 лет.</p>
-                    </div>
-                </div>
+                <button class="scroll-arrow right" id="scrollRight" aria-label="Листать вправо">›</button>
             </div>
         </div>
     </section>
@@ -592,59 +264,46 @@
     <!-- PROJECTS -->
     <section class="projects-section" id="projects">
         <div class="container">
-            <div class="section-header fade-in">
-                <h2>Наши работы</h2>
-                <p class="section-sub">Каждая кухня — это индивидуальная история, созданная с вниманием к деталям.</p>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card fade-in">
-                    <img src="images/Наши работы/Уют в кудрово/600.jpg" alt="Уют в Кудрово" loading="lazy" onerror="this.style.background='#D4C4B0'">
-                    <h3>Уют в Кудрово</h3>
-                </div>
-                <div class="project-card fade-in">
-                    <img src="images/Наши работы/Стиль и уют/300.jpg" alt="Стиль и уют" loading="lazy" onerror="this.style.background='#C8D5C0'">
-                    <h3>Стиль и уют</h3>
-                </div>
-                <div class="project-card fade-in">
-                    <img src="images/Наши работы/Загородный дом/100.jpg" alt="Загородный дом" loading="lazy" onerror="this.style.background='#B8A99A'">
-                    <h3>Загородный дом</h3>
-                </div>
-            </div>
+            <div class="section-header fade-in"><h2>Наши работы</h2><p class="section-sub">Нажмите на фото, чтобы посмотреть все снимки проекта.</p></div>
+            <div class="projects-grid" id="projectsGrid"></div>
         </div>
     </section>
+
+    <!-- GALLERY MODAL -->
+    <div class="gallery-modal" id="galleryModal">
+        <button class="gallery-modal-close" id="galleryClose">&times;</button>
+        <button class="gallery-modal-nav gallery-modal-prev" id="galleryPrev">‹</button>
+        <img src="" alt="" class="gallery-modal-img" id="galleryImg">
+        <button class="gallery-modal-nav gallery-modal-next" id="galleryNext">›</button>
+        <span class="gallery-modal-counter" id="galleryCounter"></span>
+    </div>
 
     <!-- CALCULATOR -->
     <section class="calculator-section" id="calculator">
         <div class="container">
-            <div class="section-header fade-in">
-                <h2>Калькулятор</h2>
-                <p class="section-sub">Примерный расчёт для прямой кухни. Точную смету составим после бесплатного замера.</p>
-            </div>
+            <div class="section-header fade-in"><h2>Калькулятор</h2><p class="section-sub">Примерный расчёт для прямой кухни.</p></div>
             <div class="calc-box fade-in">
                 <h3>Рассчитайте примерную стоимость</h3>
                 <p style="color:var(--text-muted);">Выберите длину кухни в погонных метрах</p>
                 <label style="font-weight:600; display:block; margin-bottom:10px; font-family:'Unbounded',sans-serif; font-size:0.9rem;">Длина кухни: <span id="meterValue">3</span> м</label>
                 <input type="range" min="2" max="8" value="3" step="0.5" class="calc-slider" id="meterSlider">
                 <div style="display:flex; justify-content:space-between; font-size:0.7rem; color:var(--text-muted); margin-top:-8px; margin-bottom:18px;"><span>2 м</span><span>8 м</span></div>
-                <div style="font-size:1rem;">Примерная стоимость:</div>
                 <span class="price-value" id="priceResult">105 000 ₽</span>
-                <p style="font-size:0.78rem; color:var(--text-muted); margin:10px 0 22px;">*Для базового пакета (35 000 ₽/м.п.). Не является публичной офертой.</p>
-                <a href="#contact" class="btn btn-yellow">Написать нам</a>
+                <p style="font-size:0.78rem; color:var(--text-muted); margin:10px 0 22px;">*Для базового пакета (35 000 ₽/м.п.). Не оферта.</p>
+                <a href="javascript:void(0)" class="btn btn-yellow" onclick="openOrderPopup('Калькулятор')">Написать нам</a>
             </div>
         </div>
     </section>
 
     <!-- TESTIMONIALS -->
     <section class="testimonials-section" id="testimonials">
-        <div class="container">
-            <div class="section-header fade-in"><h2 style="color:#FFF;">Что говорят клиенты</h2></div>
-        </div>
+        <div class="container"><div class="section-header fade-in"><h2 style="color:#FFF;">Что говорят клиенты</h2></div></div>
         <div class="testimonials-track">
             <div class="testimonial-slide"><div class="testimonial-stars">★★★★★</div><p>«Искали не просто кухню, а пространство с характером. В Кухни ШОК поняли нас с полуслова.»</p><div class="author">— Семья Голиковых</div></div>
             <div class="testimonial-slide"><div class="testimonial-stars">★★★★★</div><p>«Системный подход: анкета, эскизы, 3D. Всё прозрачно. Монтаж за два дня.»</p><div class="author">— Ольга В., Кудрово</div></div>
-            <div class="testimonial-slide"><div class="testimonial-stars">★★★★★</div><p>«Вторая кухня от этих ребят. Обе как произведения искусства.»</p><div class="author">— Дмитрий К., Сестрорецк</div></div>
+            <div class="testimonial-slide"><div class="testimonial-stars">★★★★★</div><p>«Вторая кухня от этих ребят. Обе как произведения искусства.»</p><div class="author">— Дмитрий К.</div></div>
             <div class="testimonial-slide"><div class="testimonial-stars">★★★★★</div><p>«Кухня в старом фонде. Вписали идеально. Мастера — золотые руки.»</p><div class="author">— Марина С.</div></div>
-            <div class="testimonial-slide"><div class="testimonial-stars">★★★★★</div><p>«Искали не просто кухню, а пространство с характером. В Кухни ШОК поняли нас с полуслова.»</p><div class="author">— Семья Голиковых</div></div>
+            <div class="testimonial-slide"><div class="testimonial-stars">★★★★★</div><p>«Искали не просто кухню, а пространство с характером. В Кухни ШОК поняли нас.»</p><div class="author">— Семья Голиковых</div></div>
             <div class="testimonial-slide"><div class="testimonial-stars">★★★★★</div><p>«Системный подход: анкета, эскизы, 3D. Всё прозрачно. Монтаж за два дня.»</p><div class="author">— Ольга В., Кудрово</div></div>
         </div>
     </section>
@@ -652,7 +311,7 @@
     <!-- CONTACT -->
     <section class="contact-section container" id="contact">
         <div class="contact-map fade-in">
-            <iframe src="https://yandex.ru/map-widget/v1/?lang=ru_RU&scroll=true&source=constructor-api&um=constructor%3A1234567890&z=15&ll=30.500000%2C59.950000" allowfullscreen></iframe>
+            <iframe src="https://yandex.ru/map-widget/v1/?ll=30.501558%2C59.900301&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1NzA3NjE0ORJG0KDQvtGB0YHQuNGPLCDQm9C10L3QuNC90LPRgNCw0LTRgdC60LDRjyDQvtCx0LvQsNGB0YLRjCwg0JrRg9C00YDQvtCy0L4sINCf0YDQvtC80YvRiNC70LXQvdC90LDRjyDRg9C70LjRhtCwLCAz0Loz&z=17&pt=30.501558,59.900301,pm2rdm" allowfullscreen></iframe>
         </div>
         <div class="contact-info fade-in">
             <h2>Давайте обсудим</h2>
@@ -660,9 +319,29 @@
             <div class="contact-row"><i class="fas fa-map-marker-alt"></i><div><strong>Адрес</strong><br><span style="color:var(--text-muted);">Кудрово, Промышленная 3к3</span></div></div>
             <div class="contact-row"><i class="fas fa-phone"></i><div><strong>Телефон</strong><br><span style="color:var(--text-muted);">+7 (812) 925 88-56</span></div></div>
             <div class="contact-row"><i class="fas fa-clock"></i><div><strong>Режим</strong><br><span style="color:var(--text-muted);">Пн–Пт 9:00–20:00, Сб 10:00–18:00</span></div></div>
-            <a href="#" class="btn btn-yellow" style="width:100%; text-align:center; margin-top:10px;">Написать нам</a>
+            <a href="javascript:void(0)" class="btn btn-yellow" style="width:100%; text-align:center; margin-top:10px;" onclick="openOrderPopup('Контакты')">Написать нам</a>
         </div>
     </section>
+
+    <!-- POPUP -->
+    <div class="order-popup-overlay" id="orderPopup">
+        <div class="order-popup">
+            <button class="order-popup-close" id="orderPopupClose">&times;</button>
+            <div class="order-popup-title">Оставить заявку</div>
+            <div style="color:#8A8279; margin-bottom:25px;">Заполните форму, и мы свяжемся с вами</div>
+            <form id="orderForm">
+                <div class="order-form-group"><label for="orderName">Ваше имя</label><input type="text" id="orderName" placeholder="Иванов Иван" required></div>
+                <div class="order-form-group"><label for="orderPhone">Номер телефона</label><input type="tel" id="orderPhone" placeholder="+7 (999) 999-99-99" required></div>
+                <div class="order-form-group"><label>Способ связи</label><div class="contact-methods">
+                    <div class="contact-method-option"><input type="radio" id="methodCall" name="contactMethod" value="Звонок"><label for="methodCall">📞 Звонок</label></div>
+                    <div class="contact-method-option"><input type="radio" id="methodVK" name="contactMethod" value="Чат в ВК"><label for="methodVK">💬 ВК</label></div>
+                    <div class="contact-method-option"><input type="radio" id="methodMax" name="contactMethod" value="Чат в MAX"><label for="methodMax">📱 MAX</label></div>
+                </div></div>
+                <button type="submit" class="btn">Отправить</button>
+            </form>
+            <div class="order-popup-success" id="orderSuccess"><i class="fas fa-check-circle"></i><h3>Спасибо!</h3><p>Мы получили вашу заявку и свяжемся с вами.</p></div>
+        </div>
+    </div>
 
     <footer>
         <div class="container footer-inner">
@@ -675,61 +354,122 @@
     <button class="back-to-top" id="backToTop" aria-label="Наверх"><i class="fas fa-arrow-up"></i></button>
 
     <script>
+        // ===== ТЕМА =====
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
         if (localStorage.getItem('theme') === 'dark') body.classList.add('dark');
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark');
-            localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
-        });
+        themeToggle.addEventListener('click', () => { body.classList.toggle('dark'); localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light'); });
 
+        // ===== HEADER + BACK TO TOP =====
         const header = document.getElementById('header');
         const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            header.classList.toggle('scrolled', window.scrollY > 50);
-            backToTop.classList.toggle('visible', window.scrollY > 500);
-        });
+        window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 50); backToTop.classList.toggle('visible', window.scrollY > 500); });
         backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileNav = document.getElementById('mobileNav');
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenuBtn.classList.toggle('active');
-            mobileNav.classList.toggle('active');
-            body.classList.toggle('modal-open');
-        });
-        document.querySelectorAll('[data-close]').forEach(link => link.addEventListener('click', () => {
-            mobileMenuBtn.classList.remove('active');
-            mobileNav.classList.remove('active');
-            body.classList.remove('modal-open');
-        }));
+        // ===== MOBILE MENU =====
+        const mmb = document.getElementById('mobileMenuBtn');
+        const mn = document.getElementById('mobileNav');
+        mmb.addEventListener('click', () => { mmb.classList.toggle('active'); mn.classList.toggle('active'); body.classList.toggle('popup-open'); });
+        document.querySelectorAll('[data-close]').forEach(l => l.addEventListener('click', () => { mmb.classList.remove('active'); mn.classList.remove('active'); body.classList.remove('popup-open'); }));
 
-        const fadeEls = document.querySelectorAll('.fade-in');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
-        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-        fadeEls.forEach(el => observer.observe(el));
+        // ===== FADE IN =====
+        const fEls = document.querySelectorAll('.fade-in');
+        const obs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.08 });
+        fEls.forEach(el => obs.observe(el));
 
+        // ===== СТРЕЛКИ ДЛЯ HOW WE WORK =====
+        const stepsScroll = document.getElementById('stepsScroll');
+        document.getElementById('scrollLeft').addEventListener('click', () => stepsScroll.scrollBy({ left: -340, behavior: 'smooth' }));
+        document.getElementById('scrollRight').addEventListener('click', () => stepsScroll.scrollBy({ left: 340, behavior: 'smooth' }));
+
+        // ===== CALCULATOR =====
         const slider = document.getElementById('meterSlider');
-        const meterValue = document.getElementById('meterValue');
-        const priceResult = document.getElementById('priceResult');
-        slider.addEventListener('input', () => {
-            const meters = parseFloat(slider.value);
-            meterValue.textContent = meters;
-            priceResult.textContent = Math.round(meters * 35000).toLocaleString('ru-RU') + ' ₽';
-        });
+        const mv = document.getElementById('meterValue');
+        const pr = document.getElementById('priceResult');
+        slider.addEventListener('input', () => { const m = parseFloat(slider.value); mv.textContent = m; pr.textContent = Math.round(m * 35000).toLocaleString('ru-RU') + ' ₽'; });
 
+        // ===== PARALLAX HERO =====
         document.addEventListener('mousemove', (e) => {
-            const heroVisual = document.querySelector('.hero-visual');
-            if (!heroVisual || window.innerWidth < 900) return;
-            const rect = heroVisual.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
-            const blocks = heroVisual.querySelectorAll('.hero-block');
+            const hv = document.querySelector('.hero-visual');
+            if (!hv || window.innerWidth < 900) return;
+            const r = hv.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width - 0.5;
+            const y = (e.clientY - r.top) / r.height - 0.5;
+            const blocks = hv.querySelectorAll('.hero-block');
             if (blocks[0]) blocks[0].style.transform = `translate(${x * -10}px, ${y * -10}px)`;
             if (blocks[1]) blocks[1].style.transform = `translate(${x * 6}px, ${y * 6}px)`;
-            if (blocks[2]) blocks[2].style.transform = `translate(${x * 3}px, ${y * 3}px)`;
+            if (blocks[2]) blocks[2].style.transform = `translate(${x * 4}px, ${y * 4}px)`;
         });
+
+        // ===== ПРОЕКТЫ С ГАЛЕРЕЯМИ =====
+        const projectsData = [
+            { title: 'Уют в Кудрово', tags: ['Классика'], cover: 'images/Наши работы/Уют в кудрово/600.jpg', gallery: Array.from({length: 13}, (_, i) => `images/Наши работы/Уют в кудрово/${600 + i}.jpg`) },
+            { title: 'Стиль и уют', tags: ['Неоклассика'], cover: 'images/Наши работы/Стиль и уют/300.jpg', gallery: Array.from({length: 9}, (_, i) => `images/Наши работы/Стиль и уют/${300 + i}.jpg`) },
+            { title: 'Загородный дом', tags: ['Современный'], cover: 'images/Наши работы/Загородный дом/100.jpg', gallery: Array.from({length: 7}, (_, i) => `images/Наши работы/Загородный дом/${100 + i}.jpg`) },
+            { title: 'Кухня №1', desc: 'Современная кухня с островом. Фасады МДФ, столешница из искусственного камня.', tags: ['Современный стиль'], cover: 'image/кухни/проект1/400.jpg', gallery: Array.from({length: 4}, (_, i) => `image/кухни/проект1/${400 + i}.jpg`) },
+            { title: 'Кухня №2', desc: 'Светлая кухня с продуманной эргономикой.', tags: ['Светлые тона'], cover: 'image/кухни/проект2/500.jpg', gallery: Array.from({length: 10}, (_, i) => `image/кухни/проект2/${500 + i}.jpg`) },
+            { title: 'Кухня №4', desc: 'Кухня в светлой гамме. Эргономичная планировка.', tags: ['Светлые тона'], cover: 'image/кухни/проект4/700.webp', gallery: Array.from({length: 7}, (_, i) => `image/кухни/проект4/${700 + i}.webp`) },
+            { title: 'Кухня №5', desc: 'Современная кухня с продуманной эргономикой.', tags: ['Современный стиль'], cover: 'image/кухни/проект5/800.jpg', gallery: Array.from({length: 11}, (_, i) => `image/кухни/проект5/${800 + i}.jpg`) },
+            { title: 'Кухня №6', desc: 'Современная кухня с продуманной эргономикой.', tags: ['Современный стиль'], cover: 'image/кухни/проект6/100.jpg', gallery: Array.from({length: 9}, (_, i) => `image/кухни/проект6/${100 + i}.jpg`) }
+        ];
+
+        const pg = document.getElementById('projectsGrid');
+        pg.innerHTML = '';
+        projectsData.forEach(proj => {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            const img = document.createElement('img');
+            img.src = proj.cover;
+            img.alt = proj.title;
+            img.loading = 'lazy';
+            img.onerror = function() { this.style.background = '#D0C8BE'; this.style.minHeight = '250px'; };
+            card.appendChild(img);
+            const h3 = document.createElement('h3');
+            h3.textContent = proj.title;
+            card.appendChild(h3);
+            if (proj.desc) {
+                const p = document.createElement('p');
+                p.className = 'project-desc';
+                p.textContent = proj.desc;
+                card.appendChild(p);
+            }
+            const tagsDiv = document.createElement('div');
+            tagsDiv.className = 'project-tags';
+            proj.tags.forEach(t => { const span = document.createElement('span'); span.className = 'tag'; span.textContent = t; tagsDiv.appendChild(span); });
+            card.appendChild(tagsDiv);
+            card.addEventListener('click', () => openGallery(proj.gallery));
+            pg.appendChild(card);
+        });
+
+        // ===== ГАЛЕРЕЯ =====
+        const gm = document.getElementById('galleryModal'), gi = document.getElementById('galleryImg'), gc = document.getElementById('galleryCounter');
+        const gcl = document.getElementById('galleryClose'), gpr = document.getElementById('galleryPrev'), gnx = document.getElementById('galleryNext');
+        let cg = [], ci = 0;
+        function openGallery(g) { cg = g; ci = 0; show(); gm.classList.add('active'); body.classList.add('popup-open'); }
+        function closeGallery() { gm.classList.remove('active'); body.classList.remove('popup-open'); }
+        function show() { gi.src = cg[ci]; gc.textContent = (ci + 1) + ' / ' + cg.length; }
+        function next() { ci = (ci + 1) % cg.length; show(); }
+        function prev() { ci = (ci - 1 + cg.length) % cg.length; show(); }
+        gcl.addEventListener('click', closeGallery);
+        gm.addEventListener('click', e => { if (e.target === gm) closeGallery(); });
+        gnx.addEventListener('click', e => { e.stopPropagation(); next(); });
+        gpr.addEventListener('click', e => { e.stopPropagation(); prev(); });
+        document.addEventListener('keydown', e => { if (!gm.classList.contains('active')) return; if (e.key === 'Escape') closeGallery(); if (e.key === 'ArrowRight') next(); if (e.key === 'ArrowLeft') prev(); });
+
+        // ===== POPUP =====
+        const op = document.getElementById('orderPopup'), opc = document.getElementById('orderPopupClose'), of = document.getElementById('orderForm'), os = document.getElementById('orderSuccess');
+        let cb = '';
+        window.openOrderPopup = function(b) { cb = b || ''; of.style.display = 'block'; os.classList.remove('active'); op.classList.add('active'); body.classList.add('popup-open'); document.querySelectorAll('input[name="contactMethod"]').forEach(r => r.checked = false); document.getElementById('orderName').value = ''; document.getElementById('orderPhone').value = ''; };
+        function cop() { op.classList.remove('active'); body.classList.remove('popup-open'); }
+        opc.addEventListener('click', cop); op.addEventListener('click', e => { if (e.target === op) cop(); });
+        document.addEventListener('keydown', e => { if (op.classList.contains('active') && e.key === 'Escape') cop(); });
+
+        const pi = document.getElementById('orderPhone');
+        pi.addEventListener('input', function() { let v = this.value.replace(/[^\d]/g, ''); if (v.length > 11) v = v.slice(0, 11); let f = '+7'; if (v.length > 1) f += ' (' + v.slice(1, 4); if (v.length >= 4) f += ') ' + v.slice(4, 7); if (v.length >= 7) f += '-' + v.slice(7, 9); if (v.length >= 9) f += '-' + v.slice(9, 11); this.value = f; });
+        pi.addEventListener('keydown', function(e) { if (e.key === 'Backspace') { e.preventDefault(); let v = this.value.replace(/[^\d]/g, ''); const cp = this.selectionStart; let db = 0; for (let i = 0; i < cp; i++) { if (/[0-9]/.test(this.value[i])) db++; } if (db > 0) v = v.slice(0, db - 1) + v.slice(db); let f = '+7'; if (v.length > 1) f += ' (' + v.slice(1, 4); if (v.length >= 4) f += ') ' + v.slice(4, 7); if (v.length >= 7) f += '-' + v.slice(7, 9); if (v.length >= 9) f += '-' + v.slice(9, 11); this.value = f; let tp = 2; if (db > 1) tp = 4; if (db > 4) tp = 9; if (db > 7) tp = 12; if (db > 9) tp = 15; this.setSelectionRange(Math.max(2, tp - 2), Math.max(2, tp - 2)); return; } if (e.key === 'Delete' || e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'Tab') return; if (!/[0-9]/.test(e.key)) e.preventDefault(); });
+
+        async function send(n, p, m, b) { try { const r = await fetch('https://mebel-api.ru/send.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: n, phone: p, method: m, button: b }) }); const d = await r.json(); return d.status === 'ok'; } catch(e) { return false; } }
+        of.addEventListener('submit', async function(e) { e.preventDefault(); const ni = document.getElementById('orderName'), pii = document.getElementById('orderPhone'), sb = of.querySelector('.btn'); const n = ni.value.trim(), p = pii.value.trim(), mr = document.querySelector('input[name="contactMethod"]:checked'), m = mr ? mr.value : 'Не указан'; if (!n || !p) return; sb.textContent = 'Отправка...'; sb.style.pointerEvents = 'none'; await send(n, p, m, cb); of.style.display = 'none'; os.classList.add('active'); sb.textContent = 'Отправить'; sb.style.pointerEvents = 'auto'; setTimeout(() => { cop(); ni.value = ''; pii.value = ''; of.style.display = 'block'; os.classList.remove('active'); }, 3000); });
     </script>
 </body>
 </html>
