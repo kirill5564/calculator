@@ -1,14 +1,13 @@
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Кухни ШОК | Кухни созданные для жизни в СПб</title>
-    <meta name="description" content="Кухни ШОК — создаём кухни премиум-класса в Санкт-Петербурге. Индивидуальный дизайн, натуральные материалы, бесплатный замер и 3D-проект. Гарантия 5 лет.">
+    <meta name="description" content="Кухни ШОК — создаём кухни премиум-класса в Санкт-Петербурге. Индивидуальный дизайн, натуральные материалы, бесплатный замер и 3D-проект. Гарантия 2 года.">
     <meta name="keywords" content="кухни на заказ спб, дизайнерские кухни, кухни премиум, кухни с островом, кухни под ключ спб">
     <meta property="og:title" content="Кухни ШОК | Кухни созданные для жизни в СПб">
-    <meta property="og:description" content="Кухни премиум-класса в СПб. Индивидуальный дизайн, гарантия 5 лет.">
+    <meta property="og:description" content="Кухни премиум-класса в СПб. Индивидуальный дизайн, гарантия 2 года.">
     <meta property="og:type" content="website">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232C2621'/><text y='.75em' x='50' font-size='55' text-anchor='middle' fill='%23FFFF99' font-family='serif' font-weight='700'>K</text></svg>">
@@ -17,10 +16,10 @@
     
     <style>
         :root {
-            --bg: #F5F0EA; --bg-dark: #1C1C1C; --text: #2C2621; --text-dark: #E0E0E0;
+            --bg: #F5F0EA; --text: #2C2621;
             --text-muted: #7A7268; --yellow: #FFFF99; --yellow-darker: #CCCC66;
             --yellow-glow: rgba(255,255,153,0.4); --yellow-gradient: linear-gradient(135deg, #FFFF99 0%, #FFFFBB 50%, #E6E680 100%);
-            --glass: rgba(255,255,255,0.6); --card-bg-dark: #282828;
+            --glass: rgba(255,255,255,0.6);
             --transition: 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
             --bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
@@ -28,12 +27,11 @@
         html { scroll-behavior: smooth; }
         body {
             font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--text);
-            line-height: 1.6; font-size: 15px; transition: background 0.5s, color 0.5s; overflow-x: hidden;
+            line-height: 1.6; font-size: 15px; overflow-x: hidden;
         }
-        body.dark { background: var(--bg-dark); color: var(--text-dark); }
         body.popup-open { overflow: hidden; }
         .container { max-width: 1320px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 1; }
-        h1, h2, h3, .nav a, .btn, .logo, .scroll-inner, .price-value, .step-num {
+        h1, h2, h3, .nav a, .btn, .logo, .scroll-inner, .price-value {
             font-family: 'Unbounded', sans-serif; font-weight: 500;
         }
         h1 { font-size: clamp(3.2rem, 6.5vw, 6rem); font-weight: 800; line-height: 1.05; }
@@ -53,9 +51,6 @@
         .nav a:hover { color: var(--yellow-darker); }
         .header-right { display: flex; align-items: center; gap: 18px; }
         .header-phone { color: var(--text); text-decoration: none; font-weight: 600; }
-        .theme-dot { width: 32px; height: 32px; border-radius: 50%; background: var(--text); cursor: pointer; border: none; transition: var(--bounce); }
-        .theme-dot:hover { transform: scale(1.2) rotate(45deg); }
-        body.dark .theme-dot { background: #555; }
         .mobile-menu-btn { display: none; background: none; border: none; width: 32px; height: 24px; cursor: pointer; }
         .mobile-menu-btn span { display: block; width: 100%; height: 2px; background: var(--text); margin: 5px 0; transition: var(--transition); }
         .mobile-nav { display: none; position: fixed; inset: 0; background: rgba(245,240,234,0.98); backdrop-filter: blur(20px); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 35px; list-style: none; }
@@ -64,45 +59,78 @@
 
         /* HERO */
         .hero { padding: 100px 0 80px; position: relative; overflow: hidden; min-height: 80vh; display: flex; align-items: center; }
-        .hero-grid { display: grid; grid-template-columns: 1fr 0.7fr; gap: 60px; align-items: center; width: 100%; position: relative; z-index: 1; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; width: 100%; position: relative; z-index: 1; }
         .hero-text h1 { margin-bottom: 28px; }
         .hero-text p { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 36px; max-width: 500px; line-height: 1.7; padding: 20px 24px; border-left: 3px solid var(--yellow); background: var(--glass); backdrop-filter: blur(10px); border-radius: 0 12px 12px 0; }
         .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
-        .hero-visual { position: relative; height: 450px; perspective: 1200px; }
-        .hero-block { position: absolute; border-radius: 16px; overflow: hidden; transition: transform 0.5s ease; }
-        .hero-block.large { width: 78%; height: 60%; top: 0; right: 0; box-shadow: 0 30px 80px rgba(0,0,0,0.12); z-index: 2; border: 1px solid rgba(255,255,255,0.3); }
-        .hero-block.medium { width: 55%; height: 35%; bottom: 5%; left: 0; box-shadow: 0 20px 60px rgba(0,0,0,0.1); border: 5px solid rgba(255,255,255,0.8); z-index: 1; border-radius: 18px; }
-        .hero-block.small { width: 30%; height: 22%; top: 12%; left: 5%; box-shadow: 0 10px 35px rgba(0,0,0,0.1); border: 4px solid var(--yellow); z-index: 3; border-radius: 12px; animation: floatBox 5s ease-in-out infinite; }
-        @keyframes floatBox { 0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-8px) rotate(1deg);} }
+        .hero-visual { position: relative; height: 600px; perspective: 1200px; }
+        .hero-block { position: absolute; border-radius: 20px; overflow: hidden; transition: transform 0.5s ease; }
+        .hero-block.large { width: 82%; height: 62%; top: 0; right: 0; box-shadow: 0 35px 90px rgba(0,0,0,0.14); z-index: 2; border: 1px solid rgba(255,255,255,0.3); }
+        .hero-block.medium { width: 58%; height: 38%; bottom: 3%; left: 0; box-shadow: 0 25px 70px rgba(0,0,0,0.12); border: 6px solid rgba(255,255,255,0.8); z-index: 1; border-radius: 20px; }
+        .hero-block.small { width: 34%; height: 26%; top: 10%; left: 4%; box-shadow: 0 12px 40px rgba(0,0,0,0.12); border: 5px solid var(--yellow); z-index: 3; border-radius: 14px; animation: floatBox 5s ease-in-out infinite; }
+        @keyframes floatBox { 0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-10px) rotate(1deg);} }
         .hero-block img { width: 100%; height: 100%; object-fit: cover; }
 
         .btn { display: inline-block; padding: 17px 42px; background: var(--text); color: var(--bg); text-decoration: none; font-family: 'Unbounded', sans-serif; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; border-radius: 50px; transition: var(--bounce); cursor: pointer; border: none; }
         .btn:hover { transform: translateY(-4px); }
-        body.dark .btn { background: #3A3A3A; color: #DDD; }
         .btn-yellow { background: var(--yellow-gradient); color: var(--text); border: 2px solid var(--text); }
         .btn-ghost { background: transparent; border: 2px solid var(--text); color: var(--text); }
 
         /* SCROLL TEXT */
         .scroll-text { padding: 52px 0; overflow: hidden; white-space: nowrap; background: linear-gradient(90deg, rgba(255,255,153,0.5), rgba(255,255,200,0.6), rgba(255,255,153,0.5)); }
-        .scroll-inner { display: inline-block; animation: scroll 26s linear infinite; font-size: 1.15rem; font-weight: 500; color: var(--text); }
-        body.dark .scroll-inner { color: var(--yellow); }
-        .scroll-inner span { margin: 0 28px; }
-        .scroll-inner .dot-sep { color: var(--yellow-darker); font-size: 1.5rem; }
+        .scroll-inner { display: inline-block; animation: scroll 26s linear infinite; font-size: 1.4rem; font-weight: 600; letter-spacing: 0.04em; color: var(--text); }
+        .scroll-inner span { margin: 0 30px; }
+        .scroll-inner .dot-sep { color: var(--yellow-darker); font-size: 1.8rem; font-weight: 700; }
         @keyframes scroll { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
 
         /* HOW WE WORK */
-        .how-we-work { padding: 100px 0; text-align: center; }
-        .how-we-work .section-header { margin-bottom: 40px; }
+        .how-we-work { padding: 100px 0; text-align: center; position: relative; overflow: hidden; }
+        .how-we-work .section-header { margin-bottom: 50px; }
         .steps-wrapper { position: relative; max-width: 100%; padding: 0 60px; }
-        .steps-horizontal { display: flex; gap: 20px; overflow-x: auto; padding: 20px 0 30px; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
+        .steps-horizontal { display: flex; gap: 25px; overflow-x: auto; padding: 20px 15px 30px; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
         .steps-horizontal::-webkit-scrollbar { display: none; }
-        .step-card { flex: 0 0 300px; scroll-snap-align: start; background: var(--glass); backdrop-filter: blur(15px); padding: 35px 30px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.5); border-top: 5px solid var(--yellow); text-align: left; transition: var(--bounce); box-shadow: 0 8px 30px rgba(0,0,0,0.04); }
-        .step-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
-        .step-card .step-num { width: 40px; height: 40px; background: var(--yellow); color: var(--text); border: 2px solid var(--text); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; margin-bottom: 18px; }
-        .step-card h3 { font-size: 1.05rem; margin-bottom: 10px; }
+        .step-card {
+            flex: 0 0 320px; scroll-snap-align: start;
+            background: var(--glass); backdrop-filter: blur(15px);
+            padding: 30px 28px 30px; border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.5); text-align: left;
+            transition: var(--bounce); box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+            clip-path: polygon(0 20px, 20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+            position: relative;
+        }
+        .step-card:hover { transform: translateY(-8px) rotate(-0.5deg); box-shadow: 0 25px 60px rgba(0,0,0,0.15); }
+        .step-card .step-header {
+            display: flex; align-items: center; gap: 15px; margin-bottom: 15px;
+        }
+        .step-card .step-num {
+            flex-shrink: 0;
+            width: 50px; height: 50px; background: var(--yellow);
+            color: var(--text); border: 3px solid var(--text);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 1.3rem;
+            box-shadow: 0 5px 20px var(--yellow-glow); transition: var(--bounce);
+        }
+        .step-card:hover .step-num { transform: scale(1.1) rotate(-5deg); }
+        .step-card .step-icon { font-size: 1.5rem; opacity: 0.5; transition: var(--bounce); }
+        .step-card:hover .step-icon { opacity: 1; transform: scale(1.2); }
+        .step-card h3 { font-size: 1.1rem; color: var(--text); margin: 0; }
         .step-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
-        .scroll-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; background: var(--yellow); color: var(--text); border: 3px solid var(--text); border-radius: 50%; cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; z-index: 5; transition: var(--bounce); box-shadow: 0 5px 20px var(--yellow-glow); user-select: none; }
-        .scroll-arrow:hover { transform: translateY(-50%) scale(1.1); }
+        .step-card::after {
+            content: ''; position: absolute; bottom: 0; left: 20px; right: 20px;
+            height: 4px; background: var(--yellow-gradient); border-radius: 2px;
+            transform: scaleX(0); transition: transform 0.5s;
+        }
+        .step-card:hover::after { transform: scaleX(1); }
+        .scroll-arrow {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 50px; height: 50px; background: var(--yellow);
+            color: var(--text); border: 3px solid var(--text);
+            border-radius: 50%; cursor: pointer; font-size: 1.5rem;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 5; transition: var(--bounce);
+            box-shadow: 0 5px 20px var(--yellow-glow); user-select: none;
+        }
+        .scroll-arrow:hover { transform: translateY(-50%) scale(1.15); }
         .scroll-arrow.left { left: 0; }
         .scroll-arrow.right { right: 0; }
 
@@ -110,11 +138,9 @@
         .projects-section { padding: 120px 0; text-align: center; position: relative; z-index: 1; }
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
         .project-card { background: #FFF; border-radius: 16px; padding: 14px 14px 24px; box-shadow: 0 8px 30px rgba(0,0,0,0.05); transition: var(--bounce); cursor: pointer; border: 1px solid rgba(0,0,0,0.06); text-align: left; }
-        body.dark .project-card { background: var(--card-bg-dark); border-color: rgba(255,255,255,0.04); }
         .project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
         .project-card img { width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 14px; background: #E8E1D8; display: block; }
         .project-card h3 { font-size: 1.1rem; margin-bottom: 6px; color: var(--text); }
-        body.dark .project-card h3 { color: #FFF; }
         .project-card .project-desc { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 8px; }
         .project-card .project-tags { display: flex; gap: 6px; flex-wrap: wrap; }
         .project-card .tag { padding: 4px 10px; background: var(--yellow); border: 1px solid var(--text); font-size: 0.58rem; font-family: 'Unbounded', sans-serif; font-weight: 500; border-radius: 12px; color: var(--text); }
@@ -133,7 +159,10 @@
 
         /* CALCULATOR */
         .calculator-section { padding: 110px 0; }
+        .calculator-section .section-header { text-align: center; margin-bottom: 50px; }
+        .calculator-section .section-header h2 { text-align: center; }
         .calc-box { max-width: 640px; margin: 0 auto; background: var(--glass); backdrop-filter: blur(20px); padding: 50px; border-radius: 20px; box-shadow: 0 15px 50px rgba(0,0,0,0.06); text-align: center; border: 1px solid rgba(255,255,255,0.5); border-top: 6px solid var(--yellow); }
+        .calc-box h3 { text-align: center; }
         .calc-slider { width: 100%; margin: 20px 0 30px; accent-color: var(--yellow-darker); height: 8px; }
         .price-value { font-size: 3rem; font-weight: 700; color: var(--yellow-darker); }
 
@@ -164,7 +193,6 @@
         .order-popup-overlay.active { display: flex; }
         .order-popup { background: #FFF; border-radius: 16px; padding: 45px 40px; max-width: 460px; width: 90%; animation: popupSlideIn 0.35s ease; }
         @keyframes popupSlideIn { from{opacity:0;transform:translateY(-30px) scale(0.96);} to{opacity:1;transform:translateY(0) scale(1);} }
-        body.dark .order-popup { background: #282828; }
         .order-popup-close { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; cursor: pointer; color: #8A8279; background: none; border: none; }
         .order-popup-title { font-size: 1.5rem; font-weight: 600; color: #2C2621; margin-bottom: 8px; font-family: 'Unbounded', sans-serif; }
         .order-form-group { margin-bottom: 18px; }
@@ -187,9 +215,23 @@
         .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.9s ease, transform 0.9s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        @media (max-width: 1100px) { .hero-grid { grid-template-columns: 1fr; } .hero-visual { height: 380px; } }
-        @media (max-width: 900px) { .container { padding: 0 24px; } .nav { display: none; } .mobile-menu-btn { display: block; } .hero-visual { height: 320px; } .hero-block.large { width: 75%; height: 58%; } .hero-block.medium { width: 52%; height: 33%; } .hero-block.small { width: 28%; height: 20%; top: 10%; left: 4%; } .contact-section { grid-template-columns: 1fr; gap: 35px; } .contact-map { height: 300px; } .projects-grid { grid-template-columns: 1fr 1fr; } .calc-box { padding: 35px 30px; } .steps-wrapper { padding: 0 40px; } .scroll-arrow { width: 38px; height: 38px; font-size: 1.2rem; } .step-card { flex: 0 0 260px; } }
-        @media (max-width: 550px) { .projects-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 1100px) { .hero-grid { grid-template-columns: 1fr; } .hero-visual { height: 450px; } }
+        @media (max-width: 900px) {
+            .container { padding: 0 24px; } .nav { display: none; } .mobile-menu-btn { display: block; }
+            .hero-visual { height: 380px; } .hero-block.large { width: 78%; height: 58%; } .hero-block.medium { width: 55%; height: 35%; } .hero-block.small { width: 32%; height: 24%; }
+            .contact-section { grid-template-columns: 1fr; gap: 35px; } .contact-map { height: 300px; }
+            .projects-grid { grid-template-columns: 1fr 1fr; } .calc-box { padding: 35px 30px; }
+            .steps-wrapper { padding: 0 40px; }
+            .step-card { flex: 0 0 270px; padding: 25px 20px; }
+            .step-card .step-num { width: 40px; height: 40px; font-size: 1.1rem; }
+            .scroll-arrow { width: 38px; height: 38px; font-size: 1.2rem; }
+        }
+        @media (max-width: 550px) {
+            .projects-grid { grid-template-columns: 1fr; }
+            .steps-wrapper { padding: 0 32px; }
+            .step-card { flex: 0 0 240px; padding: 22px 18px; }
+            .step-card .step-num { width: 36px; height: 36px; font-size: 1rem; }
+        }
     </style>
 </head>
 <body>
@@ -206,7 +248,6 @@
             </ul>
             <div class="header-right">
                 <a href="tel:+78129258856" class="header-phone">+7 (812) 925 88-56</a>
-                <button class="theme-dot" id="themeToggle" aria-label="Тема"></button>
                 <button class="mobile-menu-btn" id="mobileMenuBtn"><span></span><span></span><span></span></button>
             </div>
         </div>
@@ -240,7 +281,18 @@
     <!-- SCROLL TEXT -->
     <section class="scroll-text">
         <div class="scroll-inner">
-            <span>Проект с нуля</span><span class="dot-sep">·</span><span>Индивидуальный дизайн</span><span class="dot-sep">·</span><span>Бесплатный замер</span><span class="dot-sep">·</span><span>3D-проект в подарок</span><span class="dot-sep">·</span><span>Доставка и сборка</span><span class="dot-sep">·</span><span>Гарантия 5 лет</span><span class="dot-sep">·</span><span>Проект с нуля</span><span class="dot-sep">·</span><span>Индивидуальный дизайн</span><span class="dot-sep">·</span><span>Бесплатный замер</span><span class="dot-sep">·</span><span>3D-проект в подарок</span><span class="dot-sep">·</span><span>Доставка и сборка</span><span class="dot-sep">·</span><span>Гарантия 5 лет</span>
+            <span>Проект с нуля</span><span class="dot-sep">·</span>
+            <span>Индивидуальный дизайн</span><span class="dot-sep">·</span>
+            <span>Бесплатный замер</span><span class="dot-sep">·</span>
+            <span>3D-проект в подарок</span><span class="dot-sep">·</span>
+            <span>Доставка и сборка</span><span class="dot-sep">·</span>
+            <span>Гарантия 2 года</span><span class="dot-sep">·</span>
+            <span>Проект с нуля</span><span class="dot-sep">·</span>
+            <span>Индивидуальный дизайн</span><span class="dot-sep">·</span>
+            <span>Бесплатный замер</span><span class="dot-sep">·</span>
+            <span>3D-проект в подарок</span><span class="dot-sep">·</span>
+            <span>Доставка и сборка</span><span class="dot-sep">·</span>
+            <span>Гарантия 2 года</span>
         </div>
     </section>
 
@@ -251,11 +303,46 @@
             <div class="steps-wrapper">
                 <button class="scroll-arrow left" id="scrollLeft" aria-label="Листать влево">‹</button>
                 <div class="steps-horizontal" id="stepsScroll">
-                    <div class="step-card"><div class="step-num">1</div><h3>Знакомство</h3><p>Вы рассказываете о своих пожеланиях, мы можем сделать предварительный дизайн и расчёт удалённо. Если всё устраивает — выезжаем на замер, делаем точные обмеры.</p></div>
-                    <div class="step-card"><div class="step-num">2</div><h3>3D-проект и смета</h3><p>Создаём детальную визуализацию и точную смету. Вы видите будущую кухню до начала производства и можете вносить правки.</p></div>
-                    <div class="step-card"><div class="step-num">3</div><h3>Договор и предоплата</h3><p>Заключаем договор с фиксированной ценой и сроками. Предоплата 50%. Остальное — после получения. Оплата: наличные, терминал, QR-код, безнал.</p></div>
-                    <div class="step-card"><div class="step-num">4</div><h3>Производство</h3><p>Изготавливаем кухню на фабрике-партнёре. Срок — от 30 дней. Контроль качества. Срочно — предложим модульные кухни со склада.</p></div>
-                    <div class="step-card"><div class="step-num">5</div><h3>Доставка и монтаж</h3><p>Бережная доставка, профессиональная сборка, подключение техники. Вы принимаете готовую кухню и получаете гарантийный паспорт на 5 лет.</p></div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <div class="step-num">1</div>
+                            <div class="step-icon">📋</div>
+                            <h3>Знакомство</h3>
+                        </div>
+                        <p>Вы рассказываете о своих пожеланиях, мы можем сделать предварительный дизайн и расчёт удалённо. Если всё устраивает — выезжаем на замер, делаем точные обмеры.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <div class="step-num">2</div>
+                            <div class="step-icon">🎨</div>
+                            <h3>3D-проект и смета</h3>
+                        </div>
+                        <p>Создаём детальную визуализацию и точную смету. Вы видите будущую кухню до начала производства и можете вносить правки.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <div class="step-num">3</div>
+                            <div class="step-icon">📝</div>
+                            <h3>Договор и предоплата</h3>
+                        </div>
+                        <p>Заключаем договор с фиксированной ценой и сроками. Предоплата 50%. Остальное — после получения. Оплата: наличные, терминал, QR-код, безнал.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <div class="step-num">4</div>
+                            <div class="step-icon">🔧</div>
+                            <h3>Производство</h3>
+                        </div>
+                        <p>Изготавливаем кухню на фабрике-партнёре. Срок — от 30 дней. Контроль качества. Срочно — предложим модульные кухни со склада.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-header">
+                            <div class="step-num">5</div>
+                            <div class="step-icon">🚚</div>
+                            <h3>Доставка и монтаж</h3>
+                        </div>
+                        <p>Бережная доставка, профессиональная сборка, подключение техники. Вы принимаете готовую кухню и получаете гарантийный паспорт на 2 года.</p>
+                    </div>
                 </div>
                 <button class="scroll-arrow right" id="scrollRight" aria-label="Листать вправо">›</button>
             </div>
@@ -355,12 +442,6 @@
     <button class="back-to-top" id="backToTop" aria-label="Наверх"><i class="fas fa-arrow-up"></i></button>
 
     <script>
-        // ===== ТЕМА =====
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        if (localStorage.getItem('theme') === 'dark') body.classList.add('dark');
-        themeToggle.addEventListener('click', () => { body.classList.toggle('dark'); localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light'); });
-
         // ===== HEADER + BACK TO TOP =====
         const header = document.getElementById('header');
         const backToTop = document.getElementById('backToTop');
@@ -370,6 +451,7 @@
         // ===== MOBILE MENU =====
         const mmb = document.getElementById('mobileMenuBtn');
         const mn = document.getElementById('mobileNav');
+        const body = document.body;
         mmb.addEventListener('click', () => { mmb.classList.toggle('active'); mn.classList.toggle('active'); body.classList.toggle('popup-open'); });
         document.querySelectorAll('[data-close]').forEach(l => l.addEventListener('click', () => { mmb.classList.remove('active'); mn.classList.remove('active'); body.classList.remove('popup-open'); }));
 
@@ -380,8 +462,8 @@
 
         // ===== СТРЕЛКИ ДЛЯ HOW WE WORK =====
         const stepsScroll = document.getElementById('stepsScroll');
-        document.getElementById('scrollLeft').addEventListener('click', () => stepsScroll.scrollBy({ left: -340, behavior: 'smooth' }));
-        document.getElementById('scrollRight').addEventListener('click', () => stepsScroll.scrollBy({ left: 340, behavior: 'smooth' }));
+        document.getElementById('scrollLeft').addEventListener('click', () => stepsScroll.scrollBy({ left: -350, behavior: 'smooth' }));
+        document.getElementById('scrollRight').addEventListener('click', () => stepsScroll.scrollBy({ left: 350, behavior: 'smooth' }));
 
         // ===== CALCULATOR =====
         const slider = document.getElementById('meterSlider');
@@ -397,9 +479,9 @@
             const x = (e.clientX - r.left) / r.width - 0.5;
             const y = (e.clientY - r.top) / r.height - 0.5;
             const blocks = hv.querySelectorAll('.hero-block');
-            if (blocks[0]) blocks[0].style.transform = `translate(${x * -10}px, ${y * -10}px)`;
-            if (blocks[1]) blocks[1].style.transform = `translate(${x * 6}px, ${y * 6}px)`;
-            if (blocks[2]) blocks[2].style.transform = `translate(${x * 4}px, ${y * 4}px)`;
+            if (blocks[0]) blocks[0].style.transform = `translate(${x * -12}px, ${y * -12}px)`;
+            if (blocks[1]) blocks[1].style.transform = `translate(${x * 8}px, ${y * 8}px)`;
+            if (blocks[2]) blocks[2].style.transform = `translate(${x * 5}px, ${y * 5}px)`;
         });
 
         // ===== ПРОЕКТЫ С ГАЛЕРЕЯМИ =====
@@ -474,4 +556,3 @@
     </script>
 </body>
 </html>
-```
